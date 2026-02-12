@@ -300,7 +300,7 @@ html{{scroll-padding-top:50px;}}
 .cover-stat{{text-align:center;}}.cover-stat-value{{display:block;font-size:22px;font-weight:600;color:#fff;}}.cover-stat-label{{display:block;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-top:4px;}}
 .cover-hero-wrap{{width:100%;max-width:580px;margin:20px auto;border:3px solid #C5A258;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);}}.cover-hero-wrap img{{width:100%;display:block;}}
 .client-greeting{{font-size:17px;font-weight:400;color:rgba(255,255,255,0.85);margin-top:20px;font-style:italic;}}
-.cover-pdf-btn{{display:inline-block;margin-top:20px;padding:12px 24px;background:#C5A258;color:#1B3A5C;font-size:14px;font-weight:600;text-decoration:none;border-radius:6px;letter-spacing:0.5px;transition:background 0.2s,color 0.2s;box-shadow:0 2px 8px rgba(0,0,0,0.2);}}.cover-pdf-btn:hover{{background:#fff;color:#1B3A5C;}}
+.pdf-float-btn{{position:fixed;bottom:24px;right:24px;z-index:9999;padding:14px 28px;background:#C5A258;color:#1B3A5C;font-size:14px;font-weight:700;text-decoration:none;border-radius:8px;letter-spacing:0.5px;box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:background 0.2s,transform 0.2s;display:flex;align-items:center;gap:8px;}}.pdf-float-btn:hover{{background:#fff;transform:translateY(-2px);}}.pdf-float-btn svg{{width:18px;height:18px;fill:currentColor;}}
 .toc-nav{{background:#1B3A5C;padding:0 20px;display:flex;flex-wrap:nowrap;gap:0;justify-content:center;align-items:stretch;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15);overflow-x:auto;-webkit-overflow-scrolling:touch;}}
 .toc-nav a{{color:rgba(255,255,255,0.65);text-decoration:none;font-size:10px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;padding:13px 11px;border-bottom:2px solid transparent;transition:all 0.2s ease;white-space:nowrap;display:flex;align-items:center;}}
 .toc-nav a:hover{{color:#fff;background:rgba(197,162,88,0.12);border-bottom-color:rgba(197,162,88,0.4);}}.toc-nav a.toc-active{{color:#C5A258;font-weight:600;border-bottom-color:#C5A258;}}
@@ -327,7 +327,91 @@ p{{margin-bottom:16px;font-size:14px;line-height:1.7;}}
 .highlight-box ul{{margin:0;padding-left:20px;}}.highlight-box li{{font-size:13px;margin-bottom:6px;line-height:1.5;}}
 @media(max-width:768px){{.cover{{padding:24px 20px;}}.cover-title{{font-size:28px;}}.cover-price{{font-size:34px;}}.cover-logo{{width:200px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:10px 16px;gap:4px 10px;}}.toc-nav a{{font-size:11px;padding:3px 8px;}}.table-scroll table{{min-width:560px;}}}}
 @media(max-width:420px){{.cover{{padding:24px 16px;}}.cover-title{{font-size:24px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:9px;padding:10px 6px;letter-spacing:0.5px;}}.leaflet-map{{height:240px;}}}}
-@media print{{.toc-nav,.leaflet-map,.embed-map-wrap,.embed-map-caption{{display:none !important;}}.map-fallback,.embed-map-fallback{{display:block !important;}}.section{{page-break-before:always;}}thead{{display:table-header-group;}}tr{{page-break-inside:avoid;}}h2,h3{{page-break-after:avoid;}}p{{orphans:3;widows:3;}}body{{font-size:11px;}}}}
+@media print{{
+@page{{size:letter portrait;margin:0.4in 0.5in;}}
+.pdf-float-btn,.toc-nav,.leaflet-map,.embed-map-wrap,.embed-map-caption{{display:none !important;}}
+.map-fallback,.embed-map-fallback{{display:block !important;}}
+body{{font-size:10.5px;line-height:1.45;color:#222;}}
+p{{font-size:10.5px;line-height:1.45;margin-bottom:8px;orphans:3;widows:3;}}
+
+.cover{{padding:20px 30px 16px;page-break-after:always;}}
+.cover-logo{{width:180px;margin-bottom:10px;}}
+.cover-label{{font-size:9px;letter-spacing:2px;margin-bottom:6px;}}
+.cover-title{{font-size:26px;margin-bottom:4px;}}
+.cover-subtitle{{font-size:14px;margin-bottom:10px;}}
+.cover-stats{{gap:14px;margin-bottom:10px;}}
+.cover-stat-value{{font-size:17px;}}
+.cover-stat-label{{font-size:7px;letter-spacing:1px;}}
+.cover-hero-wrap{{max-width:360px;margin:6px auto;border-width:2px;}}
+.client-greeting{{font-size:13px;margin-top:8px;}}
+
+.section{{padding:14px 0;max-width:100%;}}
+.section-title{{font-size:17px;margin-bottom:2px;}}
+.section-subtitle{{font-size:8px;letter-spacing:1px;margin-bottom:6px;}}
+.section-divider{{margin-bottom:10px;height:2px;}}
+.sub-heading{{font-size:13px;margin:12px 0 6px;}}
+
+#track-record{{page-break-before:auto;}}
+#investment{{page-break-before:always;}}
+#location{{page-break-before:auto;}}
+#property-info{{page-break-before:always;}}
+#building-systems{{page-break-before:auto;}}
+#regulatory{{page-break-before:auto;}}
+#transactions{{page-break-before:auto;}}
+#development{{page-break-before:always;}}
+#adu-opportunity{{page-break-before:always;}}
+#sale-comps{{page-break-before:always;}}
+#on-market{{page-break-before:auto;}}
+#rent-comps{{page-break-before:always;}}
+#financials{{page-break-before:always;}}
+.footer{{page-break-before:always;padding:20px;}}
+
+.metrics-grid,.metrics-grid-4{{page-break-inside:avoid;}}
+.metric-card{{page-break-inside:avoid;}}
+.highlight-box,.buyer-profile,.condition-note{{page-break-inside:avoid;}}
+table{{page-break-inside:auto;font-size:9.5px;margin-bottom:10px;}}
+thead{{display:table-header-group;}}
+tr{{page-break-inside:avoid;}}
+th{{padding:3px 5px;font-size:7.5px;}}
+td{{padding:3px 5px;}}
+h2,h3,.section-title,.sub-heading{{page-break-after:avoid;}}
+
+.narrative{{column-count:2;column-gap:18px;column-rule:1px solid #e0e0e0;}}
+.narrative p{{font-size:10px;line-height:1.4;margin-bottom:7px;}}
+
+.info-table td{{padding:3px 5px;font-size:9.5px;}}
+.table-scroll{{overflow:visible;}}
+.table-scroll table{{min-width:0 !important;width:100%;}}
+
+.photo-grid{{gap:4px;margin-bottom:10px;}}
+.photo-grid img{{height:110px;}}
+.adu-img-wrap{{margin-bottom:8px;}}
+.adu-img-wrap img{{max-height:200px;width:auto;margin:0 auto;display:block;}}
+
+.metrics-grid,.metrics-grid-4{{gap:6px;margin-bottom:10px;}}
+.metric-card{{padding:6px 4px;border:1px solid #ddd;}}
+.metric-value{{font-size:16px;}}
+.metric-label{{font-size:7px;margin-top:1px;}}
+.metric-sub{{font-size:7px;}}
+
+.highlight-box{{padding:8px 12px;margin:8px 0;}}
+.highlight-box h4{{font-size:10px;margin-bottom:4px;}}
+.highlight-box li{{font-size:9.5px;margin-bottom:2px;line-height:1.35;}}
+.buyer-profile{{padding:8px 12px;margin:8px 0;}}
+.buyer-profile-label{{font-size:9px;margin-bottom:6px;}}
+.buyer-profile li{{padding:3px 0;font-size:9.5px;line-height:1.35;}}
+.condition-note{{padding:6px 10px;margin:8px 0;font-size:9.5px;line-height:1.4;}}
+
+.two-col{{gap:10px;margin-bottom:10px;}}
+
+.footer-logo{{width:100px;margin-bottom:10px;}}
+.footer-headshot{{width:45px;height:45px;}}
+.footer-name{{font-size:12px;}}
+.footer-title{{font-size:9px;}}
+.footer-contact{{font-size:9px;line-height:1.6;}}
+.footer-office{{font-size:9px;}}
+.footer-disclaimer{{font-size:7.5px;}}
+}}
 </style>
 </head>
 <body>
@@ -348,7 +432,6 @@ html_parts.append(f"""
 </div>
 <div class="cover-hero-wrap"><img src="{IMG['hero']}" alt="420-428 W Stocker St Aerial"></div>
 <p class="client-greeting" id="client-greeting">Prepared Exclusively for Isabelle Gerald</p>
-<a href="{PDF_LINK}" class="cover-pdf-btn" target="_blank" rel="noopener">Download PDF</a>
 <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-top:12px;margin-bottom:2px;">Glen Scher, Senior Managing Director Investments</p>
 <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:0;">February 2026</p>
 <p style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-top:8px;text-transform:uppercase;">NYSE: MMI</p>
@@ -373,6 +456,7 @@ html_parts.append("""
 <a href="#financials">Financials</a>
 <a href="#contact">Contact</a>
 </nav>
+<a href="{PDF_LINK}" class="pdf-float-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-1 13l-4-4h3V9h2v4h3l-4 4z"/></svg>Download PDF</a>
 """)
 
 # TRACK RECORD (unchanged)
@@ -406,11 +490,13 @@ html_parts.append(f"""
 <img src="{IMG['grid4']}" alt="428 Building Interior Courtyard">
 </div>
 
+<div class="narrative">
 <p>The LAAA Team of Marcus &amp; Millichap is pleased to present <strong>Stocker Gardens</strong>, a 27-unit multifamily portfolio located at 420-428 W Stocker St in Glendale's premier Glenwood neighborhood. The offering consists of two adjacent parcels totaling 1.11 acres with five wood-frame buildings, including a 4-bedroom Craftsman front house and 26 apartment units. The property delivers approximately 19% rental upside, significant ADU development potential under SB 1211, and over $117,000 in recently completed capital improvements, making it one of the most compelling value-add opportunities available in the Glendale submarket.</p>
 
 <p>Built in 1953/1954, Stocker Gardens encompasses 22,674 square feet of gross building area across 27 units: one 4BR/3BA Craftsman house (2,500 SF), 24 two-bedroom/one-bath apartments (750 SF each), and two one-bedroom/one-bath apartments (650 SF each). The combined lot measures approximately 160 feet wide by 300 feet deep, creating a rare 48,353 SF site with approximately 8,000 SF of rear parking area ideally suited for ADU infill. All apartment units are individually metered for gas and electricity, minimizing owner utility exposure. Current gross scheduled rent totals $740,748 annually, with pro forma potential of $878,280, representing approximately $137,500 in annual rental upside achievable through natural tenant turnover and light interior renovations.</p>
 
 <p>The seller has invested heavily in the property's physical plant, completing over $117,000 in capital improvements in 2024 alone, including plumbing and electrical upgrades, deck reconstruction, window replacements, HVAC repairs, exterior painting, and appliance replacements. Units A through H on the 420 parcel were repiped in 2005, and the 428 building's walkway and stair surfaces were recoated with fiberglass in 2023-2024 with all inspections passed. These completed improvements meaningfully reduce a buyer's near-term capital exposure and allow for immediate focus on income growth through unit turns and ADU construction.</p>
+</div>
 
 <div class="metrics-grid-4">
 <div class="metric-card"><span class="metric-value">27</span><span class="metric-label">Total Units</span></div>
@@ -428,11 +514,13 @@ html_parts.append("""
 <div class="section-subtitle">Glenwood Submarket &mdash; Northwest Glendale, 91202</div>
 <div class="section-divider"></div>
 
+<div class="narrative">
 <p>Stocker Gardens is situated in Glendale's Glenwood neighborhood, north of Glenoaks Boulevard in the highly desirable 91202 zip code. The location has been described by competing listing agents as "arguably the best location in Glendale," nestled just below multimillion-dollar hillside homes while remaining steps from daily conveniences including Starbucks, cafes, and neighborhood shops. Three schools are within one block walking distance, and the property benefits from the Glendale Unified School District, one of the highest-performing districts in Los Angeles County. The Walk Score of 88 (Very Walkable) reflects the neighborhood's strong access to everyday amenities on foot.</p>
 
 <p>The property is positioned within a well-established rental corridor along W Stocker Street, surrounded by similar vintage multifamily properties ranging from 5 to 33 units. Regional access is excellent via the SR-134 Freeway (Pacific Avenue exit, approximately half a mile south), connecting residents to Burbank, Pasadena, and the greater LA basin. Downtown Glendale, with its concentration of retail, dining, and entertainment at the Americana at Brand and Glendale Galleria, is a 4-minute drive or 7-minute bike ride. The Glendale Transportation Center provides Metrolink commuter rail service to Downtown LA and points throughout the region. Employment drivers include proximity to major entertainment studios in neighboring Burbank, including Warner Bros., Walt Disney Studios, and DreamWorks, which sustain consistent tenant demand throughout northwest Glendale.</p>
 
 <p>From a hazard and environmental standpoint, the property carries a low risk profile. It is not located in a fire hazard severity zone (confirmed by city permit records), sits in FEMA Zone X (shaded) indicating moderate flood risk with no federal flood insurance requirement, and has no known environmental contamination per DTSC and GeoTracker records. Glendale does not have a mandatory soft-story retrofit ordinance, though buyers may wish to evaluate voluntary seismic improvements given the 1953/1954 wood-frame construction.</p>
+</div>
 
 <div class="two-col">
 <table class="info-table">
