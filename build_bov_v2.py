@@ -291,7 +291,7 @@ html_parts.append(f"""<!DOCTYPE html>
 body{{font-family:'Inter',sans-serif;color:#333;line-height:1.6;background:#fff;}}
 html{{scroll-padding-top:50px;}}
 .cover{{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;}}
-.cover-bg{{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.35);z-index:0;}}
+.cover-bg{{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.45);z-index:0;}}
 .cover-content{{position:relative;z-index:2;padding:60px 40px;max-width:860px;}}
 .cover-logo{{width:320px;margin:0 auto 30px;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));}}
 .cover-label{{font-size:13px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#C5A258;margin-bottom:18px;}}
@@ -330,32 +330,32 @@ p{{margin-bottom:16px;font-size:14px;line-height:1.7;}}
 @media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-hs img{{width:65px;height:65px;}}.cover-hs span{{font-size:12px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:10px 16px;gap:4px 10px;}}.toc-nav a{{font-size:11px;padding:3px 8px;}}.table-scroll table{{min-width:560px;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-hs img{{width:50px;height:50px;}}.cover-hs span{{font-size:10px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:9px;padding:10px 6px;letter-spacing:0.5px;}}.leaflet-map{{height:240px;}}}}
 @media print{{
-@page{{size:letter portrait;margin:0.4in 0.5in;}}
+@page{{size:letter landscape;margin:0.4in 0.5in;}}
 .pdf-float-btn,.toc-nav,.leaflet-map,.embed-map-wrap,.embed-map-caption{{display:none !important;}}
 .map-fallback,.embed-map-fallback{{display:block !important;}}
-body{{font-size:10.5px;line-height:1.45;color:#222;}}
-p{{font-size:10.5px;line-height:1.45;margin-bottom:8px;orphans:3;widows:3;}}
+body{{font-size:11px;line-height:1.5;color:#222;}}
+p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 
 .cover{{min-height:auto;padding:0;page-break-after:always;}}
-.cover-bg{{filter:brightness(0.3);}}
-.cover-content{{padding:24px 30px 20px;}}
-.cover-logo{{width:180px;margin-bottom:10px;}}
-.cover-label{{font-size:9px;letter-spacing:2px;margin-bottom:6px;}}
-.cover-title{{font-size:26px;margin-bottom:4px;}}
-.cover-subtitle{{font-size:14px;margin-bottom:8px;}}
-.cover-stats{{gap:14px;margin-bottom:10px;}}
-.cover-stat-value{{font-size:17px;}}
-.cover-stat-label{{font-size:7px;letter-spacing:1px;}}
-.client-greeting{{font-size:11px;margin-top:6px;}}
-.cover-headshots{{margin-top:12px;gap:20px;}}
-.cover-hs img{{width:50px;height:50px;}}
-.cover-hs span{{font-size:10px;}}
+.cover-bg{{filter:brightness(0.35);}}
+.cover-content{{padding:30px 60px 24px;max-width:100%;}}
+.cover-logo{{width:220px;margin-bottom:14px;}}
+.cover-label{{font-size:10px;letter-spacing:2px;margin-bottom:8px;}}
+.cover-title{{font-size:32px;margin-bottom:6px;}}
+.cover-subtitle{{font-size:16px;margin-bottom:12px;}}
+.cover-stats{{gap:24px;margin-bottom:14px;}}
+.cover-stat-value{{font-size:20px;}}
+.cover-stat-label{{font-size:8px;letter-spacing:1px;}}
+.client-greeting{{font-size:13px;margin-top:10px;}}
+.cover-headshots{{margin-top:14px;gap:28px;}}
+.cover-hs img{{width:55px;height:55px;}}
+.cover-hs span{{font-size:11px;}}
 
-.section{{padding:14px 0;max-width:100%;}}
-.section-title{{font-size:17px;margin-bottom:2px;}}
-.section-subtitle{{font-size:8px;letter-spacing:1px;margin-bottom:6px;}}
-.section-divider{{margin-bottom:10px;height:2px;}}
-.sub-heading{{font-size:13px;margin:12px 0 6px;}}
+.section{{padding:16px 0;max-width:100%;}}
+.section-title{{font-size:20px;margin-bottom:3px;}}
+.section-subtitle{{font-size:9px;letter-spacing:1px;margin-bottom:8px;}}
+.section-divider{{margin-bottom:12px;height:2px;}}
+.sub-heading{{font-size:14px;margin:14px 0 8px;}}
 
 #track-record{{page-break-before:auto;}}
 #investment{{page-break-before:always;}}
@@ -368,55 +368,57 @@ p{{font-size:10.5px;line-height:1.45;margin-bottom:8px;orphans:3;widows:3;}}
 #adu-opportunity{{page-break-before:always;}}
 #sale-comps{{page-break-before:always;}}
 #on-market{{page-break-before:auto;}}
-#rent-comps{{page-break-before:always;}}
+#rent-comps{{page-break-before:auto;}}
 #financials{{page-break-before:always;}}
-.footer{{page-break-before:always;padding:20px;}}
+.footer{{page-break-before:always;padding:24px 40px;}}
 
 .metrics-grid,.metrics-grid-4{{page-break-inside:avoid;}}
 .metric-card{{page-break-inside:avoid;}}
 .highlight-box,.buyer-profile,.condition-note{{page-break-inside:avoid;}}
-table{{page-break-inside:auto;font-size:9.5px;margin-bottom:10px;}}
+table{{page-break-inside:auto;font-size:10.5px;margin-bottom:12px;}}
 thead{{display:table-header-group;}}
 tr{{page-break-inside:avoid;}}
-th{{padding:3px 5px;font-size:7.5px;}}
-td{{padding:3px 5px;}}
+th{{padding:4px 8px;font-size:8.5px;}}
+td{{padding:4px 8px;}}
 h2,h3,.section-title,.sub-heading{{page-break-after:avoid;}}
 
-.narrative{{column-count:2;column-gap:18px;column-rule:1px solid #e0e0e0;}}
-.narrative p{{font-size:10px;line-height:1.4;margin-bottom:7px;}}
+.narrative{{column-count:2;column-gap:24px;column-rule:1px solid #e0e0e0;}}
+.narrative p{{font-size:10.5px;line-height:1.45;margin-bottom:8px;}}
 
-.info-table td{{padding:3px 5px;font-size:9.5px;}}
+.info-table td{{padding:4px 8px;font-size:10.5px;}}
 .table-scroll{{overflow:visible;}}
 .table-scroll table{{min-width:0 !important;width:100%;}}
 
-.photo-grid{{gap:4px;margin-bottom:10px;}}
-.photo-grid img{{height:110px;}}
-.adu-img-wrap{{margin-bottom:8px;}}
-.adu-img-wrap img{{max-height:200px;width:auto;margin:0 auto;display:block;}}
+.photo-grid{{gap:6px;margin-bottom:12px;}}
+.photo-grid img{{height:140px;}}
+.adu-img-wrap{{margin-bottom:10px;}}
+.adu-img-wrap img{{max-height:240px;width:auto;margin:0 auto;display:block;}}
 
-.metrics-grid,.metrics-grid-4{{gap:6px;margin-bottom:10px;}}
-.metric-card{{padding:6px 4px;border:1px solid #ddd;}}
-.metric-value{{font-size:16px;}}
-.metric-label{{font-size:7px;margin-top:1px;}}
+.metrics-grid{{grid-template-columns:repeat(3,1fr);}}
+.metrics-grid-4{{grid-template-columns:repeat(4,1fr);}}
+.metrics-grid,.metrics-grid-4{{gap:8px;margin-bottom:12px;}}
+.metric-card{{padding:8px 6px;border:1px solid #ddd;}}
+.metric-value{{font-size:18px;}}
+.metric-label{{font-size:8px;margin-top:2px;}}
 .metric-sub{{font-size:7px;}}
 
-.highlight-box{{padding:8px 12px;margin:8px 0;}}
-.highlight-box h4{{font-size:10px;margin-bottom:4px;}}
-.highlight-box li{{font-size:9.5px;margin-bottom:2px;line-height:1.35;}}
-.buyer-profile{{padding:8px 12px;margin:8px 0;}}
-.buyer-profile-label{{font-size:9px;margin-bottom:6px;}}
-.buyer-profile li{{padding:3px 0;font-size:9.5px;line-height:1.35;}}
-.condition-note{{padding:6px 10px;margin:8px 0;font-size:9.5px;line-height:1.4;}}
+.highlight-box{{padding:10px 14px;margin:10px 0;}}
+.highlight-box h4{{font-size:11px;margin-bottom:5px;}}
+.highlight-box li{{font-size:10px;margin-bottom:3px;line-height:1.4;}}
+.buyer-profile{{padding:10px 14px;margin:10px 0;}}
+.buyer-profile-label{{font-size:10px;margin-bottom:6px;}}
+.buyer-profile li{{padding:4px 0;font-size:10px;line-height:1.4;}}
+.condition-note{{padding:8px 12px;margin:10px 0;font-size:10px;line-height:1.45;}}
 
-.two-col{{gap:10px;margin-bottom:10px;}}
+.two-col{{gap:14px;margin-bottom:12px;}}
 
-.footer-logo{{width:100px;margin-bottom:10px;}}
-.footer-headshot{{width:45px;height:45px;}}
-.footer-name{{font-size:12px;}}
-.footer-title{{font-size:9px;}}
-.footer-contact{{font-size:9px;line-height:1.6;}}
-.footer-office{{font-size:9px;}}
-.footer-disclaimer{{font-size:7.5px;}}
+.footer-logo{{width:120px;margin-bottom:12px;}}
+.footer-headshot{{width:50px;height:50px;}}
+.footer-name{{font-size:13px;}}
+.footer-title{{font-size:10px;}}
+.footer-contact{{font-size:10px;line-height:1.6;}}
+.footer-office{{font-size:10px;}}
+.footer-disclaimer{{font-size:8px;}}
 }}
 </style>
 </head>
