@@ -290,19 +290,21 @@ html_parts.append(f"""<!DOCTYPE html>
 *{{margin:0;padding:0;box-sizing:border-box;}}
 body{{font-family:'Inter',sans-serif;color:#333;line-height:1.6;background:#fff;}}
 html{{scroll-padding-top:50px;}}
-.cover{{position:relative;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;text-align:center;padding:40px 40px 50px;background:#1B3A5C;color:#fff;overflow:hidden;}}
-.cover-logo{{width:260px;margin-bottom:30px;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));}}
-.cover-label{{font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#C5A258;margin-bottom:16px;}}
-.cover-title{{font-size:38px;font-weight:700;letter-spacing:1px;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,0.3);}}
-.cover-subtitle{{font-size:18px;font-weight:300;color:rgba(255,255,255,0.8);margin-bottom:24px;}}
-.cover-price{{font-size:44px;font-weight:700;color:#C5A258;margin-bottom:24px;text-shadow:0 2px 8px rgba(0,0,0,0.2);}}
-.cover-stats{{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;}}
-.cover-stat{{text-align:center;}}.cover-stat-value{{display:block;font-size:22px;font-weight:600;color:#fff;}}.cover-stat-label{{display:block;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-top:4px;}}
-.cover-hero-wrap{{width:100%;max-width:580px;margin:20px auto;border:3px solid #C5A258;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);}}.cover-hero-wrap img{{width:100%;display:block;}}
-.client-greeting{{font-size:17px;font-weight:400;color:rgba(255,255,255,0.85);margin-top:20px;font-style:italic;}}
+.cover{{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;}}
+.cover-bg{{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(0.35);z-index:0;}}
+.cover-content{{position:relative;z-index:2;padding:60px 40px;max-width:860px;}}
+.cover-logo{{width:320px;margin:0 auto 30px;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));}}
+.cover-label{{font-size:13px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#C5A258;margin-bottom:18px;}}
+.cover-title{{font-size:46px;font-weight:700;letter-spacing:1px;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,0.3);}}
+.cover-subtitle{{font-size:20px;font-weight:300;color:rgba(255,255,255,0.8);margin-bottom:28px;}}
+.cover-price{{font-size:48px;font-weight:700;color:#C5A258;margin-bottom:28px;text-shadow:0 2px 8px rgba(0,0,0,0.2);}}
+.cover-stats{{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;}}
+.cover-stat{{text-align:center;}}.cover-stat-value{{display:block;font-size:26px;font-weight:600;color:#fff;}}.cover-stat-label{{display:block;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-top:4px;}}
+.client-greeting{{font-size:18px;font-weight:400;color:rgba(255,255,255,0.85);margin-top:20px;font-style:italic;}}
+.cover-headshots{{display:flex;justify-content:center;gap:40px;margin-top:28px;}}.cover-hs{{text-align:center;}}.cover-hs img{{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #C5A258;margin-bottom:8px;display:block;}}.cover-hs span{{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);}}
 .pdf-float-btn{{position:fixed;bottom:24px;right:24px;z-index:9999;padding:14px 28px;background:#C5A258;color:#1B3A5C;font-size:14px;font-weight:700;text-decoration:none;border-radius:8px;letter-spacing:0.5px;box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:background 0.2s,transform 0.2s;display:flex;align-items:center;gap:8px;}}.pdf-float-btn:hover{{background:#fff;transform:translateY(-2px);}}.pdf-float-btn svg{{width:18px;height:18px;fill:currentColor;}}
 .toc-nav{{background:#1B3A5C;padding:0 20px;display:flex;flex-wrap:nowrap;gap:0;justify-content:center;align-items:stretch;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15);overflow-x:auto;-webkit-overflow-scrolling:touch;}}
-.toc-nav a{{color:rgba(255,255,255,0.65);text-decoration:none;font-size:10px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;padding:13px 11px;border-bottom:2px solid transparent;transition:all 0.2s ease;white-space:nowrap;display:flex;align-items:center;}}
+.toc-nav a{{color:rgba(255,255,255,0.85);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;padding:13px 11px;border-bottom:2px solid transparent;transition:all 0.2s ease;white-space:nowrap;display:flex;align-items:center;}}
 .toc-nav a:hover{{color:#fff;background:rgba(197,162,88,0.12);border-bottom-color:rgba(197,162,88,0.4);}}.toc-nav a.toc-active{{color:#C5A258;font-weight:600;border-bottom-color:#C5A258;}}
 .section{{padding:50px 40px;max-width:1100px;margin:0 auto;}}.section-alt{{background:#f8f9fa;}}
 .section-title{{font-size:26px;font-weight:700;color:#1B3A5C;margin-bottom:6px;}}.section-subtitle{{font-size:13px;color:#C5A258;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;font-weight:500;}}
@@ -325,8 +327,8 @@ p{{margin-bottom:16px;font-size:14px;line-height:1.7;}}
 .highlight-box{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:20px 24px;margin:24px 0;}}
 .highlight-box h4{{color:#1B3A5C;font-size:14px;margin-bottom:10px;}}
 .highlight-box ul{{margin:0;padding-left:20px;}}.highlight-box li{{font-size:13px;margin-bottom:6px;line-height:1.5;}}
-@media(max-width:768px){{.cover{{padding:24px 20px;}}.cover-title{{font-size:28px;}}.cover-price{{font-size:34px;}}.cover-logo{{width:200px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:10px 16px;gap:4px 10px;}}.toc-nav a{{font-size:11px;padding:3px 8px;}}.table-scroll table{{min-width:560px;}}}}
-@media(max-width:420px){{.cover{{padding:24px 16px;}}.cover-title{{font-size:24px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:9px;padding:10px 6px;letter-spacing:0.5px;}}.leaflet-map{{height:240px;}}}}
+@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-hs img{{width:65px;height:65px;}}.cover-hs span{{font-size:12px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:10px 16px;gap:4px 10px;}}.toc-nav a{{font-size:11px;padding:3px 8px;}}.table-scroll table{{min-width:560px;}}}}
+@media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-hs img{{width:50px;height:50px;}}.cover-hs span{{font-size:10px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:9px;padding:10px 6px;letter-spacing:0.5px;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter portrait;margin:0.4in 0.5in;}}
 .pdf-float-btn,.toc-nav,.leaflet-map,.embed-map-wrap,.embed-map-caption{{display:none !important;}}
@@ -334,16 +336,20 @@ p{{margin-bottom:16px;font-size:14px;line-height:1.7;}}
 body{{font-size:10.5px;line-height:1.45;color:#222;}}
 p{{font-size:10.5px;line-height:1.45;margin-bottom:8px;orphans:3;widows:3;}}
 
-.cover{{padding:20px 30px 16px;page-break-after:always;}}
+.cover{{min-height:auto;padding:0;page-break-after:always;}}
+.cover-bg{{filter:brightness(0.3);}}
+.cover-content{{padding:24px 30px 20px;}}
 .cover-logo{{width:180px;margin-bottom:10px;}}
 .cover-label{{font-size:9px;letter-spacing:2px;margin-bottom:6px;}}
 .cover-title{{font-size:26px;margin-bottom:4px;}}
-.cover-subtitle{{font-size:14px;margin-bottom:10px;}}
+.cover-subtitle{{font-size:14px;margin-bottom:8px;}}
 .cover-stats{{gap:14px;margin-bottom:10px;}}
 .cover-stat-value{{font-size:17px;}}
 .cover-stat-label{{font-size:7px;letter-spacing:1px;}}
-.cover-hero-wrap{{max-width:360px;margin:6px auto;border-width:2px;}}
-.client-greeting{{font-size:13px;margin-top:8px;}}
+.client-greeting{{font-size:11px;margin-top:6px;}}
+.cover-headshots{{margin-top:12px;gap:20px;}}
+.cover-hs img{{width:50px;height:50px;}}
+.cover-hs span{{font-size:10px;}}
 
 .section{{padding:14px 0;max-width:100%;}}
 .section-title{{font-size:17px;margin-bottom:2px;}}
@@ -417,29 +423,35 @@ h2,h3,.section-title,.sub-heading{{page-break-after:avoid;}}
 <body>
 """)
 
-# COVER
+# COVER (full-bleed hero background, headshots)
 html_parts.append(f"""
 <div class="cover">
+<div class="cover-bg" style="background-image:url('{IMG['hero']}');"></div>
+<div class="cover-content">
 <img src="{IMG['logo']}" class="cover-logo" alt="LAAA Team">
 <p class="cover-label">Confidential Broker Opinion of Value</p>
 <h1 class="cover-title">420-428 W Stocker Street</h1>
 <p class="cover-subtitle">Glendale, California 91202</p>
-<div class="cover-stats" style="margin-top:10px;">
+<div class="cover-stats">
 <div class="cover-stat"><span class="cover-stat-value">27</span><span class="cover-stat-label">Units</span></div>
 <div class="cover-stat"><span class="cover-stat-value">22,674</span><span class="cover-stat-label">Square Feet</span></div>
 <div class="cover-stat"><span class="cover-stat-value">1953</span><span class="cover-stat-label">Year Built</span></div>
-<div class="cover-stat"><span class="cover-stat-value">1.11</span><span class="cover-stat-label">Acres</span></div>
+<div class="cover-stat"><span class="cover-stat-value">1.11 Ac</span><span class="cover-stat-label">Lot Size</span></div>
 </div>
-<div class="cover-hero-wrap"><img src="{IMG['hero']}" alt="420-428 W Stocker St Aerial"></div>
 <p class="client-greeting" id="client-greeting">Prepared Exclusively for Isabelle Gerald</p>
-<p style="font-size:14px;color:rgba(255,255,255,0.6);margin-top:12px;margin-bottom:2px;">Glen Scher, Senior Managing Director Investments</p>
+<div class="cover-headshots">
+<div class="cover-hs"><img src="{IMG['glen']}" alt="Glen Scher"><span>Glen Scher</span></div>
+<div class="cover-hs"><img src="{IMG['filip']}" alt="Filip Niculete"><span>Filip Niculete</span></div>
+</div>
+<p style="font-size:14px;color:rgba(255,255,255,0.6);margin-top:16px;margin-bottom:2px;">Senior Managing Director Investments</p>
 <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:0;">February 2026</p>
 <p style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-top:8px;text-transform:uppercase;">NYSE: MMI</p>
+</div>
 </div>
 """)
 
 # TOC NAV (updated section order)
-html_parts.append("""
+html_parts.append(f"""
 <nav class="toc-nav" id="toc-nav">
 <a href="#track-record">Track Record</a>
 <a href="#investment">Investment</a>
