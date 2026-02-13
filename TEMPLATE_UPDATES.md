@@ -164,6 +164,43 @@ The `.price-reveal` wrapper gets `page-break-before: always` in print CSS so the
 
 ---
 
+## 13. Location Overview - Two-Column Grid Layout
+
+**Rule:** The Location Overview section should use a two-column grid layout (`.loc-grid`) so that all content fits on one screen (desktop) and one page (PDF):
+
+- **Left column (58%):** All narrative paragraphs stacked vertically
+- **Right column (42%):** Static map image on top, single merged info table below (all 10 rows in one table instead of two side-by-side tables)
+
+**Static map:** Downloaded at build time from OpenStreetMap's static map service using the subject property coordinates, embedded as base64. This ensures it renders in both the web view and PDF (unlike Leaflet interactive maps which are hidden in print).
+
+**CSS classes:**
+- `.loc-grid` — CSS grid, 2 columns on desktop/print, 1 column on mobile
+- `.loc-left` — paragraph container
+- `.loc-right` — map + table container (flexbox column)
+- `.loc-map` — rounded corners, shadow, contains `<img>`
+
+**Responsive behavior:**
+- **Mobile (768px):** Stacks to single column; `.loc-right` gets `order: -1` so the map appears first
+- **Print/PDF:** Keeps 2-column layout with smaller fonts (`10px` paragraphs, `10px` table cells) and `page-break-inside: avoid`
+
+---
+
+## 14. Cover Page - Full-Bleed PDF Fix
+
+**Rule:** The cover page must fill the entire PDF page. In `@media print`, use `min-height: 7.5in` (not `auto`) so the hero background image spans the full landscape letter page. Keep `display: flex; align-items: center; justify-content: center;` for vertical centering of the overlay content.
+
+**Also required:** Add `-webkit-print-color-adjust: exact; print-color-adjust: exact;` on `.cover-bg` to ensure the background image actually renders in PDF (browsers strip background images by default in print).
+
+**Desktop and mobile** are unchanged — `min-height: 100vh` already fills the viewport correctly.
+
+```css
+/* @media print */
+.cover { min-height: 7.5in; padding: 0; page-break-after: always; display: flex; align-items: center; justify-content: center; }
+.cover-bg { filter: brightness(0.35); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+```
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:

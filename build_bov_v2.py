@@ -46,9 +46,24 @@ IMG = {
 }
 
 # ============================================================
-# GEOCODING — Use cached coords from V1 to avoid re-hitting API
+# STATIC LOCATION MAP — Download from OpenStreetMap at build time
 # ============================================================
 SUBJECT_LAT, SUBJECT_LNG = 34.162911, -118.26303
+LOC_MAP_URL = f"https://staticmap.openstreetmap.de/staticmap.php?center={SUBJECT_LAT},{SUBJECT_LNG}&zoom=15&size=480x320&maptype=mapnik&markers={SUBJECT_LAT},{SUBJECT_LNG},ol-marker"
+try:
+    print("Downloading static location map...")
+    req = urllib.request.Request(LOC_MAP_URL, headers={"User-Agent": "LAAA-BOV-Builder/2.0"})
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        loc_map_data = base64.b64encode(resp.read()).decode("ascii")
+    LOC_MAP_B64 = f"data:image/png;base64,{loc_map_data}"
+    print(f"  Static map loaded ({len(loc_map_data)//1024}KB b64)")
+except Exception as e:
+    print(f"  WARNING: Could not download static map: {e}")
+    LOC_MAP_B64 = ""
+
+# ============================================================
+# GEOCODING — Use cached coords from V1 to avoid re-hitting API
+# ============================================================
 
 # Cached from V1 build (all successfully geocoded)
 ADDRESSES = {
@@ -378,7 +393,8 @@ td.num,th.num{{text-align:right;}}
 .condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
 .os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
-@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:flex;flex-direction:column;gap:16px;}}.loc-map{{border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.loc-map img{{width:100%;display:block;}}
+@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-right{{order:-1;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-headshot{{width:50px;height:50px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 4px;}}.toc-nav a{{font-size:8px;padding:10px 4px;letter-spacing:0;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter landscape;margin:0.4in 0.5in;}}
@@ -387,8 +403,8 @@ td.num,th.num{{text-align:right;}}
 body{{font-size:11px;line-height:1.5;color:#222;}}
 p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 
-.cover{{min-height:auto;padding:0;page-break-after:always;}}
-.cover-bg{{filter:brightness(0.35);}}
+.cover{{min-height:7.5in;padding:0;page-break-after:always;display:flex;align-items:center;justify-content:center;}}
+.cover-bg{{filter:brightness(0.35);-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .cover-content{{padding:30px 60px 24px;max-width:100%;}}
 .cover-logo{{width:220px;margin-bottom:14px;}}
 .cover-label{{font-size:10px;letter-spacing:2px;margin-bottom:8px;}}
@@ -425,6 +441,7 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 .metric-card{{page-break-inside:avoid;}}
 .highlight-box,.buyer-profile,.condition-note,.broker-insight{{page-break-inside:avoid;}}
 .os-two-col{{page-break-inside:avoid;grid-template-columns:55% 45%;gap:16px;}}.os-right{{font-size:9.5px;line-height:1.35;}}.os-right p{{margin-bottom:3px;}}.os-right h3{{font-size:11px;margin:0 0 6px;}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:10px;line-height:1.4;margin-bottom:6px;}}.loc-map img{{max-height:200px;width:100%;object-fit:cover;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
 .price-reveal{{page-break-before:always;}}
 table{{page-break-inside:auto;font-size:10.5px;margin-bottom:12px;}}
 thead{{display:table-header-group;}}
@@ -647,30 +664,30 @@ html_parts.append(f"""
 </div>
 """)
 
-# ==================== LOCATION OVERVIEW (NEW) ====================
-html_parts.append("""
+# ==================== LOCATION OVERVIEW (NEW — 2-col grid) ====================
+loc_map_html = f'<div class="loc-map"><img src="{LOC_MAP_B64}" alt="Property Location - 420-428 W Stocker St, Glendale"></div>' if LOC_MAP_B64 else ''
+html_parts.append(f"""
 <div class="section section-alt" id="location">
 <div class="section-title">Location Overview</div>
 <div class="section-subtitle">Glenwood Submarket  -  Northwest Glendale, 91202</div>
 <div class="section-divider"></div>
 
-<div class="narrative">
+<div class="loc-grid">
+<div class="loc-left">
 <p>Stocker Gardens is situated in Glendale's Glenwood neighborhood, north of Glenoaks Boulevard in the highly desirable 91202 zip code. The location has been described by competing listing agents as "arguably the best location in Glendale," nestled just below multimillion-dollar hillside homes while remaining steps from daily conveniences including Starbucks, cafes, and neighborhood shops. Three schools are within one block walking distance, and the property benefits from the Glendale Unified School District, one of the highest-performing districts in Los Angeles County. The Walk Score of 88 (Very Walkable) reflects the neighborhood's strong access to everyday amenities on foot.</p>
 
 <p>The property is positioned within a well-established rental corridor along W Stocker Street, surrounded by similar vintage multifamily properties ranging from 5 to 33 units. Regional access is excellent via the SR-134 Freeway (Pacific Avenue exit, approximately half a mile south), connecting residents to Burbank, Pasadena, and the greater LA basin. Downtown Glendale, with its concentration of retail, dining, and entertainment at the Americana at Brand and Glendale Galleria, is a 4-minute drive or 7-minute bike ride. The Glendale Transportation Center provides Metrolink commuter rail service to Downtown LA and points throughout the region. Employment drivers include proximity to major entertainment studios in neighboring Burbank, including Warner Bros., Walt Disney Studios, and DreamWorks, which sustain consistent tenant demand throughout northwest Glendale.</p>
 
 <p>From a hazard and environmental standpoint, the property carries a low risk profile. It is not located in a fire hazard severity zone (confirmed by city permit records), sits in FEMA Zone X (shaded) indicating moderate flood risk with no federal flood insurance requirement, and has no known environmental contamination per DTSC and GeoTracker records. Glendale does not have a mandatory soft-story retrofit ordinance, though buyers may wish to evaluate voluntary seismic improvements given the 1953/1954 wood-frame construction.</p>
 </div>
-
-<div class="two-col">
+<div class="loc-right">
+{loc_map_html}
 <table class="info-table">
 <tr><td>Walk Score</td><td>88 (Very Walkable)</td></tr>
 <tr><td>Transit Score</td><td>44 (Some Transit)</td></tr>
 <tr><td>Bike Score</td><td>59 (Bikeable)</td></tr>
 <tr><td>School District</td><td>Glendale Unified (top-performing)</td></tr>
 <tr><td>Nearest Freeway</td><td>SR-134 (~0.5 mi south)</td></tr>
-</table>
-<table class="info-table">
 <tr><td>Submarket</td><td>Glenwood (MLS Area 1255)</td></tr>
 <tr><td>Zip Code</td><td>91202 (Northwest Glendale)</td></tr>
 <tr><td>FEMA Flood Zone</td><td>Zone X (Shaded)</td></tr>
@@ -678,7 +695,7 @@ html_parts.append("""
 <tr><td>Environmental</td><td>No known contamination</td></tr>
 </table>
 </div>
-
+</div>
 
 </div>
 """)
