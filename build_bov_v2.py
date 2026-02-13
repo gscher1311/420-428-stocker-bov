@@ -44,6 +44,7 @@ IMG = {
     "adu_parking": load_image_b64("back parking (potentail spot for ADUs).png"),
     "aerial_outline": load_image_b64("Screenshot 2026-02-11 135520.png"),
     "loc_map": load_image_b64("location-map.png"),
+    "closings_map": load_image_b64("closings-map.png"),
 }
 
 # ============================================================
@@ -384,8 +385,11 @@ td.num,th.num{{text-align:right;}}
 .condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
 .os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:flex;flex-direction:column;gap:16px;}}.loc-map{{width:100%;height:240px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.loc-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
-@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-right{{order:-1;}}}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:block;}}.loc-wide-map{{width:100%;height:200px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:20px;}}.loc-wide-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
+.tr-tagline{{font-size:20px;font-weight:600;color:#1B3A5C;text-align:center;padding:16px 24px;margin-bottom:20px;border-left:4px solid #C5A258;background:#FFF8E7;border-radius:0 4px 4px 0;font-style:italic;}}.tr-map-print{{display:none;}}.tr-service-quote{{margin:24px 0;}}.tr-service-quote h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px;line-height:1.3;}}.tr-service-quote p{{font-size:14px;line-height:1.7;}}.tr-mission{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin-bottom:24px;border-radius:0 4px 4px 0;}}.tr-mission h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px;}}.tr-mission p{{font-size:13px;line-height:1.7;margin-bottom:10px;}}
+.inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-text p{{font-size:13.5px;line-height:1.65;margin-bottom:12px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
+.buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}
+@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-headshot{{width:50px;height:50px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 4px;}}.toc-nav a{{font-size:8px;padding:10px 4px;letter-spacing:0;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter landscape;margin:0.4in 0.5in;}}
@@ -416,7 +420,7 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 #track-record{{page-break-before:auto;}}
 #investment{{page-break-before:always;}}
 #location{{page-break-before:auto;}}
-#property-info{{page-break-before:always;}}
+#property-info{{page-break-before:auto;}}
 #building-systems{{page-break-before:auto;}}
 #regulatory{{page-break-before:auto;}}
 #transactions{{page-break-before:auto;}}
@@ -432,7 +436,12 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 .metric-card{{page-break-inside:avoid;}}
 .highlight-box,.buyer-profile,.condition-note,.broker-insight{{page-break-inside:avoid;}}
 .os-two-col{{page-break-inside:avoid;grid-template-columns:55% 45%;gap:16px;}}.os-right{{font-size:9.5px;line-height:1.35;}}.os-right p{{margin-bottom:3px;}}.os-right h3{{font-size:11px;margin:0 0 6px;}}
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:10px;line-height:1.4;margin-bottom:6px;}}.loc-map{{height:180px;}}.loc-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:10px;line-height:1.4;margin-bottom:6px;}}.loc-wide-map{{height:150px;margin-top:10px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
+.tr-map-print{{display:block;width:100%;height:260px;border-radius:4px;overflow:hidden;margin-bottom:10px;}}.tr-map-print img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.tr-page2{{page-break-before:always;}}.tr-tagline{{font-size:14px;padding:10px 16px;margin-bottom:10px;}}.tr-service-quote h3{{font-size:13px;margin-bottom:4px;}}.tr-service-quote p{{font-size:10px;line-height:1.45;margin-bottom:6px;}}.tr-mission{{padding:12px 16px;margin-bottom:14px;}}.tr-mission h3{{font-size:13px;margin-bottom:6px;}}.tr-mission p{{font-size:10px;line-height:1.4;margin-bottom:5px;}}
+.bio-grid{{gap:16px;margin:12px 0;}}.bio-headshot{{width:60px;height:60px;}}.bio-name{{font-size:14px;}}.bio-title{{font-size:9px;}}.bio-text{{font-size:10px;line-height:1.4;}}.costar-badge{{padding:12px 16px;margin:14px auto;}}.costar-badge-title{{font-size:16px;}}.costar-badge-sub{{font-size:10px;}}.press-strip{{padding:10px 16px;margin:10px 0;gap:16px;}}.press-strip-label{{font-size:8px;}}.press-logo{{font-size:10px;}}
+#investment{{page-break-after:always;}}.inv-split{{grid-template-columns:50% 50%;gap:14px;}}.inv-text p{{font-size:9.5px;line-height:1.4;margin-bottom:5px;}}.inv-logo{{width:140px;margin-top:8px;}}.inv-photo{{height:220px;}}.inv-highlights{{padding:10px 14px;}}.inv-highlights h4{{font-size:10px;}}.inv-highlights li{{font-size:8.5px;line-height:1.3;margin-bottom:2px;}}.inv-left .metrics-grid-4{{gap:6px;margin-bottom:8px;}}
+#prop-details{{page-break-before:always;}}.prop-details-area{{max-height:680px;overflow:hidden;}}
+.buyer-split{{grid-template-columns:1fr 1fr;gap:16px;page-break-inside:avoid;}}.buyer-objections .obj-q{{font-size:11px;}}.buyer-objections .obj-a{{font-size:9.5px;line-height:1.4;}}
 .price-reveal{{page-break-before:always;}}
 table{{page-break-inside:auto;font-size:10.5px;margin-bottom:12px;}}
 thead{{display:table-header-group;}}
@@ -529,7 +538,7 @@ html_parts.append(f"""
 <a href="#track-record">Track Record</a>
 <a href="#investment">Investment</a>
 <a href="#location">Location</a>
-<a href="#property-info">Property</a>
+<a href="#prop-details">Property</a>
 <a href="#building-systems">Systems</a>
 <a href="#regulatory">Regulatory</a>
 <a href="#transactions">History</a>
@@ -544,12 +553,14 @@ html_parts.append(f"""
 <a href="{PDF_LINK}" class="pdf-float-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-1 13l-4-4h3V9h2v4h3l-4 4z"/></svg>Download PDF</a>
 """)
 
-# TRACK RECORD (expanded per current template)
+# TRACK RECORD — Page 1: Results & Capabilities, Page 2: Our Team
 html_parts.append(f"""
 <div class="section section-alt" id="track-record">
 <div class="section-title">Team Track Record</div>
 <div class="section-subtitle">LA Apartment Advisors at Marcus &amp; Millichap</div>
 <div class="section-divider"></div>
+
+<div class="tr-tagline">LAAA Team of Marcus &amp; Millichap: Expertise, Execution, Excellence.</div>
 
 <div class="metrics-grid metrics-grid-4">
 <div class="metric-card"><span class="metric-value">501</span><span class="metric-label">Closed Transactions</span><span class="metric-sub">All-Time</span></div>
@@ -561,10 +572,22 @@ html_parts.append(f"""
 <div class="embed-map-wrap"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=1ewCjzE3QX9p6m2MqK-md8b6fZitfIzU&ehbc=2E312F" allowfullscreen loading="lazy"></iframe></div>
 <div class="embed-map-caption">All-Time Closings Map  -  LA Apartment Advisors</div>
 <div class="embed-map-fallback">View our interactive closings map at <strong>www.LAAA.com</strong></div>
+<div class="tr-map-print"><img src="{IMG['closings_map']}" alt="LAAA Team All-Time Closings Map - LA County"></div>
 
-<div class="narrative" style="margin-top:30px;">
-<p>The LAAA Team (LA Apartment Advisors) was co-founded by Glen Scher and Filip Niculete in 2018 and specializes exclusively in multifamily investment sales and multifamily land across Los Angeles, Ventura, and Santa Barbara counties. The team maintains direct relationships with over <strong>40,000 apartment investors</strong> and <strong>10,000 brokers</strong>, leveraging the Marcus &amp; Millichap platform, the largest commercial real estate investment sales firm in the U.S. by transaction count. M&amp;M closed <strong>7,836 transactions totaling $49.6 billion</strong> in 2024.</p>
+<div class="tr-service-quote">
+<h3>We Didn&rsquo;t Invent Great Service, We Just Work Relentlessly to Provide It</h3>
+<p>With over $1.6 billion in sales volume and 500+ closed transactions since 2013, the LA Apartment Advisors (LAAA Team) strive to offer an uncompromising, transparent and elevated real estate experience within the procurement and disposition of multifamily property and land for multifamily development throughout Los Angeles county.</p>
+</div>
+
 <p>Over <strong>60% of all Marcus &amp; Millichap transactions involve a 1031 exchange</strong>, creating a perpetual buyer pipeline that benefits every LAAA listing. This exchange network, combined with M&amp;M's proprietary MNet buyer-matching system across 80+ offices and 1,700+ agents nationally, delivers a level of market exposure and deal execution that competitors cannot replicate. Half of our apartment listings sell in under 5 weeks.</p>
+
+<div class="tr-page2">
+
+<div class="tr-mission">
+<h3>LAAA Team Mission Statement</h3>
+<p>At LAAA Team, we are dedicated to delivering expert multifamily brokerage services in Los Angeles, helping investors navigate the market with precision, strategy, and results-driven execution. With over 500 closed transactions and $1.6B in total sales volume, our team thrives on providing data-driven insights, strategic deal structuring, and hands-on client service to maximize value for our clients.</p>
+<p>Founded by Glen Scher and Filip Niculete, LAAA Team operates with a commitment to transparency, efficiency, and unmatched market expertise. We take a relationship-first approach, guiding property owners, investors, and developers through every stage of acquisition, disposition, and asset repositioning.</p>
+<p>Our mission is simple: To be the most trusted and results-oriented multifamily advisors in Los Angeles, leveraging deep market knowledge, innovative technology, and a proactive deal-making strategy to drive long-term success for our clients.</p>
 </div>
 
 <div class="bio-grid">
@@ -573,7 +596,7 @@ html_parts.append(f"""
 <div>
 <div class="bio-name">Glen Scher</div>
 <div class="bio-title">Senior Managing Director Investments</div>
-<div class="bio-text">Senior Managing Director at Marcus &amp; Millichap and co-founder of the LAAA Team. Over 450 transactions and $1.4B in closed sales across LA and the Ventura &amp; Santa Barbara counties, consistently closing 40+ deals per year. Glen joined M&amp;M in 2014 after graduating from UC Santa Barbara with a degree in Economics. Before real estate, he was a Division I golfer at UCSB, earning three individual titles, a national top-50 ranking, and UCSB Male Athlete of the Year.</div>
+<div class="bio-text">Senior Managing Director at Marcus &amp; Millichap and co-founder of the LAAA Team. Over 500 transactions and $1.6B in closed sales across LA and the Ventura &amp; Santa Barbara counties, consistently closing 40+ deals per year. Glen joined M&amp;M in 2014 after graduating from UC Santa Barbara with a degree in Economics. Before real estate, he was a Division I golfer at UCSB, earning three individual titles, a national top-50 ranking, and UCSB Male Athlete of the Year.</div>
 </div>
 </div>
 <div class="bio-card">
@@ -581,7 +604,7 @@ html_parts.append(f"""
 <div>
 <div class="bio-name">Filip Niculete</div>
 <div class="bio-title">Senior Managing Director Investments</div>
-<div class="bio-text">Senior Managing Director at Marcus &amp; Millichap and co-founder of the LAAA Team. Together, Glen and Filip have closed over $1.4B in transactions and consistently lead the market in inventory. Born in Romania and raised in the San Fernando Valley, Filip studied Finance at San Diego State University and joined M&amp;M in 2011. He has built a reputation for execution, integrity, and relentless work ethic across 15 years in Los Angeles multifamily.</div>
+<div class="bio-text">Senior Managing Director at Marcus &amp; Millichap and co-founder of the LAAA Team. Together, Glen and Filip have closed over $1.6B in transactions and consistently lead the market in inventory. Born in Romania and raised in the San Fernando Valley, Filip studied Finance at San Diego State University and joined M&amp;M in 2011. He has built a reputation for execution, integrity, and relentless work ethic across 15 years in Los Angeles multifamily.</div>
 </div>
 </div>
 </div>
@@ -612,19 +635,15 @@ html_parts.append(f"""
 <span class="press-logo">THE PINNACLE LIST</span>
 </div>
 
-<div class="condition-note" style="margin-top:20px;">
-<div class="condition-note-label">Local Market Experience</div>
-<p style="font-size:13px; line-height:1.8;">
-The LAAA Team has closed multiple apartment transactions in the Glendale 91202 zip code and the surrounding Glenwood, Verdugo Viejo, and Rossmoyne submarkets. Recent nearby closings include properties on W Stocker St, N Columbus Ave, and W Glenoaks Blvd. Our active buyer database includes over 40,000 apartment investors, many of whom specifically target the Glendale market for its favorable regulatory environment (no local rent board, no transfer tax) and proximity to Burbank entertainment employers. We are familiar with the competitive landscape on this block and maintain direct relationships with several of the most active multifamily buyers in the 91202 corridor.
-</p>
 </div>
-
 </div>
 """)
 
-# ==================== INVESTMENT OVERVIEW (NEW) ====================
+# ==================== INVESTMENT OVERVIEW (Bedford St. split layout) ====================
 html_parts.append(f"""
 <div class="section" id="investment">
+<div class="inv-split">
+<div class="inv-left">
 <div class="section-title">Investment Overview</div>
 <div class="section-subtitle">Stocker Gardens  -  420-428 W Stocker St, Glendale 91202</div>
 <div class="section-divider"></div>
@@ -636,27 +655,38 @@ html_parts.append(f"""
 <div class="metric-card"><span class="metric-value">5</span><span class="metric-label">Buildings</span></div>
 </div>
 
-<div class="photo-grid">
-<img src="{IMG['grid1']}" alt="Property Photo">
-<img src="{IMG['grid2']}" alt="Property Photo">
-<img src="{IMG['grid3']}" alt="Property Photo">
-<img src="{IMG['grid4']}" alt="Property Photo">
-</div>
-
-<div class="narrative">
+<div class="inv-text">
 <p>The LAAA Team of Marcus &amp; Millichap is pleased to present <strong>Stocker Gardens</strong>, a 27-unit multifamily portfolio located at 420-428 W Stocker St in Glendale's premier Glenwood neighborhood. The offering consists of two adjacent parcels totaling 1.11 acres with five wood-frame buildings, including a 4-bedroom Craftsman front house and 26 apartment units. The property delivers approximately 19% rental upside, significant ADU development potential under SB 1211, and over $117,000 in recently completed capital improvements, making it a well-positioned value-add opportunity in the Glendale submarket.</p>
 
 <p>Built in 1953/1954, Stocker Gardens encompasses 22,674 square feet of gross building area across 27 units: one 4BR/3BA Craftsman house (2,500 SF), 24 two-bedroom/one-bath apartments (750 SF each), and two one-bedroom/one-bath apartments (650 SF each). The combined lot measures approximately 160 feet wide by 300 feet deep, creating a rare 48,353 SF site with approximately 8,000 SF of rear parking area ideally suited for ADU infill. All apartment units are individually metered for gas and electricity, minimizing owner utility exposure. Current gross scheduled rent totals $740,748 annually, with pro forma potential of $878,280, representing approximately $137,500 in annual rental upside achievable through natural tenant turnover and light interior renovations.</p>
 
 <p>The seller has invested heavily in the property's physical plant, completing over $117,000 in capital improvements in 2024 alone, including plumbing and electrical upgrades, deck reconstruction, window replacements, HVAC repairs, exterior painting, and appliance replacements. Units A through H on the 420 parcel were repiped in 2005, and the 428 building's walkway and stair surfaces were recoated with fiberglass in 2023-2024 with all inspections passed. These completed improvements meaningfully reduce a buyer's near-term capital exposure and allow for immediate focus on income growth through unit turns and ADU construction.</p>
 </div>
+<img class="inv-logo" src="{IMG['logo']}" alt="LAAA Team">
+</div>
 
-
+<div class="inv-right">
+<div class="inv-photo"><img src="{IMG['grid1']}" alt="420 Stocker St - Property Photo"></div>
+<div class="inv-highlights">
+<h4>Investment Highlights</h4>
+<ul>
+<li><strong>19% Rental Upside Through Turnover</strong>  -  In-place rents are approximately 19% below full market potential, with gross scheduled rent of $740,748 growing to a pro forma of $878,280. Vacancy decontrol under California law allows rent resets to market upon unit turnover with no cap on initial asking rent for new tenants.</li>
+<li><strong>$117,000+ in 2024 Capital Improvements</strong>  -  Plumbing/electrical upgrades ($43,000), deck reconstruction ($38,500), window replacements ($10,700), exterior painting ($10,000), appliance replacements ($9,000), and HVAC repairs ($4,500).</li>
+<li><strong>SB 1211 ADU Potential (Up to 6 Units)</strong>  -  ~8,000 SF of rear parking area across both parcels can accommodate up to 6 detached two-story ADUs with by-right ministerial approval, no parking replacement required. Estimated ~$127,000 annual NOI and ~54% ROI.</li>
+<li><strong>1.11-Acre Combined Site on Two Parcels</strong>  -  Each parcel measures 80 ft by 300 ft, creating a combined 160 ft x 300 ft site that is exceptionally large for a Glendale multifamily property.</li>
+<li><strong>R-1250 Zoning with Development Headroom</strong>  -  Current FAR of just 0.47 vs. 1.2 maximum, leaving over 35,000 SF of additional buildable area. Existing 27 units sit below the 38-unit density cap.</li>
+<li><strong>Glendale Regulatory Advantage</strong>  -  No local rent board, no unit registration, no transfer tax. City operates under AB 1482 statewide cap (5% + CPI, max 10%) with relocation triggers only above 7%.</li>
+<li><strong>34+ Year Ownership with Prop 13 Basis</strong>  -  Assessed value ~$4.24M reflects 34+ years of Prop 13 protection. Current taxes ~$49,300 will be reassessed at close of escrow based on sale price.</li>
+<li><strong>Prime Location with 88 Walk Score</strong>  -  North of Glenoaks Blvd, near top-rated Glendale Unified schools, SR-134 freeway access, and Burbank entertainment studios.</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 """)
 
-# ==================== LOCATION OVERVIEW (NEW — 2-col grid) ====================
-loc_map_html = f'<div class="loc-map"><img src="{IMG["loc_map"]}" alt="Property Location - 420-428 W Stocker St, Glendale"></div>' if IMG.get("loc_map") else ''
+# ==================== LOCATION OVERVIEW (3-box: paragraphs left, table right, wide map bottom) ====================
+loc_wide_map_html = f'<div class="loc-wide-map"><img src="{IMG["loc_map"]}" alt="Property Location - 420-428 W Stocker St, Glendale"></div>' if IMG.get("loc_map") else ''
 html_parts.append(f"""
 <div class="section section-alt" id="location">
 <div class="section-title">Location Overview</div>
@@ -672,7 +702,6 @@ html_parts.append(f"""
 <p>From a hazard and environmental standpoint, the property carries a low risk profile. It is not located in a fire hazard severity zone (confirmed by city permit records), sits in FEMA Zone X (shaded) indicating moderate flood risk with no federal flood insurance requirement, and has no known environmental contamination per DTSC and GeoTracker records. Glendale does not have a mandatory soft-story retrofit ordinance, though buyers may wish to evaluate voluntary seismic improvements given the 1953/1954 wood-frame construction.</p>
 </div>
 <div class="loc-right">
-{loc_map_html}
 <table class="info-table">
 <tr><td>Walk Score</td><td>88 (Very Walkable)</td></tr>
 <tr><td>Transit Score</td><td>44 (Some Transit)</td></tr>
@@ -687,73 +716,19 @@ html_parts.append(f"""
 </table>
 </div>
 </div>
+{loc_wide_map_html}
 
 </div>
 """)
 
-# ==================== PROPERTY INFORMATION (from old overview) ====================
+# ==================== PROPERTY DETAILS (full-page AI-driven area) ====================
 html_parts.append(f"""
-<div class="section" id="property-info">
-<div class="section-title">Property Information</div>
-<div class="section-subtitle">Site Details &amp; Investment Highlights</div>
+<div class="section" id="prop-details">
+<div class="section-title">Property Details</div>
+<div class="section-subtitle">420-428 W Stocker St, Glendale, CA 91202</div>
 <div class="section-divider"></div>
 
-<div class="highlight-box">
-<h4>Investment Highlights</h4>
-<ul>
-<li><strong>19% Rental Upside Through Turnover</strong>  -  In-place rents are approximately 19% below full market potential, with gross scheduled rent of $740,748 growing to a pro forma of $878,280. Vacancy decontrol under California law allows rent resets to market upon unit turnover with no cap on initial asking rent for new tenants.</li>
-<li><strong>$117,000+ in 2024 Capital Improvements</strong>  -  Plumbing/electrical upgrades ($43,000), deck reconstruction ($38,500), window replacements ($10,700), exterior painting ($10,000), appliance replacements ($9,000), and HVAC repairs ($4,500).</li>
-<li><strong>SB 1211 ADU Potential (Up to 6 Units)</strong>  -  ~8,000 SF of rear parking area across both parcels can accommodate up to 6 detached two-story ADUs with by-right ministerial approval, no parking replacement required. Estimated ~$127,000 annual NOI and ~54% ROI.</li>
-<li><strong>1.11-Acre Combined Site on Two Parcels</strong>  -  Each parcel measures 80 ft by 300 ft, creating a combined 160 ft x 300 ft site that is exceptionally large for a Glendale multifamily property.</li>
-<li><strong>R-1250 Zoning with Development Headroom</strong>  -  Current FAR of just 0.47 vs. 1.2 maximum, leaving over 35,000 SF of additional buildable area. Existing 27 units sit below the 38-unit density cap.</li>
-<li><strong>Glendale Regulatory Advantage</strong>  -  No local rent board, no unit registration, no transfer tax. City operates under AB 1482 statewide cap (5% + CPI, max 10%) with relocation triggers only above 7%.</li>
-<li><strong>34+ Year Ownership with Prop 13 Basis</strong>  -  Assessed value ~$4.24M reflects 34+ years of Prop 13 protection. Current taxes ~$49,300 will be reassessed at close of escrow based on sale price.</li>
-<li><strong>Prime Location with 88 Walk Score</strong>  -  North of Glenoaks Blvd, near top-rated Glendale Unified schools, SR-134 freeway access, and Burbank entertainment studios.</li>
-</ul>
-</div>
-
-<div class="buyer-profile">
-<div class="buyer-profile-label">Target Buyer Profile</div>
-<ul>
-<li><strong>1031 Exchange Investors</strong>  -  Rare scale (27 units) in an institutional-quality 91202 zip code. Immediate cash flow with layered organic upside from rent growth and ADU construction.</li>
-<li><strong>Value-Add Operators with ADU Strategy</strong>  -  Push rents to market ($138K/yr upside) and build 6 detached ADUs in the rear parking area (~$127K/yr additional NOI). Total value creation potential of ~$900K+ on ~$1.65M investment.</li>
-<li><strong>Local Operators</strong>  -  Self-manage, capture rent upside within 12-24 months, then pursue ADU construction at your own pace.</li>
-<li><strong>Family Offices</strong>  -  Premier Glendale location with generational hold appeal. Excess zoning capacity provides long-term densification optionality on 1.11 acres.</li>
-</ul>
-<p class="bp-closing">Broad appeal across buyer segments supports competitive pricing and a short expected marketing period.</p>
-</div>
-
-<h3 class="sub-heading">Anticipated Buyer Questions</h3>
-<div style="margin-bottom:30px;">
-
-<div style="margin-bottom:16px;">
-<p style="font-weight:700;color:#1B3A5C;margin-bottom:4px;">"The property is 70+ years old. What about deferred maintenance?"</p>
-<p style="font-size:13px;color:#444;line-height:1.6;">The current owner invested $117,264 in capital improvements during 2024, including plumbing/electrical work, deck reconstruction, window replacements, HVAC repairs, exterior painting, and appliance replacements. Roofs on all three structures were replaced between 2007 and 2012, and the 420 building was fully repiped in 2005. The 428 building's walkway and stair surfaces were recoated with fiberglass in 2023-2024. These completed improvements meaningfully reduce near-term capital exposure for a buyer.</p>
-</div>
-
-<div style="margin-bottom:16px;">
-<p style="font-weight:700;color:#1B3A5C;margin-bottom:4px;">"Unit 428-9 is at $900/month. Is there a problem tenant?"</p>
-<p style="font-size:13px;color:#444;line-height:1.6;">The below-market rent reflects a long-term tenancy. Under California's AB 1482 vacancy decontrol provisions, the unit resets to market rent ($2,650) upon natural turnover with no cap on the initial asking rent for a new tenant. This unit represents $21,000 in annual upside on its own and is a feature of the value-add opportunity, not a liability.</p>
-</div>
-
-<div style="margin-bottom:16px;">
-<p style="font-weight:700;color:#1B3A5C;margin-bottom:4px;">"The Prop 13 reassessment will increase taxes from $49K to over $100K. Does the deal still work?"</p>
-<p style="font-size:13px;color:#444;line-height:1.6;">Yes. The operating statement presented in the Financial Analysis section already reflects property taxes reassessed at 1.13% of the sale price. The 5.00% cap rate at the $9.0M apartment value is calculated after the full tax step-up, not before it. There is no hidden tax surprise in the underwriting.</p>
-</div>
-
-<div style="margin-bottom:16px;">
-<p style="font-weight:700;color:#1B3A5C;margin-bottom:4px;">"Ground-up redevelopment doesn't pencil. Isn't the land undervalued?"</p>
-<p style="font-size:13px;color:#444;line-height:1.6;">The Development Potential section demonstrates that the existing buildings are the highest-and-best use of this site. The $13-15M development gap, combined with SB 330 replacement requirements and tenant relocation costs, makes demolition economically impractical. The practical value-creation path is ADU infill construction in the rear parking area, which generates an estimated 54% ROI on a $1.65M investment with no tenant displacement and by-right ministerial approval.</p>
-</div>
-
-<div style="margin-bottom:16px;">
-<p style="font-weight:700;color:#1B3A5C;margin-bottom:4px;">"Why is the ADU premium priced into the listing if the buyer has to build them?"</p>
-<p style="font-size:13px;color:#444;line-height:1.6;">The $350,000 ADU premium represents approximately 39% of the estimated $896,000 development profit under realistic assumptions. The buyer retains 61% of the upside even at the full asking price. The premium reflects the scarcity of 1.1-acre multifamily sites with 8,000 SF of buildable rear area and the near-zero entitlement risk of SB 1211's ministerial approval process. At the trade floor of $8,850,000, the ADU premium drops to $200,000 (22% of profit), giving the buyer nearly all of the development upside.</p>
-</div>
-
-</div>
-
-<h3 class="sub-heading">Property Details</h3>
+<div class="prop-details-area">
 <div class="two-col">
 <table class="info-table">
 <tr><td>Address</td><td>420-428 W Stocker St, Glendale, CA 91202</td></tr>
@@ -781,10 +756,62 @@ html_parts.append(f"""
 </table>
 </div>
 
-<div class="img-float-right"><img src="{IMG['aerial_outline']}" alt="Property Photo"></div>
+<div class="img-float-right"><img src="{IMG['aerial_outline']}" alt="Aerial Property Outline"></div>
 
 <p>Each of the two parcels measures 80 feet wide by 300 feet deep. Side by side, the combined site spans 160 feet of frontage by 300 feet of depth, totaling approximately 48,353 SF (1.11 acres). This is among the largest multifamily land assemblages in the Glenwood submarket and is a primary driver of the property's ADU development potential. The dual-parcel structure provides operational flexibility and independent ADU entitlements on each lot under SB 1211.</p>
+</div>
 
+</div>
+""")
+
+# ==================== BUYER PROFILE + ANTICIPATED BUYER OBJECTIONS (side-by-side) ====================
+html_parts.append(f"""
+<div class="section section-alt" id="property-info">
+<div class="section-title">Buyer Profile &amp; Anticipated Objections</div>
+<div class="section-subtitle">Target Investors &amp; Data-Backed Responses</div>
+<div class="section-divider"></div>
+
+<div class="buyer-split">
+<div class="buyer-split-left">
+<div class="buyer-profile">
+<div class="buyer-profile-label">Target Buyer Profile</div>
+<ul>
+<li><strong>1031 Exchange Investors</strong>  -  Rare scale (27 units) in an institutional-quality 91202 zip code. Immediate cash flow with layered organic upside from rent growth and ADU construction.</li>
+<li><strong>Value-Add Operators with ADU Strategy</strong>  -  Push rents to market ($138K/yr upside) and build 6 detached ADUs in the rear parking area (~$127K/yr additional NOI). Total value creation potential of ~$900K+ on ~$1.65M investment.</li>
+<li><strong>Local Operators</strong>  -  Self-manage, capture rent upside within 12-24 months, then pursue ADU construction at your own pace.</li>
+<li><strong>Family Offices</strong>  -  Premier Glendale location with generational hold appeal. Excess zoning capacity provides long-term densification optionality on 1.11 acres.</li>
+</ul>
+<p class="bp-closing">Broad appeal across buyer segments supports competitive pricing and a short expected marketing period.</p>
+</div>
+</div>
+
+<div class="buyer-split-right">
+<h3 class="sub-heading" style="margin-top:0;">Anticipated Buyer Objections</h3>
+<div class="buyer-objections">
+
+<div class="obj-item">
+<p class="obj-q">"$333K per unit is aggressive for 1953 construction. Comps don't support it."</p>
+<p class="obj-a">The primary anchor comp at 617 W Stocker St (same street, all 2BR/1BA units, same zip code) sold at $394K/unit in February 2025. The subject at $333K/unit represents a 15% discount to this direct comp. Additionally, 1244 N Columbus Ave (same 1953 vintage) traded at $304K/unit but was 83% one-bedroom units vs. the subject's 89% two-bedroom mix. The subject's 1.11-acre lot with 8,000 SF of ADU-buildable area further justifies the basis well below the street comp.</p>
+</div>
+
+<div class="obj-item">
+<p class="obj-q">"Your pro forma rents at $2,650 for 2BR units are too aggressive."</p>
+<p class="obj-a">Three rent comps in the Glenwood submarket support the $2,650 target: 550 W Stocker St ($2,595-$2,695 for 2BR/1BA), 439 W Stocker St ($2,500-$2,750), and 1207 N Columbus Ave ($2,550-$2,800). The pro forma is positioned at the midpoint of the comparable range, not the top. Several recently turned units at these properties have achieved rents above $2,700.</p>
+</div>
+
+<div class="obj-item">
+<p class="obj-q">"The property is 70+ years old. What about deferred maintenance?"</p>
+<p class="obj-a">The current owner invested $117,264 in capital improvements during 2024, including plumbing/electrical work, deck reconstruction, window replacements, HVAC repairs, exterior painting, and appliance replacements. Roofs on all three structures were replaced between 2007 and 2012, and the 420 building was fully repiped in 2005. These completed improvements meaningfully reduce near-term capital exposure for a buyer.</p>
+</div>
+
+<div class="obj-item">
+<p class="obj-q">"Why should I pay an ADU premium when I still have to build them?"</p>
+<p class="obj-a">The $350,000 ADU premium represents approximately 39% of the estimated $896,000 development profit. The buyer retains 61% of the upside even at full ask. The premium reflects the scarcity of 1.1-acre multifamily sites with 8,000 SF of buildable rear area and the near-zero entitlement risk of SB 1211's ministerial approval process. At the trade floor of $8,850,000, the premium drops to $200,000 (22% of profit).</p>
+</div>
+
+</div>
+</div>
+</div>
 
 </div>
 """)

@@ -201,6 +201,78 @@ The `.price-reveal` wrapper gets `page-break-before: always` in print CSS so the
 
 ---
 
+## 15. Track Record - 2-Page PDF Template with Tagline, Service Quote, and Mission Statement
+
+**Rule:** The Track Record section should render as exactly 2 well-designed pages in PDF:
+
+**Page 1 -- Results & Capabilities:**
+- `.tr-tagline` banner: "LAAA Team of Marcus & Millichap: Expertise, Execution, Excellence."
+- 4 metric cards (transactions, volume, units, DOM)
+- Closings map: interactive Google Maps iframe on web, static image (`.tr-map-print`) on PDF. The static image is hidden on web (`display:none`) and shown only in print CSS.
+- "We Didn't Invent Great Service..." quote block (`.tr-service-quote`)
+- 1031 exchange / M&M platform paragraph
+
+**Page 2 -- Our Team:**
+- Mission Statement in a styled callout box (`.tr-mission`)
+- Bio grid (headshots + bios side by side)
+- CoStar badge + Key Achievements + Press strip
+
+**Removed:** "Local Market Experience" callout (redundant with the comp sections).
+
+**Stats to update each BOV:** Transaction count, sales volume, units sold in the metric cards, service quote paragraph, mission statement, and individual bios.
+
+---
+
+## 16. Location Overview - 3-Box Template (replaces #13)
+
+**Rule:** The Location Overview uses a 3-box layout:
+- **Top-left:** Title + subtitle + divider + narrative paragraphs (`.loc-left`)
+- **Top-right:** Info table only, no map (`.loc-right`)
+- **Bottom:** Full-width map image in a fixed frame (`.loc-wide-map`, 200px desktop, 150px print)
+
+The map image (`location-map.png`) is a user-provided screenshot placed in the `images/` folder. The fixed frame uses `object-fit: cover; object-position: center` to center-crop any image into the box.
+
+**Mobile:** Stacks to single column. Paragraphs first, then table, then map.
+**Print:** Keeps 2-column top grid + map at bottom, all on one page with `page-break-inside: avoid`.
+
+---
+
+## 17. Investment Overview + Property Details - 2-Page Template
+
+**Page 1 -- Investment Overview (`.inv-split`):**
+Bedford St. inspired split layout:
+- **Left column (50%):** Title, subtitle, divider, 4 metric cards, narrative paragraphs, M&M/LAAA logo
+- **Right column (50%):** 1 property photo in fixed image frame (`.inv-photo`, 280px), Investment Highlights box below (`.inv-highlights`, `flex:1` fills remaining space)
+
+Investment Highlights (8 bullet points) are moved OUT of the Property Information section into this page.
+
+**Page 2 -- Property Details (`#prop-details`):**
+Full-page `.prop-details-area` container (capped at `max-height: 680px` in print with `overflow: hidden`). AI fills this with property-specific tables: Property Overview, Site & Infrastructure, Capital Improvements, Building Systems, etc. For the Stocker BOV, this uses the existing 2-column table layout + aerial image + site description paragraph.
+
+**AI guidelines:** Keep narrative to 3 concise paragraphs, highlights to 8 bullets max, so content fits the pre-sized boxes.
+
+---
+
+## 18. Buyer Profile + Anticipated Buyer Objections - Side-by-Side Template
+
+**Rule:** The Buyer Profile and Buyer Objections display side-by-side in a `.buyer-split` 2-column grid on one page.
+
+- **Left column:** Target Buyer Profile (4 buyer types + closing sentence)
+- **Right column:** "Anticipated Buyer Objections" (renamed from "Buyer Questions")
+
+**AI guidelines for writing objections:**
+- Think like a **skeptical buyer looking for reasons to lowball or walk away**
+- Focus on **pricing, cap rate, rent assumptions, condition, and deal-specific risks**
+- Do NOT write objections about things that are:
+  - Already in the financial underwriting (Prop 13 reassessment, insurance costs)
+  - Common to all California deals (AB 1482 statewide, general seismic risk)
+  - Theoretical/academic (ground-up redevelopment feasibility)
+- Each response must cite **specific data**: comp addresses, actual rent figures, dollar amounts, percentages
+- Keep to **4 objections max** so it fits on the page alongside Buyer Profile
+- Format: bold question in quotes, then 2-3 sentence factual, data-backed response
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:
