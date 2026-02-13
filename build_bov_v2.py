@@ -3,7 +3,7 @@
 Build script V2 for Stocker Gardens BOV — 420-428 W Stocker St, Glendale, CA 91202
 Major content expansion: Investment Overview, Location Overview, expanded Development/ADU/Comp sections.
 """
-import base64, json, os, sys, time, urllib.request, urllib.parse, io
+import base64, json, os, sys, time, urllib.request, urllib.parse, io, statistics
 
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
@@ -98,7 +98,8 @@ def calc_metrics(price):
             "per_unit": price / UNITS, "per_sf": price / SF,
             "cur_cap": cur_noi / price * 100, "pf_cap": pf_noi / price * 100, "grm": price / GSR}
 
-MATRIX_PRICES = list(range(9_750_000, 8_450_000, -100_000))
+# Descending, $100K increments, ~4 above + suggested + ~5 below
+MATRIX_PRICES = list(range(LIST_PRICE + 400_000, LIST_PRICE - 600_000, -100_000))
 MATRIX = [calc_metrics(p) for p in MATRIX_PRICES]
 AT_LIST = calc_metrics(LIST_PRICE)
 AT_APT = calc_metrics(APT_VALUE)
@@ -126,14 +127,14 @@ RENT_ROLL = [
 ]
 
 SALE_COMPS = [
-    {"num": 1, "addr": "437 W Glenoaks Blvd", "submarket": "Verdugo Viejo", "units": 9, "sf": 6580, "yr": 1962, "price": 2800000, "ppu": 311111, "psf": 425.53, "cap": 4.93, "grm": 13.37, "date": "12/31/2025", "notes": "Trust sale, sold above ask. Updated/remodeled."},
-    {"num": 2, "addr": "559 Glenwood Rd", "submarket": "Glenwood", "units": 7, "sf": 6642, "yr": 1952, "price": 2565000, "ppu": 366429, "psf": 386.18, "cap": None, "grm": None, "date": "12/8/2025", "notes": "Off-market. No financials."},
-    {"num": 3, "addr": "704 Palm Dr", "submarket": "Glenwood", "units": 14, "sf": 18373, "yr": 1987, "price": 6350000, "ppu": 453571, "psf": 345.62, "cap": None, "grm": None, "date": "10/31/2025", "notes": "Off-market. 1987 build."},
-    {"num": 4, "addr": "336 E Dryden St", "submarket": "Rossmoyne", "units": 8, "sf": 7866, "yr": 1960, "price": 3240000, "ppu": 405000, "psf": 411.90, "cap": 4.84, "grm": 13.43, "date": "9/9/2025", "notes": "New roof, copper plumbing, dual-pane."},
-    {"num": 5, "addr": "125 E Fairview Ave", "submarket": "Rossmoyne", "units": 9, "sf": 10295, "yr": 1986, "price": 4240000, "ppu": 471111, "psf": 411.85, "cap": 4.83, "grm": 13.72, "date": "6/17/2025", "notes": "1986 build, central AC, subterranean pkg. 1 DOM."},
-    {"num": 6, "addr": "1244 N Columbus Ave", "submarket": "Verdugo Viejo", "units": 12, "sf": 7424, "yr": 1953, "price": 3650000, "ppu": 304167, "psf": 491.65, "cap": 4.38, "grm": 16.11, "date": "5/30/2025", "notes": "Same yr built. 95 DOM, $73K concessions."},
-    {"num": 7, "addr": "617 W Stocker St", "submarket": "Glendale", "units": 9, "sf": 8816, "yr": 1962, "price": 3546000, "ppu": 394000, "psf": 402.22, "cap": 4.77, "grm": 14.84, "date": "2/20/2025", "notes": "SAME STREET. All 2BR/1BA. Updated."},
-    {"num": 8, "addr": "950 N Louise St", "submarket": "Rossmoyne", "units": 25, "sf": 34700, "yr": 1967, "price": 9250000, "ppu": 370000, "psf": 266.57, "cap": 5.17, "grm": 11.60, "date": "1/24/2025", "notes": "Best size match. M&M listing. $1M+ capex."},
+    {"num": 1, "addr": "437 W Glenoaks Blvd", "submarket": "Verdugo Viejo", "units": 9, "sf": 6580, "yr": 1962, "price": 2800000, "ppu": 311111, "psf": 425.53, "cap": 4.93, "grm": 13.37, "date": "12/31/2025", "notes": "Trust sale, sold above ask. Updated/remodeled.", "tier": "Value-Add"},
+    {"num": 2, "addr": "559 Glenwood Rd", "submarket": "Glenwood", "units": 7, "sf": 6642, "yr": 1952, "price": 2565000, "ppu": 366429, "psf": 386.18, "cap": None, "grm": None, "date": "12/8/2025", "notes": "Off-market. No financials.", "tier": "Value-Add"},
+    {"num": 3, "addr": "704 Palm Dr", "submarket": "Glenwood", "units": 14, "sf": 18373, "yr": 1987, "price": 6350000, "ppu": 453571, "psf": 345.62, "cap": None, "grm": None, "date": "10/31/2025", "notes": "Off-market. 1987 build.", "tier": "Stabilized"},
+    {"num": 4, "addr": "336 E Dryden St", "submarket": "Rossmoyne", "units": 8, "sf": 7866, "yr": 1960, "price": 3240000, "ppu": 405000, "psf": 411.90, "cap": 4.84, "grm": 13.43, "date": "9/9/2025", "notes": "New roof, copper plumbing, dual-pane.", "tier": "Stabilized"},
+    {"num": 5, "addr": "125 E Fairview Ave", "submarket": "Rossmoyne", "units": 9, "sf": 10295, "yr": 1986, "price": 4240000, "ppu": 471111, "psf": 411.85, "cap": 4.83, "grm": 13.72, "date": "6/17/2025", "notes": "1986 build, central AC, subterranean pkg. 1 DOM.", "tier": "Stabilized"},
+    {"num": 6, "addr": "1244 N Columbus Ave", "submarket": "Verdugo Viejo", "units": 12, "sf": 7424, "yr": 1953, "price": 3650000, "ppu": 304167, "psf": 491.65, "cap": 4.38, "grm": 16.11, "date": "5/30/2025", "notes": "Same yr built. 95 DOM, $73K concessions.", "tier": "Value-Add"},
+    {"num": 7, "addr": "617 W Stocker St", "submarket": "Glendale", "units": 9, "sf": 8816, "yr": 1962, "price": 3546000, "ppu": 394000, "psf": 402.22, "cap": 4.77, "grm": 14.84, "date": "2/20/2025", "notes": "SAME STREET. All 2BR/1BA. Updated.", "tier": "Stabilized"},
+    {"num": 8, "addr": "950 N Louise St", "submarket": "Rossmoyne", "units": 25, "sf": 34700, "yr": 1967, "price": 9250000, "ppu": 370000, "psf": 266.57, "cap": 5.17, "grm": 11.60, "date": "1/24/2025", "notes": "Best size match. M&M listing. $1M+ capex.", "tier": "Value-Add"},
 ]
 
 # ============================================================
@@ -192,8 +193,8 @@ rent_map_js = build_map_js("rentMap", rent_comps_for_map, "#1B3A5C", SUBJECT_LAT
 # Pricing matrix
 matrix_html = ""
 for m in MATRIX:
-    cls = ' class="highlight"' if m["price"] == LIST_PRICE else (' class="highlight"' if m["price"] == 8_850_000 else "")
-    matrix_html += f'<tr{cls}><td>{fc(m["price"])}</td><td>{fc(m["per_unit"])}</td><td>${m["per_sf"]:.0f}</td><td>{fp(m["cur_cap"])}</td><td>{fp(m["pf_cap"])}</td><td>{m["grm"]:.2f}</td></tr>\n'
+    cls = ' class="highlight"' if m["price"] == LIST_PRICE else ""
+    matrix_html += f'<tr{cls}><td class="num">{fc(m["price"])}</td><td class="num">{fp(m["cur_cap"])}</td><td class="num">{fc(m["per_unit"])}</td><td class="num">${m["per_sf"]:.0f}</td><td class="num">{m["grm"]:.2f}x</td></tr>\n'
 
 # Rent roll
 rent_roll_html = ""
@@ -205,42 +206,66 @@ rent_roll_html += f'<tr style="font-weight:700;background:#1B3A5C;color:#fff;"><
 
 # Sale comps table
 sale_comps_html = ""
+# Subject row first (bold, highlighted)
+sale_comps_html += f'<tr class="highlight" style="font-weight:700;"><td>S</td><td>420-428 W Stocker St</td><td>Glenwood</td><td>{UNITS}</td><td>Proposed</td><td>{fc(APT_VALUE)}</td><td>{fc(APT_VALUE // UNITS)}</td><td>${APT_VALUE / SF:.0f}</td><td>{AT_APT["cur_cap"]:.2f}%</td><td>{AT_APT["grm"]:.2f}</td><td>1953</td><td style="font-size:11px;">Subject Property</td></tr>\n'
 for c in SALE_COMPS:
     cap_str = fp(c["cap"]) if c["cap"] else "n/a"
     grm_str = f'{c["grm"]:.2f}' if c["grm"] else "n/a"
+    tier_tag = f' <em style="color:#C5A258;">[{c["tier"]}]</em>' if c.get("tier") else ""
     hl = ' class="highlight"' if "SAME STREET" in (c.get("notes") or "") else ""
-    sale_comps_html += f'<tr{hl}><td>{c["num"]}</td><td>{c["addr"]}</td><td>{c["submarket"]}</td><td>{c["units"]}</td><td>{c["date"]}</td><td>{fc(c["price"])}</td><td>{fc(c["ppu"])}</td><td>${c["psf"]:.0f}</td><td>{cap_str}</td><td>{grm_str}</td><td>{c["yr"]}</td><td style="font-size:11px;">{c["notes"]}</td></tr>\n'
+    sale_comps_html += f'<tr{hl}><td>{c["num"]}</td><td>{c["addr"]}</td><td>{c["submarket"]}</td><td>{c["units"]}</td><td>{c["date"]}</td><td>{fc(c["price"])}</td><td>{fc(c["ppu"])}</td><td>${c["psf"]:.0f}</td><td>{cap_str}</td><td>{grm_str}</td><td>{c["yr"]}</td><td style="font-size:11px;">{c["notes"]}{tier_tag}</td></tr>\n'
 caps = [c["cap"] for c in SALE_COMPS if c["cap"]]
 grms = [c["grm"] for c in SALE_COMPS if c["grm"]]
 ppus = [c["ppu"] for c in SALE_COMPS]
-sale_comps_html += f'<tr style="font-weight:600;background:#f0f4f8;"><td></td><td>Averages</td><td></td><td>{sum(c["units"] for c in SALE_COMPS)//len(SALE_COMPS)}</td><td></td><td>{fc(sum(c["price"] for c in SALE_COMPS)//len(SALE_COMPS))}</td><td>{fc(sum(ppus)//len(ppus))}</td><td>${sum(c["psf"] for c in SALE_COMPS)/len(SALE_COMPS):.0f}</td><td>{fp(sum(caps)/len(caps))}</td><td>{sum(grms)/len(grms):.2f}</td><td></td><td></td></tr>'
-sale_comps_html += f'<tr style="font-weight:600;background:#f0f4f8;"><td></td><td>Medians</td><td></td><td>9</td><td></td><td>{fc(3598000)}</td><td>{fc(382000)}</td><td>$407</td><td>4.84%</td><td>13.57</td><td></td><td></td></tr>'
+psfs = [c["psf"] for c in SALE_COMPS]
+prices = [c["price"] for c in SALE_COMPS]
+units_list = [c["units"] for c in SALE_COMPS]
+sale_comps_html += f'<tr style="font-weight:600;background:#f0f4f8;"><td></td><td>Averages</td><td></td><td>{sum(units_list)//len(units_list)}</td><td></td><td>{fc(sum(prices)//len(prices))}</td><td>{fc(sum(ppus)//len(ppus))}</td><td>${sum(psfs)/len(psfs):.0f}</td><td>{fp(sum(caps)/len(caps))}</td><td>{sum(grms)/len(grms):.2f}</td><td></td><td></td></tr>'
+med_units = int(statistics.median(units_list))
+med_price = int(statistics.median(prices))
+med_ppu = int(statistics.median(ppus))
+med_psf = statistics.median(psfs)
+med_cap = statistics.median(caps)
+med_grm = statistics.median(grms)
+sale_comps_html += f'<tr style="font-weight:600;background:#f0f4f8;"><td></td><td>Medians</td><td></td><td>{med_units}</td><td></td><td>{fc(med_price)}</td><td>{fc(med_ppu)}</td><td>${med_psf:.0f}</td><td>{med_cap:.2f}%</td><td>{med_grm:.2f}</td><td></td><td></td></tr>'
 
 # Operating statement
-op_lines = [
-    ("Gross Scheduled Rent", GSR, PF_GSR, True), ("Less: Vacancy (5%)", -(GSR*VACANCY_PCT), -(PF_GSR*VACANCY_PCT), False),
-    ("Effective Rental Income", GSR*(1-VACANCY_PCT), PF_GSR*(1-VACANCY_PCT), True), ("Other Income (Parking)", OTHER_INCOME, OTHER_INCOME, False),
-    ("Effective Gross Income", CUR_EGI, PF_EGI, True), ("SEPARATOR", 0, 0, False),
-    ("Real Estate Taxes", TAXES_AT_LIST, TAXES_AT_LIST, False), ("Insurance", 28074, 28074, False),
-    ("Water & Power", 24945, 24945, False), ("Gas", 2979, 2979, False), ("Trash Removal", 17700, 17700, False),
-    ("Repairs & Maintenance", 20250, 20250, False), ("Landscaping", 4800, 4800, False),
-    ("Pest Control", 700, 700, False), ("On-site Manager", 24000, 24000, False),
-    ("General & Administrative", 2160, 2160, False), ("Operating Reserves", 4050, 4050, False),
-    ("Management Fee (4%)", CUR_MGMT, PF_MGMT, False),
+# Operating statement — single-column format: Annual, Per Unit, % EGI
+# Income section (% EGI = "—" for income lines)
+income_lines = [
+    ("Gross Scheduled Rent", GSR, False),
+    ("Less: Vacancy (5%)", -(GSR * VACANCY_PCT), False),
+    ("Other Income (Parking)", OTHER_INCOME, False),
 ]
-op_stmt_html = ""
-for label, cur, pf, bold in op_lines:
-    if label == "SEPARATOR":
-        op_stmt_html += '<tr><td colspan="5" style="border-top:2px solid #1B3A5C;padding:6px 12px;"><strong>EXPENSES</strong></td></tr>\n'
-        continue
-    style = ' style="font-weight:600;"' if bold else ""
-    c_str = f"${cur:,.0f}" if cur >= 0 else f"(${abs(cur):,.0f})"
-    p_str = f"${pf:,.0f}" if pf >= 0 else f"(${abs(pf):,.0f})"
-    pu = f"${cur/UNITS:,.0f}"
-    pct = f"{abs(cur)/CUR_EGI*100:.1f}%" if CUR_EGI else ""
-    op_stmt_html += f"<tr{style}><td>{label}</td><td>{c_str}</td><td>{p_str}</td><td>{pu}</td><td>{pct}</td></tr>\n"
-op_stmt_html += f'<tr style="font-weight:700;border-top:2px solid #C5A258;"><td>Total Expenses</td><td>${CUR_TOTAL_EXP:,.0f}</td><td>${PF_TOTAL_EXP:,.0f}</td><td>${CUR_TOTAL_EXP/UNITS:,.0f}</td><td>{CUR_TOTAL_EXP/CUR_EGI*100:.1f}%</td></tr>'
-op_stmt_html += f'<tr style="font-weight:700;background:#1B3A5C;color:#fff;"><td>Net Operating Income</td><td>${CUR_NOI_AT_LIST:,.0f}</td><td>${PF_NOI_AT_LIST:,.0f}</td><td>${CUR_NOI_AT_LIST/UNITS:,.0f}</td><td></td></tr>'
+# Expense section
+expense_lines = [
+    ("Real Estate Taxes", TAXES_AT_LIST),
+    ("Insurance", 28074),
+    ("Water & Power", 24945),
+    ("Gas", 2979),
+    ("Trash Removal", 17700),
+    ("Repairs & Maintenance", 20250),
+    ("Landscaping", 4800),
+    ("Pest Control", 700),
+    ("On-site Manager", 24000),
+    ("General & Administrative", 2160),
+    ("Operating Reserves", 4050),
+    ("Management Fee (4%)", CUR_MGMT),
+]
+
+op_income_html = ""
+for label, val, _ in income_lines:
+    v_str = f"${val:,.0f}" if val >= 0 else f"(${abs(val):,.0f})"
+    pu = f"${val/UNITS:,.0f}" if val >= 0 else f"(${abs(val)/UNITS:,.0f})"
+    op_income_html += f"<tr><td>{label}</td><td class='num'>{v_str}</td><td class='num'>{pu}</td><td class='num'>&mdash;</td></tr>\n"
+op_income_html += f'<tr class="summary"><td><strong>Effective Gross Income</strong></td><td class="num"><strong>${CUR_EGI:,.0f}</strong></td><td class="num"><strong>${CUR_EGI/UNITS:,.0f}</strong></td><td class="num"><strong>100.0%</strong></td></tr>'
+
+op_expense_html = ""
+for label, val in expense_lines:
+    pct = f"{val/CUR_EGI*100:.1f}%"
+    op_expense_html += f"<tr><td>{label}</td><td class='num'>${val:,.0f}</td><td class='num'>${val/UNITS:,.0f}</td><td class='num'>{pct}</td></tr>\n"
+op_expense_html += f'<tr class="summary"><td><strong>Total Expenses</strong></td><td class="num"><strong>${CUR_TOTAL_EXP:,.0f}</strong></td><td class="num"><strong>${CUR_TOTAL_EXP/UNITS:,.0f}</strong></td><td class="num"><strong>{CUR_TOTAL_EXP/CUR_EGI*100:.1f}%</strong></td></tr>'
+op_expense_html += f'\n<tr class="summary"><td><strong>Net Operating Income</strong></td><td class="num"><strong>${CUR_NOI_AT_LIST:,.0f}</strong></td><td class="num"><strong>${CUR_NOI_AT_LIST/UNITS:,.0f}</strong></td><td class="num"><strong>{CUR_NOI_AT_LIST/CUR_EGI*100:.1f}%</strong></td></tr>'
 
 # ============================================================
 # COMP NARRATIVES (from SALE_COMP_ANALYSIS.md)
@@ -261,7 +286,7 @@ COMP_NARRATIVES = [
     # Comp 7
     """<p><strong>617 W Stocker St (9 units, $3.546M, 2/20/2025) -- PRIMARY ANCHOR:</strong> The single most relevant comparable. Located on the <em>same street</em> with an identical unit type (all 2BR/1BA), same 91202 zip code, and same GLR4YY zoning. MLS remarks describe the location as "arguably the best location in Glendale... north of Glenoaks in the 91202 zip code, nestled just below multimillion-dollar homes, 3 schools within 1 block walking distance." The property was updated with a pitched roof, all new windows/sliders, and several remodeled unit interiors. Listed at $3.65M, contracted in 15 DOM, closed at $3.546M (97.15% SP/LP) after a long escrow. Same agent represented both buyer and seller (Levon Alexanian). At $394K/unit and $402/SF, the subject's pricing at $333K/unit is a 15% discount and $397/SF is nearly identical. This discount is the correct magnitude for a property that is 3x larger, 9 years older, and less updated. The near-identical $/SF ($402 vs. $397) is the strongest single validation of the $9.0M apartment value.</p>""",
     # Comp 8
-    """<p><strong>950 N Louise St (25 units, $9.25M, 1/24/2025) -- BEST SIZE MATCH:</strong> The closest unit-count comparison (25 vs. 27 units) and the only comp in a similar price tier. A Marcus & Millichap listing (Andy Kawatra) that originally listed at $11.5M, was reduced to $9.95M, and ultimately sold at $9.25M (93% of reduced ask, 129 DOM). This is a fundamentally premium product: 3-story elevator building in 91207 Rossmoyne, 1,388 SF average units (vs. subject's 840 SF), common AC system, and $1M+ in owner capex invested (17 of 25 units upgraded with hardwood floors and granite countertops). The MLS confirms R1250 zoning, validating our zoning assumption for the subject. Despite all premiums, it traded at $370K/unit -- only 11% above the subject's $333K/unit. The subject offers a comparable 5.00% cap (vs. 5.17%) with significantly more upside ($138K rent + $127K ADU NOI) on a property that has not yet captured its value-add potential.</p>""",
+    """<p><strong>950 N Louise St (25 units, $9.25M, 1/24/2025) -- BEST SIZE MATCH:</strong> The closest unit-count comparison (25 vs. 27 units) and the only comp in a similar price tier. A Marcus &amp; Millichap listing (Andy Kawatra) that was listed at $9.95M and ultimately sold at $9.25M (93% of ask, 129 DOM). This is a fundamentally premium product: 3-story elevator building in 91207 Rossmoyne, 1,388 SF average units (vs. subject's 840 SF), common AC system, and $1M+ in owner capex invested (17 of 25 units upgraded with hardwood floors and granite countertops). The MLS confirms R1250 zoning, validating our zoning assumption for the subject. Despite all premiums, it traded at $370K/unit -- only 11% above the subject's $333K/unit. The subject offers a comparable 5.00% cap (vs. 5.17%) with significantly more upside ($138K rent + $127K ADU NOI) on a property that has not yet captured its value-add potential.</p>""",
 ]
 
 print("Building HTML...")
@@ -300,7 +325,7 @@ html{{scroll-padding-top:50px;}}
 .cover-price{{font-size:48px;font-weight:700;color:#C5A258;margin-bottom:28px;text-shadow:0 2px 8px rgba(0,0,0,0.2);}}
 .cover-stats{{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;}}
 .cover-stat{{text-align:center;}}.cover-stat-value{{display:block;font-size:26px;font-weight:600;color:#fff;}}.cover-stat-label{{display:block;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-top:4px;}}
-.client-greeting{{font-size:18px;font-weight:400;color:rgba(255,255,255,0.85);margin-top:20px;font-style:italic;}}
+.client-greeting{{font-size:16px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:#C5A258;margin-top:16px;}}
 .cover-headshots{{display:flex;justify-content:center;gap:40px;margin-top:28px;}}.cover-hs{{text-align:center;}}.cover-hs img{{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid #C5A258;margin-bottom:8px;display:block;}}.cover-hs span{{display:block;font-size:13px;font-weight:500;color:rgba(255,255,255,0.8);}}
 .pdf-float-btn{{position:fixed;bottom:24px;right:24px;z-index:9999;padding:14px 28px;background:#C5A258;color:#1B3A5C;font-size:14px;font-weight:700;text-decoration:none;border-radius:8px;letter-spacing:0.5px;box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:background 0.2s,transform 0.2s;display:flex;align-items:center;gap:8px;}}.pdf-float-btn:hover{{background:#fff;transform:translateY(-2px);}}.pdf-float-btn svg{{width:18px;height:18px;fill:currentColor;}}
 .toc-nav{{background:#1B3A5C;padding:0 20px;display:flex;flex-wrap:nowrap;gap:0;justify-content:center;align-items:stretch;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15);overflow-x:auto;-webkit-overflow-scrolling:touch;}}
@@ -310,8 +335,8 @@ html{{scroll-padding-top:50px;}}
 .section-title{{font-size:26px;font-weight:700;color:#1B3A5C;margin-bottom:6px;}}.section-subtitle{{font-size:13px;color:#C5A258;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;font-weight:500;}}
 .section-divider{{width:60px;height:3px;background:#C5A258;margin-bottom:30px;}}.sub-heading{{font-size:18px;font-weight:600;color:#1B3A5C;margin:30px 0 16px;}}
 .metrics-grid,.metrics-grid-4{{display:grid;gap:16px;margin-bottom:30px;}}.metrics-grid{{grid-template-columns:repeat(3,1fr);}}.metrics-grid-4{{grid-template-columns:repeat(4,1fr);}}
-.metric-card{{background:#fff;border-radius:8px;padding:20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid #e8e8e8;}}
-.metric-value{{display:block;font-size:28px;font-weight:700;color:#1B3A5C;}}.metric-label{{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#C5A258;margin-top:6px;}}.metric-sub{{display:block;font-size:10px;color:#888;margin-top:4px;}}
+.metric-card{{background:#1B3A5C;border-radius:12px;padding:24px;text-align:center;color:#fff;}}
+.metric-value{{display:block;font-size:28px;font-weight:700;color:#fff;margin-bottom:4px;}}.metric-label{{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.6);margin-top:6px;}}.metric-sub{{display:block;font-size:12px;color:#C5A258;margin-top:4px;}}
 table{{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:13px;}}th{{background:#1B3A5C;color:#fff;padding:10px 12px;text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}}td{{padding:8px 12px;border-bottom:1px solid #eee;}}tr:nth-child(even){{background:#f5f5f5;}}tr.highlight{{background:#FFF8E7 !important;border-left:3px solid #C5A258;}}
 .table-scroll{{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:24px;}}.table-scroll table{{min-width:700px;margin-bottom:0;}}
 .info-table{{width:100%;}}.info-table td{{padding:8px 12px;border-bottom:1px solid #eee;font-size:13px;}}.info-table td:first-child{{font-weight:600;color:#1B3A5C;width:40%;}}
@@ -327,7 +352,23 @@ p{{margin-bottom:16px;font-size:14px;line-height:1.7;}}
 .highlight-box{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:20px 24px;margin:24px 0;}}
 .highlight-box h4{{color:#1B3A5C;font-size:14px;margin-bottom:10px;}}
 .highlight-box ul{{margin:0;padding-left:20px;}}.highlight-box li{{font-size:13px;margin-bottom:6px;line-height:1.5;}}
-@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-hs img{{width:65px;height:65px;}}.cover-hs span{{font-size:12px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:10px 16px;gap:4px 10px;}}.toc-nav a{{font-size:11px;padding:3px 8px;}}.table-scroll table{{min-width:560px;}}}}
+td.num,th.num{{text-align:right;}}
+.broker-insight{{background:#f8f4eb;border-left:4px solid #C5A258;padding:16px 20px;margin:24px 0;border-radius:0 4px 4px 0;font-size:13px;line-height:1.7;color:#444;}}
+.broker-insight-label{{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;display:block;}}
+.costar-badge{{text-align:center;background:#FFF8E7;border:2px solid #C5A258;border-radius:8px;padding:20px 24px;margin:30px auto 24px;max-width:600px;}}
+.costar-badge-title{{font-size:22px;font-weight:700;color:#1B3A5C;line-height:1.2;}}
+.costar-badge-sub{{font-size:12px;color:#C5A258;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-top:6px;}}
+.bio-grid{{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0;}}
+.bio-card{{display:flex;gap:16px;align-items:flex-start;}}
+.bio-headshot{{width:80px;height:80px;border-radius:50%;border:3px solid #C5A258;object-fit:cover;flex-shrink:0;}}
+.bio-name{{font-size:16px;font-weight:700;color:#1B3A5C;margin-bottom:2px;}}
+.bio-title{{font-size:11px;color:#C5A258;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}}
+.bio-text{{font-size:13px;line-height:1.6;color:#444;}}
+.press-strip{{display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;margin:24px 0;padding:16px 20px;background:#f0f4f8;border-radius:6px;}}
+.press-strip-label{{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#888;font-weight:600;}}
+.press-logo{{font-size:13px;font-weight:700;color:#1B3A5C;letter-spacing:0.5px;}}
+.condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}
+@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-hs img{{width:65px;height:65px;}}.cover-hs span{{font-size:12px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-hs img{{width:50px;height:50px;}}.cover-hs span{{font-size:10px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:9px;padding:10px 6px;letter-spacing:0.5px;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter landscape;margin:0.4in 0.5in;}}
@@ -374,7 +415,7 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 
 .metrics-grid,.metrics-grid-4{{page-break-inside:avoid;}}
 .metric-card{{page-break-inside:avoid;}}
-.highlight-box,.buyer-profile,.condition-note{{page-break-inside:avoid;}}
+.highlight-box,.buyer-profile,.condition-note,.broker-insight{{page-break-inside:avoid;}}
 table{{page-break-inside:auto;font-size:10.5px;margin-bottom:12px;}}
 thead{{display:table-header-group;}}
 tr{{page-break-inside:avoid;}}
@@ -397,7 +438,7 @@ h2,h3,.section-title,.sub-heading{{page-break-after:avoid;}}
 .metrics-grid{{grid-template-columns:repeat(3,1fr);}}
 .metrics-grid-4{{grid-template-columns:repeat(4,1fr);}}
 .metrics-grid,.metrics-grid-4{{gap:8px;margin-bottom:12px;}}
-.metric-card{{padding:8px 6px;border:1px solid #ddd;}}
+.metric-card{{padding:8px 6px;border:1px solid #ddd;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .metric-value{{font-size:18px;}}
 .metric-label{{font-size:8px;margin-top:2px;}}
 .metric-sub{{font-size:7px;}}
@@ -437,10 +478,10 @@ html_parts.append(f"""
 <div class="cover-stats">
 <div class="cover-stat"><span class="cover-stat-value">27</span><span class="cover-stat-label">Units</span></div>
 <div class="cover-stat"><span class="cover-stat-value">22,674</span><span class="cover-stat-label">Square Feet</span></div>
-<div class="cover-stat"><span class="cover-stat-value">1953</span><span class="cover-stat-label">Year Built</span></div>
+<div class="cover-stat"><span class="cover-stat-value">1953/1954</span><span class="cover-stat-label">Year Built</span></div>
 <div class="cover-stat"><span class="cover-stat-value">1.11 Ac</span><span class="cover-stat-label">Lot Size</span></div>
 </div>
-<p class="client-greeting" id="client-greeting">Prepared Exclusively for Isabelle Gerald</p>
+<p class="client-greeting" id="client-greeting"></p>
 <div class="cover-headshots">
 <div class="cover-hs"><img src="{IMG['glen']}" alt="Glen Scher"><span>Glen Scher</span></div>
 <div class="cover-hs"><img src="{IMG['filip']}" alt="Filip Niculete"><span>Filip Niculete</span></div>
@@ -473,20 +514,79 @@ html_parts.append(f"""
 <a href="{PDF_LINK}" class="pdf-float-btn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm-1 2l5 5h-5V4zm-1 13l-4-4h3V9h2v4h3l-4 4z"/></svg>Download PDF</a>
 """)
 
-# TRACK RECORD (unchanged)
+# TRACK RECORD (expanded per current template)
 html_parts.append(f"""
 <div class="section section-alt" id="track-record">
 <div class="section-title">Team Track Record</div>
 <div class="section-subtitle">LA Apartment Advisors at Marcus &amp; Millichap</div>
 <div class="section-divider"></div>
-<div class="metrics-grid" style="grid-template-columns:repeat(3,1fr);">
-<div class="metric-card"><span class="metric-value">501</span><span class="metric-label">Closed Transactions</span><span class="metric-sub">Since 1/1/2013</span></div>
+
+<div class="metrics-grid metrics-grid-4">
+<div class="metric-card"><span class="metric-value">501</span><span class="metric-label">Closed Transactions</span><span class="metric-sub">All-Time</span></div>
 <div class="metric-card"><span class="metric-value">$1.6B</span><span class="metric-label">Total Sales Volume</span><span class="metric-sub">All-Time</span></div>
 <div class="metric-card"><span class="metric-value">5,000+</span><span class="metric-label">Units Sold</span><span class="metric-sub">All-Time</span></div>
+<div class="metric-card"><span class="metric-value">34</span><span class="metric-label">Median Days on Market</span><span class="metric-sub">Apartments</span></div>
 </div>
+
 <div class="embed-map-wrap"><iframe src="https://www.google.com/maps/d/u/0/embed?mid=1ewCjzE3QX9p6m2MqK-md8b6fZitfIzU&ehbc=2E312F" allowfullscreen loading="lazy"></iframe></div>
 <div class="embed-map-caption">All-Time Closings Map &mdash; LA Apartment Advisors</div>
 <div class="embed-map-fallback">View our interactive closings map at <strong>www.LAAA.com</strong></div>
+
+<div class="narrative" style="margin-top:30px;">
+<p>The LAAA Team (LA Apartment Advisors) was co-founded by Glen Scher and Filip Niculete in 2018 and specializes exclusively in multifamily investment sales and multifamily land across Los Angeles, Ventura, and Santa Barbara counties. The team maintains direct relationships with over <strong>40,000 apartment investors</strong> and <strong>10,000 brokers</strong>, leveraging the Marcus &amp; Millichap platform, the largest commercial real estate investment sales firm in the U.S. by transaction count. M&amp;M closed <strong>7,836 transactions totaling $49.6 billion</strong> in 2024.</p>
+<p>Over <strong>60% of all Marcus &amp; Millichap transactions involve a 1031 exchange</strong>, creating a perpetual buyer pipeline that benefits every LAAA listing. This exchange network, combined with M&amp;M's proprietary MNet buyer-matching system across 80+ offices and 1,700+ agents nationally, delivers a level of market exposure and deal execution that competitors cannot replicate. Half of our apartment listings sell in under 5 weeks.</p>
+</div>
+
+<div class="bio-grid">
+<div class="bio-card">
+<img id="bio-glen-headshot" class="bio-headshot" src="{IMG['glen']}" alt="Glen Scher">
+<div>
+<div class="bio-name">Glen Scher</div>
+<div class="bio-title">Senior Managing Director Investments</div>
+<div class="bio-text">Senior Managing Director at Marcus &amp; Millichap and co-founder of the LAAA Team. Over 450 transactions and $1.4B in closed sales across LA and the Ventura &amp; Santa Barbara counties, consistently closing 40+ deals per year. Glen joined M&amp;M in 2014 after graduating from UC Santa Barbara with a degree in Economics. Before real estate, he was a Division I golfer at UCSB, earning three individual titles, a national top-50 ranking, and UCSB Male Athlete of the Year.</div>
+</div>
+</div>
+<div class="bio-card">
+<img id="bio-filip-headshot" class="bio-headshot" src="{IMG['filip']}" alt="Filip Niculete">
+<div>
+<div class="bio-name">Filip Niculete</div>
+<div class="bio-title">Senior Managing Director Investments</div>
+<div class="bio-text">Senior Managing Director at Marcus &amp; Millichap and co-founder of the LAAA Team. Together, Glen and Filip have closed over $1.4B in transactions and consistently lead the market in inventory. Born in Romania and raised in the San Fernando Valley, Filip studied Finance at San Diego State University and joined M&amp;M in 2011. He has built a reputation for execution, integrity, and relentless work ethic across 15 years in Los Angeles multifamily.</div>
+</div>
+</div>
+</div>
+
+<div class="costar-badge">
+<div class="costar-badge-title">#1 Most Active Multifamily Sales Team in LA County</div>
+<div class="costar-badge-sub">CoStar &bull; 2019, 2020, 2021 &bull; #4 in California</div>
+</div>
+
+<div class="condition-note" style="margin-top:20px;">
+<div class="condition-note-label">Key Achievements</div>
+<p style="font-size:13px; line-height:1.8;">
+&bull; <strong>Chairman's Club</strong> &mdash; Marcus &amp; Millichap's highest annual honor (Glen: 2021; Filip: 2018, 2021)<br>
+&bull; <strong>National Achievement Award</strong> &mdash; Glen: 5 years; Filip: 8 consecutive years<br>
+&bull; <strong>Sales Recognition Award</strong> &mdash; Glen: 10 consecutive years; Filip: 12 years total<br>
+&bull; <strong>Traded.co National Rankings</strong> &mdash; Glen Scher: #8 Deal Junkies, #8 Hot List, #8 Rising Talent<br>
+&bull; <strong>Connect CRE Next Generation Award</strong> &mdash; Filip Niculete (2019)<br>
+&bull; <strong>SFVBJ Rookie of the Year</strong> &mdash; Glen Scher
+</p>
+</div>
+
+<div class="press-strip">
+<span class="press-strip-label">As Featured In</span>
+<span class="press-logo">BISNOW</span>
+<span class="press-logo">YAHOO FINANCE</span>
+<span class="press-logo">CONNECT CRE</span>
+<span class="press-logo">SFVBJ</span>
+<span class="press-logo">THE PINNACLE LIST</span>
+</div>
+
+<div class="broker-insight" style="margin-top:20px;">
+<span class="broker-insight-label">Broker's Perspective</span>
+Our Glendale multifamily expertise is deep and current. The LAAA Team has closed multiple transactions in the 91202 zip code and maintains strong relationships with the most active Glendale apartment investors. For Stocker Gardens, our 40,000+ investor database and M&amp;M's 1031 exchange network position us to identify and engage qualified buyers for a 27-unit portfolio at this price point. The scale of this offering (1.1 acres, 27 units, $9M+ price) requires institutional-level marketing reach that only a top-producing national platform can deliver.
+</div>
+
 </div>
 """)
 
@@ -518,6 +618,12 @@ html_parts.append(f"""
 <div class="metric-card"><span class="metric-value">1.11 Ac</span><span class="metric-label">Combined Lot</span></div>
 <div class="metric-card"><span class="metric-value">5</span><span class="metric-label">Buildings</span></div>
 </div>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+This is one of the largest multifamily sites we have seen come to market in the Glenwood submarket. The combination of 27 units on 1.11 acres with two separate APNs creates optionality that smaller properties simply cannot offer &mdash; from ADU construction to a potential lot split strategy. The $117,000 in recent capital improvements demonstrates an owner who has maintained the asset, reducing near-term capex exposure for a buyer and allowing immediate focus on income growth.
+</div>
+
 </div>
 """)
 
@@ -552,6 +658,12 @@ html_parts.append("""
 <tr><td>Environmental</td><td>No known contamination</td></tr>
 </table>
 </div>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+The north-of-Glenoaks 91202 location is consistently one of the strongest rental corridors in Glendale. Competing listing agents have described this exact block as "arguably the best location in Glendale," and our comp data confirms it &mdash; 617 W Stocker sold in just 15 DOM at $394K/unit. The proximity to top-rated Glendale Unified schools, Burbank entertainment studios, and SR-134 freeway access creates overlapping tenant demand from families, entertainment professionals, and commuters, driving consistently low vacancy.
+</div>
+
 </div>
 """)
 
@@ -616,6 +728,12 @@ html_parts.append(f"""
 </div>
 
 <p>Each of the two parcels measures 80 feet wide by 300 feet deep. Side by side, the combined site spans 160 feet of frontage by 300 feet of depth, totaling approximately 48,353 SF (1.11 acres). This is among the largest multifamily land assemblages in the Glenwood submarket and is a primary driver of the property's ADU development potential. The dual-parcel structure provides operational flexibility and independent ADU entitlements on each lot under SB 1211.</p>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+The dual-parcel structure is a meaningful advantage. Each lot operates independently under SB 1211, allowing a buyer to pursue ADU construction on one parcel while keeping the other unencumbered. The 160-foot combined frontage and 8,000 SF rear parking area are unusually large for Glendale multifamily &mdash; most competing properties on Stocker Street have half this lot depth. This site can accommodate strategies that simply are not available on smaller parcels.
+</div>
+
 </div>
 """)
 
@@ -645,6 +763,12 @@ html_parts.append("""
 </tbody>
 </table></div>
 <div class="condition-note"><strong>Note:</strong> The current owner invested approximately $117,000 in capital improvements during 2024 (plumbing/electrical, deck, windows, HVAC, painting, appliances). Several of these items were not reflected in Glendale Building &amp; Safety permit records. Buyer should verify scope and completion during due diligence. One coast live oak tree on the 420 parcel is protected under Glendale's Indigenous Tree Ordinance.</div>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+The $117,000 in 2024 capital improvements is significant for a 27-unit building of this vintage. Roof replacements on all three structures (2007-2012), combined with the 2005 repiping of Units A-H, mean the highest-cost deferred maintenance items have already been addressed. A buyer's capital plan can focus on unit-interior turns and ADU construction rather than emergency building-envelope repairs. We recommend budgeting for eventual repiping of the 428 building, but this is a planned expenditure, not an urgent one.
+</div>
+
 </div>
 """)
 
@@ -670,6 +794,12 @@ html_parts.append("""
 </tbody>
 </table></div>
 <div class="condition-note"><strong>Glendale Rent Control:</strong> Glendale Ordinance No. 5922 (updated March 2024) provides just cause eviction protections, requires a 12-month lease offer before rent increases, and mandates relocation assistance (3 months' rent) when cumulative increases exceed 7% in any 12-month period. This applies to all units built on or before February 1, 1995. Both buildings qualify (1953/1954 construction). Glendale does not operate a rent board, does not require unit registration, and does not impose a local transfer tax.</div>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+Glendale's regulatory environment is significantly more landlord-friendly than the City of Los Angeles. There is no local rent board, no unit registration requirement, no transfer tax, and no RSO. The 5% + CPI cap under AB 1482 still allows meaningful rent growth at unit turnover via vacancy decontrol. The 7% relocation trigger under Ord. 5922 is the primary constraint, but with our recommended pricing strategy of measured annual increases, most units can reach market rent within 2-3 lease cycles without triggering relocation.
+</div>
+
 </div>
 """)
 
@@ -690,6 +820,12 @@ html_parts.append("""
 </tbody>
 </table></div>
 <p>The proposed sale would represent the first arms-length transaction of this property in over three decades. The current assessed value of $4,238,666 reflects a long-term Proposition 13 tax basis. A buyer should anticipate property tax reassessment to approximately 1.13% of the sale price upon close of escrow. Pricing analysis and recommended list price are presented in the Financial Analysis section below.</p>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+A 34-year hold with no arms-length transaction means this property has never been tested in a competitive market. The Prop 13 basis of $4.24M creates a meaningful tax step-up at sale (from ~$49,300/year to ~$105,000/year at a $9.35M price), which is already factored into our operating statement. First-time-to-market properties in Glendale consistently generate strong buyer interest because the ownership story &mdash; one family, three decades &mdash; signals stability and low deferred maintenance risk.
+</div>
+
 </div>
 """)
 
@@ -755,7 +891,7 @@ html_parts.append("""
 </tbody>
 </table></div>
 
-<p><em>Primary source: Ward, Jason M. &amp; Schlake, Matias R., "The High Cost of Producing Multifamily Housing in California," RAND Corporation, RR-A3743-1, April 2025. Key finding: California's average market-rate multifamily production cost is approximately $430,000 per unit &mdash; 2.5&times; Texas (~$150K) and nearly 2&times; Colorado (~$240K). Los Angeles metro is among the most expensive submarkets in California. Development timelines in CA average 22+ months longer than comparable projects in Texas. Municipal development fees average approximately $29,000 per unit statewide.</em></p>
+<p><em>Primary source: Ward, Jason M. &amp; Schlake, Luke, "The High Cost of Producing Multifamily Housing in California," RAND Corporation, RR-A3743-1, April 2025. Key finding: California's average market-rate multifamily production cost is approximately $350,000&ndash;$430,000 per unit (LA Metro to statewide average) &mdash; 2.5&times; Texas (~$150K) and nearly 2&times; Colorado (~$240K). Los Angeles metro is among the most expensive submarkets in California. Development timelines in CA average 22+ months longer than comparable projects in Texas. Municipal development fees average approximately $29,000 per unit statewide.</em></p>
 
 <p>The completed value of a new 38-unit building, assuming Class A new-construction rents of $3,250/month per unit, 5% vacancy, and 35% operating expenses:</p>
 
@@ -764,7 +900,7 @@ html_parts.append("""
 <tbody>
 <tr><td>Gross rent (38 units &times; $3,250/mo &times; 12)</td><td></td><td>$1,482,000</td></tr>
 <tr><td>Less: Vacancy (5%)</td><td></td><td>($74,100)</td></tr>
-<tr><td>Less: Operating expenses (35%)</td><td></td><td>($518,700)</td></tr>
+<tr><td>Less: Operating expenses (35% of gross)</td><td></td><td>($518,700)</td></tr>
 <tr><td><strong>Stabilized NOI</strong></td><td></td><td><strong>$889,200</strong></td></tr>
 <tr><td>Value at 4.5% cap</td><td>$889,200 / 0.045</td><td><strong>$19,760,000</strong></td></tr>
 <tr><td>Value at 4.0% cap</td><td>$889,200 / 0.040</td><td><strong>$22,230,000</strong></td></tr>
@@ -790,6 +926,12 @@ html_parts.append("""
 <p><strong>5. SB 423 Limitations:</strong> Even SB 423's ministerial approval path requires affordable housing set-asides (below-market units with 55-year deed restrictions). While this could bypass CEQA and design review, the underlying economic gap ($13-15M loss) remains.</p>
 
 <div class="condition-note"><strong>Conclusion:</strong> The development potential of this 1.11-acre site is theoretical, not practical. The combination of a 2-story height limit (80-foot lot width), $430,000+ per-unit construction costs, SB 330 replacement requirements, Ellis Act constraints, Glendale's tenant protections, and CEQA review make ground-up redevelopment economically irrational. The practical path to value creation is ADU infill construction in the existing rear parking area, which requires no tenant displacement, no CEQA review, and no discretionary approval.</div>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+We present the development analysis not to suggest a buyer should demolish, but to demonstrate why the existing buildings are the highest-and-best use. The $13-$15M development gap effectively insulates the property from demolition risk, meaning a buyer can underwrite the asset with confidence that the rental income stream is durable. The real development value here is ADU infill, which we analyze in detail in the next section.
+</div>
+
 </div>
 """)
 
@@ -903,6 +1045,12 @@ html_parts.append(f"""
 </table></div>
 
 <div class="condition-note"><strong>Key Takeaway:</strong> Under the realistic scenario, a buyer investing approximately $1.65M in ADU construction generates ~$127,000 in additional annual NOI and creates approximately $900,000 in equity value &mdash; a 54% return on investment. Combined with the existing $138,000 in rent upside, the total value-add opportunity exceeds $1.0M in new annual income. ADU construction requires no tenant displacement, no CEQA review, and no discretionary approval. It is the clear, executable path to value creation on this site.</div>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+We have seen SB 1211 ADU projects pencil well in other LAAA transactions, and the Stocker site is among the most favorable candidates we have encountered. The 8,000 SF rear parking area is flat, accessible, and already served by utilities. The 6-unit layout we model here uses conservative assumptions &mdash; $275/SF all-in, $2,300/month rent &mdash; and still generates a 54% ROI. An experienced ADU builder could likely improve these economics with bulk purchasing and shared mobilization costs across 6 identical structures.
+</div>
+
 </div>
 """)
 
@@ -940,6 +1088,12 @@ html_parts.append(f"""
 </table></div>
 
 <p>The four-metric analysis positions the subject as a value-oriented acquisition with above-market income yield and significant organic upside &mdash; exactly where a 27-unit, 1953-vintage, light-value-add portfolio should price relative to smaller, newer, renovated comparables in the same market. The comparable sales data supports the apartment income valuation presented in the Financial Analysis section below.</p>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+The comp set tells a clear story: the Glendale market prices consistently around a 5% cap rate regardless of vintage, with premiums flowing through $/unit and $/SF rather than yield compression. The subject at $333K/unit sits 13% below the median, creating immediate perceived value for comp-driven buyers. The same-street anchor at 617 W Stocker ($394K/unit, $402/SF) is the strongest single validation of our pricing &mdash; the near-identical $/SF ($397 vs. $402) with a 15% $/unit discount reflects the correct magnitude for 3x scale and less-updated condition.
+</div>
+
 </div>
 """)
 
@@ -963,6 +1117,12 @@ html_parts.append(f"""
 </table></div>
 
 <p>The active inventory ranges from $325,000/unit (719 N Jackson, a 6-unit gut renovation) to $469,500/unit (1207 N Columbus, a 1989-build 10-unit with central AC and subterranean parking that has been on market for 219 DOM after a price reduction). The prolonged marketing time and price drop at 1207 Columbus suggest that $469K/unit is the ceiling of buyer tolerance for Glendale multifamily, even for newer, amenitized product. The subject's scale (27 units), value-add potential, and ADU opportunity differentiate it from the smaller active listings and support pricing discussed in the Financial Analysis section.</p>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+The active listing landscape confirms that Glendale's buyer pool is price-sensitive above $469K/unit. The 219 DOM at 1207 N Columbus (a 1989 building with significantly better amenities) is a cautionary data point. Our pricing at $333K/unit positions the subject as the clear value play in the market &mdash; a 27-unit portfolio with ADU upside at a per-unit price that undercuts every active listing. This should generate strong initial interest and competitive offers.
+</div>
+
 </div>
 """)
 
@@ -1002,6 +1162,12 @@ html_parts.append(f"""
 <p>The subject's 2BR units currently rent between $900 and $2,630/month, with a market potential of $2,650. The mid-market comps on Stocker Street and Dryden Street ($2,470-$2,695 for updated 2BRs) establish the achievable rent level for units with light renovations. The luxury comp at 439 W Stocker ($3,479-$3,498) represents the ceiling after full gut renovation. With 22 of 24 apartment 2BR units currently below the $2,650 market threshold, there is approximately <strong>$138,000 in annual rent upside</strong> achievable through organic lease turnover and measured rent increases under AB 1482's 5% + CPI framework.</p>
 
 <p><strong>Front house rent estimate:</strong> The 4BR/3BA Craftsman at 420 W Stocker (2,500 SF) is modeled at $5,000/month. Standalone 4BR SFR comps in 91202 range from $5,500-$7,500/month, but a 15-25% discount is applied for the multifamily-lot setting (shared parking, foot traffic, less privacy). The property was listed at $3,850-$3,900/month in 2009 and expired without leasing, confirming the multifamily discount was a factor even then. Adjusting for approximately 35-50% Glendale rent growth since 2009 supports the $5,000/month estimate.</p>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+The rent comp data confirms approximately 19% upside to market across the portfolio. Our $2,650 market rent for 2BR units is conservative &mdash; it is below the $2,695 achieved at 550 W Stocker (same street, renovated) and well below the $3,479+ at 439 W Stocker (gut-renovated luxury). The most compelling data point is that same-street comps within one block are achieving rents that validate our pro forma without requiring any assumption of neighborhood improvement. The upside is already there; it simply requires patient execution through natural tenant turnover.
+</div>
+
 </div>
 """)
 
@@ -1009,10 +1175,15 @@ html_parts.append(f"""
 html_parts.append(f"""
 <div class="section section-alt" id="financials">
 <div class="section-title">Financial Analysis</div>
-<div class="section-subtitle">Investment Returns at $9,350,000</div>
+<div class="section-subtitle">Investment Underwriting</div>
 <div class="section-divider"></div>
 
-<div class="metrics-grid-4">
+<div style="text-align:center; margin-bottom:32px;">
+<div style="font-size:13px; text-transform:uppercase; letter-spacing:2px; color:#C5A258; font-weight:600; margin-bottom:8px;">Suggested List Price</div>
+<div style="font-size:56px; font-weight:700; color:#1B3A5C; line-height:1;">${LIST_PRICE:,}</div>
+</div>
+
+<div class="metrics-grid metrics-grid-4">
 <div class="metric-card"><span class="metric-value">${AT_LIST['per_unit']:,.0f}</span><span class="metric-label">Price Per Unit</span></div>
 <div class="metric-card"><span class="metric-value">${AT_LIST['per_sf']:,.0f}</span><span class="metric-label">Price Per SF</span></div>
 <div class="metric-card"><span class="metric-value">{AT_LIST['cur_cap']:.2f}%</span><span class="metric-label">Current Cap Rate</span></div>
@@ -1024,12 +1195,35 @@ html_parts.append(f"""
 <thead><tr><th>Unit</th><th>Type</th><th>SF</th><th>Current Rent</th><th>Rent/SF</th><th>Market Rent</th><th>Market/SF</th></tr></thead>
 <tbody>{rent_roll_html}</tbody>
 </table></div>
+<p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: Unit numbering skips 428-13 per original building convention. All 27 units are accounted for.</p>
 
 <h3 class="sub-heading">Operating Statement</h3>
-<div class="table-scroll"><table>
-<thead><tr><th>Line Item</th><th>Current</th><th>Pro Forma</th><th>Per Unit</th><th>% of EGI</th></tr></thead>
-<tbody>{op_stmt_html}</tbody>
-</table></div>
+<table>
+<thead><tr><th>Income</th><th class="num">Annual</th><th class="num">Per Unit</th><th class="num">% EGI</th></tr></thead>
+<tbody>{op_income_html}</tbody>
+</table>
+<table>
+<thead><tr><th>Expenses</th><th class="num">Annual</th><th class="num">Per Unit</th><th class="num">% EGI</th></tr></thead>
+<tbody>{op_expense_html}</tbody>
+</table>
+<p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: The operating statement above uses property taxes reassessed at the $9,350,000 asking price (yielding current NOI of ${CUR_NOI_AT_LIST:,.0f}). The pricing rationale references a normalized NOI of $449,791, which uses taxes reassessed at the $9,000,000 apartment income value. Both figures are internally consistent; the difference is the tax reassessment basis.</p>
+
+<h3 class="sub-heading">Notes to Operating Statement</h3>
+<div style="font-size:12px;line-height:1.7;color:#555;margin-bottom:30px;">
+<p><strong>[1] Other Income:</strong> Reflects current parking revenue of $485/mo ($5,820 annually) collected across both buildings per the rent roll. No on-site laundry income is currently collected.</p>
+<p><strong>[2] Real Estate Taxes:</strong> Estimated at 1.13% of sale price. Current owner's Prop 13 basis is $48,588. Buyer should anticipate reassessment to full market value at close of escrow.</p>
+<p><strong>[3] Insurance:</strong> Based on $1,040/unit reflecting current LA County market conditions. Owner's 2024 actual was $18,127; increase reflects post-wildfire rate environment across Southern California carriers.</p>
+<p><strong>[4] Water &amp; Power:</strong> Includes water, sewer, and common area electric. Units are individually metered for gas and electric; landlord responsibility is limited to common area usage and water/sewer. Owner's 2024 actual was $18,756; adjusted upward for projected rate increases.</p>
+<p><strong>[5] Gas:</strong> Reflects common area usage only. All units are individually metered for gas. Owner's 2024 actual was $2,240.</p>
+<p><strong>[6] Trash Removal:</strong> Based on $656/unit. Owner's 2024 actual was $13,308; adjusted for anticipated City of Glendale rate increases.</p>
+<p><strong>[7] Repairs &amp; Maintenance:</strong> Normalized at $750/unit. Owner's 2024 R&amp;M was $11,833 on the P&amp;L with an additional $117,264 in non-recurring capital expenditures (deck, plumbing/electrical, windows, painting, HVAC).</p>
+<p><strong>[8] Landscaping:</strong> Based on owner's 2024 actual gardening expense of $4,800.</p>
+<p><strong>[9] Pest Control:</strong> Based on owner's 2024 actual of $660, rounded to $700.</p>
+<p><strong>[10] On-site Manager:</strong> Required per California Civil Code Section 17995.1 for properties with 16+ units. Estimated value of rent-free unit plus nominal stipend. Owner's 2024 payroll was $5,116 reflecting part-time/informal arrangement.</p>
+<p><strong>[11] General &amp; Administrative:</strong> At $80/unit includes legal, accounting, office supplies, and miscellaneous overhead. Owner's 2024 actual was $1,050.</p>
+<p><strong>[12] Operating Reserves:</strong> At $150/unit for capital replacement and deferred maintenance. Building is 1953 vintage; owner completed $117,264 in capital improvements during 2024.</p>
+<p><strong>[13] Management Fee:</strong> At 4.0% of effective gross income. Reflects third-party professional property management. Owner currently self-manages.</p>
+</div>
 
 <div class="two-col">
 <div>
@@ -1056,11 +1250,18 @@ html_parts.append(f"""
 </div>
 
 <h3 class="sub-heading">Pricing Matrix</h3>
-<p style="font-size:12px;color:#666;margin-bottom:12px;"><em>Note: Property taxes are recalculated at each price point (1.13% of sale price per Glendale Prop 13 reassessment), which adjusts NOI and cap rate at every row.</em></p>
+<p style="font-size:12px;color:#666;margin-bottom:12px;"><em>Highlighted row represents the suggested list price. Cap rates are tax-adjusted (property taxes recalculated at 1.13% of sale price per Glendale Prop 13 reassessment), which adjusts NOI and cap rate at every row.</em></p>
 <div class="table-scroll"><table>
-<thead><tr><th>Price</th><th>$/Unit</th><th>$/SF</th><th>Cap Rate</th><th>PF Cap</th><th>GRM</th></tr></thead>
+<thead><tr><th class="num">Price</th><th class="num">Cap Rate</th><th class="num">$/Unit</th><th class="num">$/SF</th><th class="num">GRM</th></tr></thead>
 <tbody>{matrix_html}</tbody>
 </table></div>
+
+<div class="condition-note" style="margin-top:24px;">
+<div class="condition-note-label">Key Market Thresholds</div>
+<p style="font-size:14px; line-height:1.7;">Two critical thresholds define the pricing strategy for this offering:<br><br>
+<strong>$10M psychological barrier:</strong> Glendale multifamily transactions above $10M are rare and attract a fundamentally different (and smaller) buyer pool. Pricing at $9.35M keeps the offering accessible to the broadest possible audience, including 1031 exchange investors and local operators who filter searches below $10M. Every $100K above $9.5M materially narrows the buyer funnel.<br><br>
+<strong>5% cap rate floor:</strong> Below a 5% current cap rate, income-driven buyers (the majority of the Glendale apartment market) begin to drop out. At $9.35M the subject delivers a 4.79% cap, which is defensible given the 19% rent upside and ADU opportunity. At $9.75M the cap drops to 4.61%, a level that historically requires premium product attributes (newer build, central AC, subterranean parking) to sustain buyer interest.</p>
+</div>
 
 <h3 class="sub-heading">Pricing Rationale</h3>
 
@@ -1073,6 +1274,12 @@ html_parts.append(f"""
 <p><strong>Trade range: $8,850,000 to $9,350,000.</strong> The floor of $8,850,000 reflects a 5.10% cap on the apartment income plus a $200,000 minimum ADU premium (22% of profit). At this level, the buyer captures virtually all ADU development upside while acquiring the apartments at an above-market yield.</p>
 
 <div class="condition-note"><strong>Assumptions &amp; Conditions:</strong> Financing terms are estimates and subject to change; contact your Marcus &amp; Millichap Capital Corporation representative. Vacancy modeled at 5.0% based on Glendale market conditions. Management fee of 4.0% of EGI reflects third-party professional management; the current owner self-manages. Real estate taxes estimated at 1.13% of sale price reflecting Proposition 13 reassessment at close of escrow. Operating reserves at $150/unit for capital replacement. ADU economics presented as supplemental analysis and are not incorporated into the base operating statement or pricing matrix. All information believed reliable but not guaranteed; buyer to verify independently.</div>
+
+<div class="broker-insight">
+<span class="broker-insight-label">Broker's Perspective</span>
+At $9,350,000, the pricing captures the full apartment income value at a market-consistent 5% cap rate plus a conservative ADU premium that still leaves meaningful profit on the table for the buyer. The two-component pricing structure (apartment value + ADU premium) gives the seller a defensible narrative while creating a clear path for buyer negotiation on the ADU component. We expect offers in the $8.8M-$9.2M range, with the strongest buyers being 1031 exchange investors seeking Glendale-quality scale and ADU-motivated operators seeking by-right value creation.
+</div>
+
 </div>
 """)
 
