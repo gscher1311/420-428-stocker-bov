@@ -12,7 +12,8 @@ IMAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
 OUTPUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "index.html")
 BOV_BASE_URL = "https://420428stocker.laaa.com"
 PDF_WORKER_URL = "https://laaa-pdf-worker.laaa-team.workers.dev"
-PDF_LINK = PDF_WORKER_URL + "/?url=" + urllib.parse.quote(BOV_BASE_URL + "/", safe="")
+PDF_FILENAME = "BOV - 420-428 W Stocker St, Glendale.pdf"
+PDF_LINK = PDF_WORKER_URL + "/?url=" + urllib.parse.quote(BOV_BASE_URL + "/", safe="") + "&filename=" + urllib.parse.quote(PDF_FILENAME, safe="")
 
 # ============================================================
 # IMAGE LOADING (same as V1)
@@ -376,7 +377,8 @@ td.num,th.num{{text-align:right;}}
 .press-logo{{font-size:13px;font-weight:700;color:#1B3A5C;letter-spacing:0.5px;}}
 .condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
-@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}}}
+.os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
+@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-headshot{{width:50px;height:50px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 4px;}}.toc-nav a{{font-size:8px;padding:10px 4px;letter-spacing:0;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter landscape;margin:0.4in 0.5in;}}
@@ -398,7 +400,7 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 .client-greeting{{font-size:13px;margin-top:10px;}}
 .cover-headshots{{margin-top:14px;gap:28px;display:none;}}
 
-.section{{padding:16px 0;max-width:100%;}}
+.section{{padding:12px 0;max-width:100%;}}
 .section-title{{font-size:20px;margin-bottom:3px;}}
 .section-subtitle{{font-size:9px;letter-spacing:1px;margin-bottom:8px;}}
 .section-divider{{margin-bottom:12px;height:2px;}}
@@ -422,6 +424,8 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 .metrics-grid,.metrics-grid-4{{page-break-inside:avoid;}}
 .metric-card{{page-break-inside:avoid;}}
 .highlight-box,.buyer-profile,.condition-note,.broker-insight{{page-break-inside:avoid;}}
+.os-two-col{{page-break-inside:avoid;grid-template-columns:55% 45%;gap:16px;}}.os-right{{font-size:9.5px;line-height:1.35;}}.os-right p{{margin-bottom:3px;}}.os-right h3{{font-size:11px;margin:0 0 6px;}}
+.price-reveal{{page-break-before:always;}}
 table{{page-break-inside:auto;font-size:10.5px;margin-bottom:12px;}}
 thead{{display:table-header-group;}}
 tr{{page-break-inside:avoid;}}
@@ -437,7 +441,7 @@ h2,h3,.section-title,.sub-heading{{page-break-after:avoid;}}
 .table-scroll table{{min-width:0 !important;width:100%;}}
 
 .photo-grid{{gap:6px;margin-bottom:12px;}}
-.photo-grid img{{height:140px;}}
+.photo-grid img{{height:160px;}}
 .adu-img-wrap{{margin-bottom:10px;}}
 .adu-img-wrap img{{max-height:240px;width:auto;margin:0 auto;display:block;}}
 
@@ -458,6 +462,10 @@ h2,h3,.section-title,.sub-heading{{page-break-after:avoid;}}
 .condition-note{{padding:8px 12px;margin:10px 0;font-size:10px;line-height:1.45;}}
 
 .two-col{{gap:14px;margin-bottom:12px;}}
+.img-float-right{{float:right;width:40%;margin:0 0 10px 14px;}}
+.img-float-right img{{max-height:200px;width:auto;}}
+.price-reveal .condition-note{{padding:6px 10px;margin:8px 0;font-size:9.5px;line-height:1.35;}}
+.price-reveal .condition-note p{{font-size:9.5px;line-height:1.35;}}
 
 .footer-logo{{width:120px;margin-bottom:12px;}}
 .footer-headshot{{width:50px;height:50px;}}
@@ -635,10 +643,6 @@ html_parts.append(f"""
 <p>The seller has invested heavily in the property's physical plant, completing over $117,000 in capital improvements in 2024 alone, including plumbing and electrical upgrades, deck reconstruction, window replacements, HVAC repairs, exterior painting, and appliance replacements. Units A through H on the 420 parcel were repiped in 2005, and the 428 building's walkway and stair surfaces were recoated with fiberglass in 2023-2024 with all inspections passed. These completed improvements meaningfully reduce a buyer's near-term capital exposure and allow for immediate focus on income growth through unit turns and ADU construction.</p>
 </div>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-At 1.11 acres across two separate APNs, this is a larger-than-typical multifamily site for the Glenwood submarket. The dual-parcel structure creates flexibility for ADU construction, potential lot split strategies, or independent operation. The $117,000 in recent capital improvements indicates an owner who has maintained the asset, which should reduce near-term capex exposure for a buyer and allow focus on income growth.
-</div>
 
 </div>
 """)
@@ -675,10 +679,6 @@ html_parts.append("""
 </table>
 </div>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-The north-of-Glenoaks 91202 location is consistently one of the strongest rental corridors in Glendale. Competing listing agents have described this exact block as "arguably the best location in Glendale," and our comp data confirms it  -  617 W Stocker sold in just 15 DOM at $394K/unit. The proximity to top-rated Glendale Unified schools, Burbank entertainment studios, and SR-134 freeway access creates overlapping tenant demand from families, entertainment professionals, and commuters, driving consistently low vacancy.
-</div>
 
 </div>
 """)
@@ -777,10 +777,6 @@ html_parts.append(f"""
 
 <p>Each of the two parcels measures 80 feet wide by 300 feet deep. Side by side, the combined site spans 160 feet of frontage by 300 feet of depth, totaling approximately 48,353 SF (1.11 acres). This is among the largest multifamily land assemblages in the Glenwood submarket and is a primary driver of the property's ADU development potential. The dual-parcel structure provides operational flexibility and independent ADU entitlements on each lot under SB 1211.</p>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-The dual-parcel structure is a meaningful advantage. Each lot operates independently under SB 1211, allowing a buyer to pursue ADU construction on one parcel while keeping the other unencumbered. The 160-foot combined frontage and 8,000 SF rear parking area are unusually large for Glendale multifamily  -  most competing properties on Stocker Street have half this lot depth. This site can accommodate strategies that simply are not available on smaller parcels.
-</div>
 
 </div>
 """)
@@ -812,10 +808,6 @@ html_parts.append("""
 </table></div>
 <div class="condition-note"><strong>Note:</strong> The current owner invested approximately $117,000 in capital improvements during 2024 (plumbing/electrical, deck, windows, HVAC, painting, appliances). Several of these items were not reflected in Glendale Building &amp; Safety permit records. Buyer should verify scope and completion during due diligence. One coast live oak tree on the 420 parcel is protected under Glendale's Indigenous Tree Ordinance.</div>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-The $117,000 in 2024 capital improvements is significant for a 27-unit building of this vintage. Roof replacements on all three structures (2007-2012), combined with the 2005 repiping of Units A-H, mean the highest-cost deferred maintenance items have already been addressed. A buyer's capital plan can focus on unit-interior turns and ADU construction rather than emergency building-envelope repairs. We recommend budgeting for eventual repiping of the 428 building, but this is a planned expenditure, not an urgent one.
-</div>
 
 </div>
 """)
@@ -843,10 +835,6 @@ html_parts.append("""
 </table></div>
 <div class="condition-note"><strong>Glendale Rent Control:</strong> Glendale Ordinance No. 5922 (updated March 2024) provides just cause eviction protections, requires a 12-month lease offer before rent increases, and mandates relocation assistance (3 months' rent) when cumulative increases exceed 7% in any 12-month period. This applies to all units built on or before February 1, 1995. Both buildings qualify (1953/1954 construction). Glendale does not operate a rent board, does not require unit registration, and does not impose a local transfer tax.</div>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-Glendale's regulatory environment is significantly more landlord-friendly than the City of Los Angeles. There is no local rent board, no unit registration requirement, no transfer tax, and no RSO. The 5% + CPI cap under AB 1482 still allows meaningful rent growth at unit turnover via vacancy decontrol. The 7% relocation trigger under Ord. 5922 is the primary constraint, but with our recommended pricing strategy of measured annual increases, most units can reach market rent within 2-3 lease cycles without triggering relocation.
-</div>
 
 </div>
 """)
@@ -869,26 +857,27 @@ html_parts.append("""
 </table></div>
 <p>The proposed sale would represent the first arms-length transaction of this property in over three decades. The current assessed value of $4,238,666 reflects a long-term Proposition 13 tax basis. A buyer should anticipate property tax reassessment to approximately 1.13% of the sale price upon close of escrow. Pricing analysis and recommended list price are presented in the Financial Analysis section below.</p>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-A 34-year hold with no arms-length transaction means this property has never been tested in a competitive market. The Prop 13 basis of $4.24M creates a meaningful tax step-up at sale (from ~$49,300/year to ~$105,000/year at a $9.35M price), which is already factored into our operating statement. First-time-to-market properties in Glendale consistently generate strong buyer interest because the ownership story  -  one family, three decades  -  signals stability and low deferred maintenance risk.
-</div>
 
 </div>
 """)
 
-# ==================== DEVELOPMENT POTENTIAL (MASSIVELY EXPANDED) ====================
+# ==================== DEVELOPMENT POTENTIAL (REWRITTEN FROM DOCX) ====================
 html_parts.append("""
 <div class="section" id="development">
 <div class="section-title">Development Potential &amp; Land Value Analysis</div>
 <div class="section-subtitle">Zoning Capacity, Density Bonus, and Economic Reality</div>
 <div class="section-divider"></div>
 
-<p>The subject property's two parcels total 1.11 acres (48,353 SF) in Glendale's R-1250 High Density Residential zone. This section analyzes the theoretical maximum development potential under current zoning and density bonus law, then examines whether ground-up redevelopment is economically viable.</p>
+<p>The subject property consists of two side-by-side parcels totaling 1.11 acres (48,353 SF) in Glendale's R-1250 High Density Residential zone. Each parcel has approximately 80 feet of street frontage on W Stocker Street for a combined total of approximately 160 feet.</p>
+
+<div class="condition-note" style="margin-top:16px;">
+<div class="condition-note-label">What This Section Covers</div>
+<p style="font-size:14px; line-height:1.7;">In simple terms, this section answers two questions: <strong>Could someone tear this down and build something bigger?</strong> And <strong>would that make financial sense?</strong> The short answer is that tearing down and rebuilding would cost roughly $35 million but create a property worth only $20-22 million - a loss of $13-15 million. The smarter path is adding new units (ADUs) in the rear parking area without disturbing the existing buildings or tenants.</p>
+</div>
 
 <h3 class="sub-heading">Part A: What Can Be Built Under Current Zoning</h3>
 
-<p>The R-1250 zone permits 1 dwelling unit per 1,250 SF of lot area. For the combined 48,353 SF site, this yields a maximum of <strong>38 units</strong> (48,353 / 1,250 = 38.7, rounded down). Key development standards under Glendale Municipal Code &sect;30.11.030:</p>
+<p>The R-1250 zone permits 1 dwelling unit per 1,250 SF of lot area. For the combined 48,353 SF site, this yields a base maximum of <strong>38 units</strong> (48,353 / 1,250 = 38.7, rounded down). The table below shows what the zoning code allows versus what exists today:</p>
 
 <div class="table-scroll"><table>
 <thead><tr><th>Standard</th><th>R-1250 Limit</th><th>Current</th><th>Source</th></tr></thead>
@@ -903,17 +892,43 @@ html_parts.append("""
 </tbody>
 </table></div>
 
-<p><strong>Critical constraint: lot width.</strong> Each parcel is 80 feet wide, which is below the 90-foot threshold in Glendale's zoning code. For lots under 90 feet, the height limit is capped at <strong>2 stories and 26 feet</strong> (GMC &sect;30.11.030). This eliminates the possibility of a 3-story, 36-foot building that lots 90+ feet wide would allow. The practical impact: a developer would tear down 27 existing units to build a maximum of 38  -  a <strong>net gain of only 11 units</strong>.</p>
+<h4 style="color:#1B3A5C;font-size:15px;margin:20px 0 10px;">The 90-Foot Lot Width Threshold: The Critical Variable</h4>
 
-<div class="condition-note" style="margin-top:24px;">
-<div class="condition-note-label">Lot Merger Scenario  -  Long-Term Optionality</div>
-<p style="font-size:14px; line-height:1.7;">If both 80-foot parcels were merged into a single 160-foot lot under Glendale Municipal Code Title 16, Chapter 16.36 (an administrative, non-discretionary process), the combined width would exceed the 90-foot threshold by 70 feet. This would unlock <strong>3 stories / 36 feet</strong> under GMC &sect;30.11.030 Table 30.11-B, along with enhanced FAR and density allowances for wider lots. Coupled with the State Density Bonus (using the lot-width-enhanced base density per GMC &sect;30.36.030), the theoretical unit count could increase significantly beyond the 38-unit base. A real-world precedent exists at 515 Pioneer Drive in Glendale, where a 36-foot base height under R-3050 was compounded with density bonus auto-height increases.<br><br>
-<strong>However, this is a long-term optionality point, not a near-term strategy.</strong> As demonstrated in Part C below, even under the most favorable development assumptions the economics produce a $13-15M loss. The lot merger scenario preserves future densification potential for a generational holder, but the practical value-creation path today remains ADU infill construction in the rear parking area.</p>
+<p>Glendale's zoning code creates a two-tier system for multifamily development based on lot width. Per GMC &sect;30.11.030 (Table 30.11-B), lots <strong>under 90 feet wide</strong> are limited to <strong>2 stories / 26 feet</strong>, while lots <strong>90 feet or wider</strong> can build up to <strong>3 stories / 36 feet</strong>. "Lot width" is defined as the dimension at the front property line (GMC &sect;30.70).</p>
+
+<p>Each parcel at 420-428 W Stocker has approximately 80 feet of frontage, which falls below the 90-foot threshold. At 80 feet, each individual parcel is capped at 2 stories and 26 feet of height. <strong>This is the single most restrictive constraint on the property's development potential.</strong></p>
+
+<p>The practical impact: a developer working with the two parcels individually would tear down 27 existing units to build a maximum of approximately 38 units in a 2-story configuration - a <strong>net gain of only 11 units</strong>. The 2-story building envelope, not the FAR, is the binding constraint.</p>
+
+<div class="condition-note" style="margin-top:16px;background:#f0f4f8;border-left-color:#1B3A5C;">
+<div class="condition-note-label" style="color:#1B3A5C;">Plain-English Summary</div>
+<p style="font-size:13px; line-height:1.6;">Because each lot is 80 feet wide (just 10 feet short of the city's 90-foot cutoff), a developer can only build 2-story buildings. That means tearing down 27 apartments to build about 38 - gaining only 11 units. The math does not justify demolition.</p>
+</div>
+
+<h4 style="color:#1B3A5C;font-size:15px;margin:20px 0 10px;">Lot Merger Scenario: Unlocking the Third Story</h4>
+
+<p>If both parcels were merged into a single legal lot through a lot line adjustment (per GMC Title 16, Chapter 16.36), the combined lot would have approximately 160 feet of frontage - nearly double the 90-foot threshold. This is an administrative (not discretionary) process handled by the Director of Community Development. The merged parcel must comply with area, width, frontage, and yard requirements of the R-1250 zone; since the merger creates a larger conforming lot, approval is straightforward.</p>
+
+<p>A merged 160-foot lot would unlock three benefits:</p>
+
+<p><strong>1. Height increase from 2 stories / 26 ft to 3 stories / 36 ft.</strong> An additional full story of buildable area across a 48,353 SF lot is a significant increase to the building envelope.</p>
+
+<p><strong>2. Enhanced density.</strong> The code permits additional dwelling units per acre on lots exceeding 90 feet in width. This enhanced density also serves as the base for State Density Bonus calculations per GMC &sect;30.36.030 and &sect;30.35.030, both of which state: "The maximum density for a housing development on a lot that qualifies for additional density based on lot width shall be the highest allowable density." This means the density bonus percentage is applied to the higher base, compounding the benefit.</p>
+
+<p><strong>3. Additional open space tradeoff.</strong> Per GMC &sect;30.31.020, a lot 90+ feet wide with enhanced density must provide an additional 900 SF of open space contiguous to the street front/side setback, plus 20 SF for each foot of lot width beyond 90 feet. At 160 feet: 900 + (70 &times; 20) = 2,300 SF of additional open space.</p>
+
+<p><strong>Key insight:</strong> When the parcels are separate, the height cap (2 stories / 26 ft) is the binding constraint, making it physically impossible to use the full 1.2 FAR. When merged, the third story unlocks enough building volume that FAR (not height) becomes the binding constraint. This shift from a height-constrained envelope to a FAR-constrained envelope represents a meaningful increase in the site's practical development capacity.</p>
+
+<p><em>Important nuance:</em> Independent analysis by Let's Go LA noted that in Glendale, "because density is increased but FAR is not" proportionally for wider lots, "the average unit size is actually driven down, despite being allowed to make the building one story taller." In practice, "many [multi-lot projects] have not maxed out the density, electing to build fewer, but larger units." The parking requirement of 2 subterranean spaces per unit may also cap practical unit count based on achievable garage capacity.</p>
+
+<div class="condition-note" style="margin-top:16px;">
+<div class="condition-note-label">Long-Term Optionality, Not Near-Term Strategy</div>
+<p style="font-size:14px; line-height:1.7;"><strong>However, this enhanced capacity does not change the fundamental economic conclusion.</strong> As demonstrated in Part C below, even under the most favorable development assumptions the economics produce a $13-15M loss. The lot merger scenario preserves future densification potential for a generational holder - a buyer acquiring both parcels controls 160 feet of continuous R-1250 frontage with 3-story capacity - but the practical value-creation path today remains ADU infill construction in the rear parking area.</p>
 </div>
 
 <h3 class="sub-heading">Part B: State Density Bonus Law</h3>
 
-<p>Under California's Density Bonus Law (Gov. Code &sect;65915), a developer who includes affordable units can receive up to a 50% density bonus above the base zoning allowance:</p>
+<p>California's Density Bonus Law (Gov. Code &sect;65915) allows developers who include affordable units to receive up to a 50% density bonus above the base zoning allowance. The table below shows what this means in practice for the subject site:</p>
 
 <div class="table-scroll"><table>
 <thead><tr><th>Affordability Set-Aside</th><th>Density Bonus</th><th>Max Units (base 38)</th></tr></thead>
@@ -924,11 +939,17 @@ html_parts.append("""
 </tbody>
 </table></div>
 
-<p>Even with a 50% density bonus yielding 57 units, the height limit of 2 stories / 26 feet still applies (the density bonus provides concessions for height only in certain circumstances, and the 80-foot lot width constraint would likely remain binding). The density bonus also requires deed-restricting affordable units for 55 years, fundamentally changing the project economics. SB 423 (extending SB 35) could provide ministerial approval for qualifying affordable projects, but the underlying cost-value gap remains.</p>
+<p><strong>Critical interaction with lot width:</strong> Glendale's code (GMC &sect;30.36.030 and &sect;30.35.030) explicitly provides that the "maximum density for a housing development on a lot that qualifies for additional density based on lot width shall be the highest allowable density." This means a merged 160-foot lot's enhanced density would serve as the base for density bonus calculations, compounding the benefit. The density bonus percentage is applied to the higher base, not the standard base.</p>
+
+<p>Even with a density bonus, the height limit remains a practical constraint for the individual 80-foot parcels (2 stories / 26 ft). For a merged lot, the 3-story / 36-ft envelope provides significantly more room to accommodate bonus units. Density bonus concessions can also include additional height waivers in certain circumstances, potentially pushing a merged project to 4+ stories.</p>
+
+<p><em>Real-world precedent:</em> Glendale has approved density bonus projects with significant concessions. The 515 Pioneer Drive project received height increases from 36 feet (the R-3050 base for lots 90+ feet wide) to 69 feet via automatic density bonus height increases, illustrating how the lot width threshold directly interfaces with state law to enable larger projects.</p>
+
+<p>However, the density bonus requires deed-restricting affordable units for 55 years, fundamentally changing the project economics. SB 423 (extending SB 35) could provide ministerial approval for qualifying affordable projects, but the underlying cost-value gap remains.</p>
 
 <h3 class="sub-heading">Part C: Why Ground-Up Redevelopment Does Not Pencil</h3>
 
-<p>Even under the most favorable assumptions (R-1250, 38-unit project), the economics of demolition and rebuild produce a significant loss:</p>
+<p>Even under the most favorable assumptions - including a merged lot with 3-story capacity and a 38-unit base project - the economics of demolition and rebuild produce a significant loss. Here is what it would cost to tear down and rebuild:</p>
 
 <div class="table-scroll"><table>
 <thead><tr><th>Cost Component</th><th>Amount</th><th>Source</th></tr></thead>
@@ -936,7 +957,7 @@ html_parts.append("""
 <tr><td>Land basis (at apartment value)</td><td>$9,000,000</td><td>Income analysis</td></tr>
 <tr><td>Demolition (27 units, 22,674 SF, 5 buildings)</td><td>~$200,000</td><td>Industry estimate ($8-10/SF)</td></tr>
 <tr><td>Hard construction (38 units &times; $430,000)</td><td>$16,340,000</td><td>RAND Corp. April 2025, RR-A3743-1</td></tr>
-<tr><td>Soft costs (architecture, engineering, permits  -  25%)</td><td>$4,085,000</td><td>RAND 2025: soft costs 25-30%</td></tr>
+<tr><td>Soft costs (architecture, engineering, permits - 25%)</td><td>$4,085,000</td><td>RAND 2025: soft costs 25-30%</td></tr>
 <tr><td>Municipal development/impact fees (38 &times; $29,000)</td><td>$1,102,000</td><td>RAND 2025: CA avg ~$29K/unit</td></tr>
 <tr><td>Tenant relocation (27 units &times; 3 months' rent)</td><td>~$186,000</td><td>Glendale Ord. 5922</td></tr>
 <tr><td>Lost rental income (4 years &times; $449,791 NOI)</td><td>$1,799,164</td><td>Current normalized NOI</td></tr>
@@ -945,9 +966,9 @@ html_parts.append("""
 </tbody>
 </table></div>
 
-<p><em>Primary source: Ward, Jason M. &amp; Schlake, Luke, "The High Cost of Producing Multifamily Housing in California," RAND Corporation, RR-A3743-1, April 2025. Key finding: California's average market-rate multifamily production cost is approximately $350,000&ndash;$430,000 per unit (LA Metro to statewide average)  -  2.5&times; Texas (~$150K) and nearly 2&times; Colorado (~$240K). Los Angeles metro is among the most expensive submarkets in California. Development timelines in CA average 22+ months longer than comparable projects in Texas. Municipal development fees average approximately $29,000 per unit statewide.</em></p>
+<p><em>Primary source: Ward, Jason M. &amp; Schlake, Luke, "The High Cost of Producing Multifamily Housing in California," RAND Corporation, RR-A3743-1, April 2025. Key finding: California's average market-rate multifamily production cost is approximately $430,000 per unit - 2.5&times; Texas (~$150K) and nearly 2&times; Colorado (~$240K). Los Angeles metro is among the most expensive submarkets in California.</em></p>
 
-<p>The completed value of a new 38-unit building, assuming Class A new-construction rents of $3,250/month per unit, 5% vacancy, and 35% operating expenses:</p>
+<p>And here is what the finished building would be worth, assuming brand-new Class A rents of $3,250/month per unit:</p>
 
 <div class="table-scroll"><table>
 <thead><tr><th>Metric</th><th>Calculation</th><th>Value</th></tr></thead>
@@ -963,15 +984,18 @@ html_parts.append("""
 </tbody>
 </table></div>
 
-<p><strong>A developer would spend approximately $35.2 million to create a property worth $19.8-$22.2 million.</strong> Under no reasonable cap rate assumption does this project produce a positive return.</p>
+<div class="condition-note" style="margin-top:20px;background:#FFF8E7;border-left-color:#C5A258;">
+<div class="condition-note-label">Bottom Line</div>
+<p style="font-size:14px; line-height:1.7;"><strong>A developer would spend approximately $35.2 million to create a property worth $19.8-$22.2 million.</strong> That is a loss of $13-15 million. Under no reasonable assumption does ground-up redevelopment produce a positive return. Even if a merged lot and third story enabled a more efficient 45-unit project (reducing per-unit costs through economies of scale), the gap between all-in cost and stabilized value remains prohibitive. The existing buildings are the highest-and-best use of this site.</p>
+</div>
 
 <h3 class="sub-heading">Part D: Legal &amp; Regulatory Barriers to Demolition</h3>
 
 <p>Beyond the economics, five layers of California and Glendale law create significant barriers to demolishing the existing apartments:</p>
 
-<p><strong>1. SB 330  -  Housing Crisis Act (Gov. Code &sect;66300 et seq.):</strong> Prohibits net loss of residential units. All 27 demolished units must be replaced in the new project at the same affordability level. If current tenants are lower-income (likely, given rents of $900-$2,050 for several units), replacement units must be deed-restricted affordable. No demolition permit can be issued until replacement and relocation agreements are executed and recorded with the city.</p>
+<p><strong>1. SB 330 - Housing Crisis Act (Gov. Code &sect;66300 et seq.):</strong> Prohibits net loss of residential units. All 27 demolished units must be replaced in the new project at the same affordability level. If current tenants are lower-income (likely, given rents of $900-$2,050 for several units), replacement units must be deed-restricted affordable. No demolition permit can be issued until replacement and relocation agreements are executed and recorded with the city.</p>
 
-<p><strong>2. Ellis Act / AB 1399 (Gov. Code &sect;7060 et seq.):</strong> If the owner uses the Ellis Act to withdraw the property from the rental market, the withdrawal date is the latest termination date of any unit  -  all 27 units must be simultaneously vacated. If any unit is re-rented during the constraint period, the entire property must be returned to the rental market at prior rents. Punitive damages do not extinguish the obligation to re-offer units to displaced tenants.</p>
+<p><strong>2. Ellis Act / AB 1399 (Gov. Code &sect;7060 et seq.):</strong> If the owner uses the Ellis Act to withdraw the property from the rental market, the withdrawal date is the latest termination date of any unit - all 27 units must be simultaneously vacated. If any unit is re-rented during the constraint period, the entire property must be returned to the rental market at prior rents.</p>
 
 <p><strong>3. Glendale Tenant Protections (Ordinance 5922):</strong> Just cause eviction is required for all covered units (built before Feb 1, 1995). Relocation assistance of 3 months' rent is payable to each displaced tenant (~$186,000 total for 27 units). Demolition qualifies as just cause only when work costs exceed 8&times; monthly rent per unit and renders the unit uninhabitable for more than 30 days.</p>
 
@@ -979,12 +1003,12 @@ html_parts.append("""
 
 <p><strong>5. SB 423 Limitations:</strong> Even SB 423's ministerial approval path requires affordable housing set-asides (below-market units with 55-year deed restrictions). While this could bypass CEQA and design review, the underlying economic gap ($13-15M loss) remains.</p>
 
-<div class="condition-note"><strong>Conclusion:</strong> The development potential of this 1.11-acre site is theoretical, not practical. The combination of a 2-story height limit (80-foot lot width), $430,000+ per-unit construction costs, SB 330 replacement requirements, Ellis Act constraints, Glendale's tenant protections, and CEQA review make ground-up redevelopment economically irrational. The practical path to value creation is ADU infill construction in the existing rear parking area, which requires no tenant displacement, no CEQA review, and no discretionary approval.</div>
-
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-We present the development analysis not to suggest a buyer should demolish, but to demonstrate why the existing buildings are the highest-and-best use. The $13-$15M development gap effectively insulates the property from demolition risk, meaning a buyer can underwrite the asset with confidence that the rental income stream is durable. The real development value here is ADU infill, which we analyze in detail in the next section.
+<div class="condition-note" style="margin-top:20px;">
+<div class="condition-note-label">Conclusion</div>
+<p style="font-size:14px; line-height:1.7;">The combined 160-foot frontage created by merging the two parcels does exceed Glendale's 90-foot lot width threshold, which unlocks a third story (36 ft) and enhanced density. This is a meaningful increase in development capacity compared to the individual 80-foot parcels. However, this enhanced capacity does not change the fundamental economic conclusion. The combination of $430,000+ per-unit construction costs, SB 330 replacement requirements, Ellis Act constraints, and CEQA review make ground-up redevelopment economically irrational under current market conditions. The value of the lot merger is as a <strong>long-term optionality play</strong>, not a near-term development catalyst. The practical path to value creation is ADU infill construction in the existing rear parking area, which requires no tenant displacement, no CEQA review, and no discretionary approval.</p>
 </div>
+
+<p style="font-size:11px;color:#888;font-style:italic;margin-top:16px;"><em>Note: This analysis should be verified with the Glendale Planning Department (818-548-3200) to confirm the specific development standards as applied to the subject parcels and the precise lot widths per the recorded surveys.</em></p>
 
 </div>
 """)
@@ -1102,10 +1126,6 @@ html_parts.append(f"""
 
 <div class="condition-note"><strong>Key Takeaway:</strong> Under the realistic scenario, a buyer investing approximately $1.65M in ADU construction generates ~$127,000 in additional annual NOI and creates approximately $900,000 in equity value  -  a 54% return on investment. Combined with the existing $138,000 in rent upside, the total value-add opportunity exceeds $1.0M in new annual income. ADU construction requires no tenant displacement, no CEQA review, and no discretionary approval. It is the clear, executable path to value creation on this site.</div>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-We have seen SB 1211 ADU projects perform well in other transactions, and the Stocker site has several characteristics that support feasibility: 8,000 SF of flat, accessible rear parking area already served by utilities. The 6-unit layout modeled here uses conservative assumptions ($275/SF all-in, $2,300/month rent) and projects a 54% ROI. Economies of scale from building 6 identical units simultaneously (shared mobilization, one set of plans, bulk materials) could further improve the per-unit economics.
-</div>
 
 </div>
 """)
@@ -1145,10 +1165,6 @@ html_parts.append(f"""
 
 <p>The four-metric analysis positions the subject as a value-oriented acquisition with above-market income yield and significant organic upside  -  exactly where a 27-unit, 1953-vintage, light-value-add portfolio should price relative to smaller, newer, renovated comparables in the same market. The comparable sales data supports the apartment income valuation presented in the Financial Analysis section below.</p>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-The comp data indicates that Glendale multifamily consistently trades around a 5% cap rate regardless of vintage, with premiums flowing through $/unit and $/SF rather than yield compression. The subject at $333K/unit is 13% below the comp median, which may create perceived value for comp-driven buyers. The same-street comp at 617 W Stocker ($394K/unit, $402/SF) is particularly relevant to our pricing: the near-identical $/SF ($397 vs. $402) with a 15% $/unit discount reflects the appropriate adjustment for 3x scale and less-updated condition.
-</div>
 
 </div>
 """)
@@ -1174,10 +1190,6 @@ html_parts.append(f"""
 
 <p>The active inventory ranges from $325,000/unit (719 N Jackson, a 6-unit gut renovation) to $469,500/unit (1207 N Columbus, a 1989-build 10-unit with central AC and subterranean parking that has been on market for 219 DOM after a price reduction). The prolonged marketing time and price drop at 1207 Columbus suggest that $469K/unit is the ceiling of buyer tolerance for Glendale multifamily, even for newer, amenitized product. The subject's scale (27 units), value-add potential, and ADU opportunity differentiate it from the smaller active listings and support pricing discussed in the Financial Analysis section.</p>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-The active listing data suggests that Glendale's buyer pool is price-sensitive above $469K/unit. The 219 DOM at 1207 N Columbus (a 1989 building with better amenities) is a useful reference point. Our pricing at $333K/unit positions the subject competitively: a 27-unit portfolio with ADU upside at a per-unit price below every active listing. This pricing is designed to attract interest from multiple buyer segments.
-</div>
 
 </div>
 """)
@@ -1219,33 +1231,18 @@ html_parts.append(f"""
 
 <p><strong>Front house rent estimate:</strong> The 4BR/3BA Craftsman at 420 W Stocker (2,500 SF) is modeled at $5,000/month. Standalone 4BR SFR comps in 91202 range from $5,500-$7,500/month, but a 15-25% discount is applied for the multifamily-lot setting (shared parking, foot traffic, less privacy). The property was listed at $3,850-$3,900/month in 2009 and expired without leasing, confirming the multifamily discount was a factor even then. Adjusting for approximately 35-50% Glendale rent growth since 2009 supports the $5,000/month estimate.</p>
 
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-The rent comp data supports approximately 19% upside to market across the portfolio. Our $2,650 market rent for 2BR units is conservative: it is below the $2,695 achieved at 550 W Stocker (same street, renovated) and well below the $3,479+ at 439 W Stocker (gut-renovated luxury). Notably, same-street comps within one block are achieving rents that support our pro forma without requiring any assumption of neighborhood improvement. The upside appears achievable through patient execution via natural tenant turnover.
-</div>
 
 </div>
 """)
 
-# ==================== FINANCIAL ANALYSIS ====================
+# ==================== FINANCIAL ANALYSIS (Presentation Flow) ====================
 html_parts.append(f"""
 <div class="section section-alt" id="financials">
 <div class="section-title">Financial Analysis</div>
 <div class="section-subtitle">Investment Underwriting</div>
 <div class="section-divider"></div>
 
-<div style="text-align:center; margin-bottom:32px;">
-<div style="font-size:13px; text-transform:uppercase; letter-spacing:2px; color:#C5A258; font-weight:600; margin-bottom:8px;">Suggested List Price</div>
-<div style="font-size:56px; font-weight:700; color:#1B3A5C; line-height:1;">${LIST_PRICE:,}</div>
-</div>
-
-<div class="metrics-grid metrics-grid-4">
-<div class="metric-card"><span class="metric-value">${AT_LIST['per_unit']:,.0f}</span><span class="metric-label">Price Per Unit</span></div>
-<div class="metric-card"><span class="metric-value">${AT_LIST['per_sf']:,.0f}</span><span class="metric-label">Price Per SF</span></div>
-<div class="metric-card"><span class="metric-value">{AT_LIST['cur_cap']:.2f}%</span><span class="metric-label">Current Cap Rate</span></div>
-<div class="metric-card"><span class="metric-value">{AT_LIST['grm']:.2f}</span><span class="metric-label">Current GRM</span></div>
-</div>
-
+<!-- SCREEN 1: RENT ROLL -->
 <h3 class="sub-heading">Unit Mix &amp; Rent Roll</h3>
 <div class="table-scroll"><table>
 <thead><tr><th>Unit</th><th>Type</th><th>SF</th><th>Current Rent</th><th>Rent/SF</th><th>Market Rent</th><th>Market/SF</th></tr></thead>
@@ -1253,6 +1250,9 @@ html_parts.append(f"""
 </table></div>
 <p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: Unit numbering skips 428-13 per original building convention. All 27 units are accounted for. Total SF in the rent roll reflects approximate livable area per unit; the 22,674 SF used in $/SF calculations is gross building area per LA County Assessor records.</p>
 
+<!-- SCREEN 2: OPERATING STATEMENT + NOTES (side-by-side) -->
+<div class="os-two-col">
+<div class="os-left">
 <h3 class="sub-heading">Operating Statement</h3>
 <table>
 <thead><tr><th>Income</th><th class="num">Annual</th><th class="num">Per Unit</th><th class="num">% EGI</th></tr></thead>
@@ -1262,25 +1262,27 @@ html_parts.append(f"""
 <thead><tr><th>Expenses</th><th class="num">Annual</th><th class="num">Per Unit</th><th class="num">% EGI</th></tr></thead>
 <tbody>{op_expense_html}</tbody>
 </table>
-<p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: The operating statement above uses property taxes reassessed at the $9,000,000 apartment income value, consistent with the PDF pricing model (source of truth). The pricing matrix below recalculates taxes at each price point for maximum accuracy.</p>
-
+<p style="font-size:10px;color:#888;font-style:italic;margin-top:-12px;">Note: Property taxes reassessed at the $9,000,000 apartment income value. The pricing matrix recalculates taxes at each price point.</p>
+</div>
+<div class="os-right">
 <h3 class="sub-heading">Notes to Operating Statement</h3>
-<div style="font-size:12px;line-height:1.7;color:#555;margin-bottom:30px;">
-<p><strong>[1] Other Income:</strong> Reflects current parking revenue of $485/mo ($5,820 annually) collected across both buildings per the rent roll. No on-site laundry income is currently collected.</p>
-<p><strong>[2] Real Estate Taxes:</strong> Estimated at 1.13% of sale price. Current owner's Prop 13 basis is $48,588. Buyer should anticipate reassessment to full market value at close of escrow.</p>
-<p><strong>[3] Insurance:</strong> Based on $1,040/unit reflecting current LA County market conditions. Owner's 2024 actual was $18,127; increase reflects post-wildfire rate environment across Southern California carriers.</p>
-<p><strong>[4] Water &amp; Power:</strong> Includes water, sewer, and common area electric. Units are individually metered for gas and electric; landlord responsibility is limited to common area usage and water/sewer. Owner's 2024 actual was $18,756; adjusted upward for projected rate increases.</p>
-<p><strong>[5] Gas:</strong> Reflects common area usage only. All units are individually metered for gas. Owner's 2024 actual was $2,240.</p>
-<p><strong>[6] Trash Removal:</strong> Based on $656/unit. Owner's 2024 actual was $13,308; adjusted for anticipated City of Glendale rate increases.</p>
-<p><strong>[7] Repairs &amp; Maintenance:</strong> Normalized at $750/unit. Owner's 2024 R&amp;M was $11,833 on the P&amp;L with an additional $117,264 in non-recurring capital expenditures (deck, plumbing/electrical, windows, painting, HVAC).</p>
-<p><strong>[8] Landscaping:</strong> Based on owner's 2024 actual gardening expense of $4,800.</p>
-<p><strong>[9] Pest Control:</strong> Based on owner's 2024 actual of $660, rounded to $700.</p>
-<p><strong>[10] On-site Manager:</strong> Required per California Civil Code Section 17995.1 for properties with 16+ units. Estimated value of rent-free unit plus nominal stipend. Owner's 2024 payroll was $5,116 reflecting part-time/informal arrangement.</p>
-<p><strong>[11] General &amp; Administrative:</strong> At $80/unit includes legal, accounting, office supplies, and miscellaneous overhead. Owner's 2024 actual was $1,050.</p>
-<p><strong>[12] Operating Reserves:</strong> At $150/unit for capital replacement and deferred maintenance. Building is 1953 vintage; owner completed $117,264 in capital improvements during 2024.</p>
-<p><strong>[13] Management Fee:</strong> At 4.0% of effective gross income. Reflects third-party professional property management. Owner currently self-manages.</p>
+<p><strong>[1] Other Income:</strong> Parking revenue of $485/mo ($5,820/yr) across both buildings. No laundry income collected.</p>
+<p><strong>[2] Real Estate Taxes:</strong> Estimated at 1.13% of sale price. Current Prop 13 basis is $48,588. Buyer should anticipate reassessment at close of escrow.</p>
+<p><strong>[3] Insurance:</strong> $1,040/unit reflecting current LA County market. Owner's 2024 actual was $18,127; increase reflects post-wildfire rate environment.</p>
+<p><strong>[4] Water &amp; Power:</strong> Water, sewer, and common area electric. Units individually metered for gas and electric. Owner's 2024 actual was $18,756.</p>
+<p><strong>[5] Gas:</strong> Common area usage only. All units individually metered. Owner's 2024 actual was $2,240.</p>
+<p><strong>[6] Trash Removal:</strong> $656/unit. Owner's 2024 actual was $13,308; adjusted for Glendale rate increases.</p>
+<p><strong>[7] Repairs &amp; Maintenance:</strong> Normalized at $750/unit. Owner's 2024 R&amp;M was $11,833 plus $117,264 in non-recurring capex.</p>
+<p><strong>[8] Landscaping:</strong> Owner's 2024 actual of $4,800.</p>
+<p><strong>[9] Pest Control:</strong> Owner's 2024 actual of $660, rounded to $700.</p>
+<p><strong>[10] On-site Manager:</strong> Required per CA Civil Code Section 17995.1 for 16+ units. Estimated rent-free unit + stipend. Owner's 2024 payroll was $5,116.</p>
+<p><strong>[11] General &amp; Administrative:</strong> $80/unit for legal, accounting, office, misc. Owner's 2024 actual was $1,050.</p>
+<p><strong>[12] Operating Reserves:</strong> $150/unit for capital replacement. Owner completed $117,264 in 2024 improvements.</p>
+<p><strong>[13] Management Fee:</strong> 4.0% of EGI. Third-party professional management. Owner currently self-manages.</p>
+</div>
 </div>
 
+<!-- SCREEN 3: FINANCIAL DETAIL (Returns + Financing side-by-side) -->
 <div class="two-col">
 <div>
 <h3 class="sub-heading">Returns at Asking Price</h3>
@@ -1305,12 +1307,19 @@ html_parts.append(f"""
 </div>
 </div>
 
-<h3 class="sub-heading">Pricing Matrix</h3>
-<p style="font-size:12px;color:#666;margin-bottom:12px;"><em>Highlighted row represents the suggested list price. Cap rates are tax-adjusted (property taxes recalculated at 1.13% of sale price per Glendale Prop 13 reassessment), which adjusts NOI and cap rate at every row.</em></p>
-<div class="table-scroll"><table>
-<thead><tr><th class="num">Price</th><th class="num">Cap Rate</th><th class="num">$/Unit</th><th class="num">$/SF</th><th class="num">GRM</th></tr></thead>
-<tbody>{matrix_html}</tbody>
-</table></div>
+<!-- SCREEN 4: PRICE REVEAL + PRICING MATRIX -->
+<div class="price-reveal">
+<div style="text-align:center; margin-bottom:32px;">
+<div style="font-size:13px; text-transform:uppercase; letter-spacing:2px; color:#C5A258; font-weight:600; margin-bottom:8px;">Suggested List Price</div>
+<div style="font-size:56px; font-weight:700; color:#1B3A5C; line-height:1;">${LIST_PRICE:,}</div>
+</div>
+
+<div class="metrics-grid metrics-grid-4">
+<div class="metric-card"><span class="metric-value">${AT_LIST['per_unit']:,.0f}</span><span class="metric-label">Price Per Unit</span></div>
+<div class="metric-card"><span class="metric-value">${AT_LIST['per_sf']:,.0f}</span><span class="metric-label">Price Per SF</span></div>
+<div class="metric-card"><span class="metric-value">{AT_LIST['cur_cap']:.2f}%</span><span class="metric-label">Current Cap Rate</span></div>
+<div class="metric-card"><span class="metric-value">{AT_LIST['grm']:.2f}</span><span class="metric-label">Current GRM</span></div>
+</div>
 
 <div class="condition-note" style="margin-top:24px;">
 <div class="condition-note-label">Key Market Thresholds</div>
@@ -1318,6 +1327,13 @@ html_parts.append(f"""
 <strong>$10M psychological barrier:</strong> Glendale multifamily transactions above $10M are rare and attract a fundamentally different (and smaller) buyer pool. Pricing at $9.35M keeps the offering accessible to the broadest possible audience, including 1031 exchange investors and local operators who filter searches below $10M. Every $100K above $9.5M materially narrows the buyer funnel.<br><br>
 <strong>5% cap rate floor:</strong> Below a 5% current cap rate, income-driven buyers (the majority of the Glendale apartment market) begin to drop out. At $9.35M the subject delivers a 4.79% cap, which is defensible given the 19% rent upside and ADU opportunity. At $9.75M the cap drops to 4.61%, a level that historically requires premium product attributes (newer build, central AC, subterranean parking) to sustain buyer interest.</p>
 </div>
+
+<h3 class="sub-heading">Pricing Matrix</h3>
+<p style="font-size:12px;color:#666;margin-bottom:12px;"><em>Highlighted row represents the suggested list price. Cap rates are tax-adjusted (property taxes recalculated at 1.13% of sale price per Glendale Prop 13 reassessment), which adjusts NOI and cap rate at every row.</em></p>
+<div class="table-scroll"><table>
+<thead><tr><th class="num">Price</th><th class="num">Cap Rate</th><th class="num">$/Unit</th><th class="num">$/SF</th><th class="num">GRM</th></tr></thead>
+<tbody>{matrix_html}</tbody>
+</table></div>
 
 <h3 class="sub-heading">Pricing Rationale</h3>
 
@@ -1330,10 +1346,6 @@ html_parts.append(f"""
 <p><strong>Trade range: $8,850,000 to $9,350,000.</strong> The floor of $8,850,000 reflects a 5.10% cap on the apartment income plus a $200,000 minimum ADU premium (22% of profit). At this level, the buyer captures virtually all ADU development upside while acquiring the apartments at an above-market yield.</p>
 
 <div class="condition-note"><strong>Assumptions &amp; Conditions:</strong> Financing terms are estimates and subject to change; contact your Marcus &amp; Millichap Capital Corporation representative. Vacancy modeled at 5.0% based on Glendale market conditions. Management fee of 4.0% of EGI reflects third-party professional management; the current owner self-manages. Real estate taxes estimated at 1.13% of sale price reflecting Proposition 13 reassessment at close of escrow. Operating reserves at $150/unit for capital replacement. ADU economics presented as supplemental analysis and are not incorporated into the base operating statement or pricing matrix. All information believed reliable but not guaranteed; buyer to verify independently.</div>
-
-<div class="broker-insight">
-<span class="broker-insight-label">Broker's Perspective</span>
-At $9,350,000, the pricing reflects the apartment income value at a 5.00% cap rate plus an ADU premium that leaves the majority of the development profit with the buyer. The two-component structure (apartment value + ADU premium) provides a clear framework for negotiation. Based on the comp data and current market activity, we anticipate the trade range will fall between $8.85M and $9.35M, with interest from 1031 exchange investors seeking Glendale scale and value-add operators focused on the ADU opportunity.
 </div>
 
 </div>

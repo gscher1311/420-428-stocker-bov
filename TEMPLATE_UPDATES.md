@@ -106,6 +106,55 @@ These values accommodate up to 14 links (the Stocker BOV has 14 including Develo
 
 ---
 
+## 9. Dynamic PDF Filename via Cloudflare Worker
+
+**Rule:** The Cloudflare PDF Worker (`laaa-pdf-worker`) now supports an optional `filename` query parameter. Each BOV should pass a descriptive filename in its PDF download link instead of relying on the default "bov.pdf".
+
+**Implementation:** In the build script, construct the PDF link with `&filename=BOV+-+{Address}.pdf`:
+```python
+PDF_FILENAME = "BOV - 420-428 W Stocker St, Glendale.pdf"
+PDF_LINK = PDF_WORKER_URL + "/?url=" + urllib.parse.quote(BOV_BASE_URL + "/", safe="") + "&filename=" + urllib.parse.quote(PDF_FILENAME, safe="")
+```
+
+If no `filename` param is passed, the worker derives one from the URL hostname (e.g., `420428stocker.laaa.com` becomes `420428stocker.pdf`).
+
+**Add to bov_web_presentation.md under "Phase 5: Deploy":**
+> Always include a `filename` parameter in the PDF worker URL so the downloaded file has a descriptive name (e.g., "BOV - 2341 Beach Ave, Venice.pdf" instead of "bov.pdf").
+
+---
+
+## 10. Broker's Perspective Sections - Removed from Stocker BOV
+
+**Decision:** All 12 Broker's Perspective callouts were removed from the Stocker Gardens BOV. The content felt repetitive and overly salesy for a seller-facing document. The factual content in each section already speaks for itself.
+
+**For future BOVs:** Consider whether Broker's Perspective callouts add value or are redundant. If retained, follow the tone guidelines in item #4 above. If removed, ensure each section's narrative is strong enough to stand alone.
+
+---
+
+## 11. Financial Analysis - Presentation Flow Order
+
+**Rule:** Restructure the Financial Analysis section for a live presentation flow. The price reveal should come *after* the income/expense data, not before it. This builds the data story before showing the number.
+
+**New order:**
+1. **Rent Roll** - Unit Mix & Rent Roll table
+2. **Operating Statement + Notes** (side-by-side) - Income/Expense tables on the left (~55%), numbered notes on the right (~45%). Uses `.os-two-col` CSS grid. Both fit on one screen/PDF page.
+3. **Returns + Financing** - Returns at Asking Price and Financing Terms side-by-side (existing `.two-col`)
+4. **Price Reveal + Pricing Matrix** - Suggested List Price (big centered), 4 metric cards, Key Market Thresholds, Pricing Matrix, Pricing Rationale, Assumptions
+
+**New CSS class for side-by-side OS + Notes:**
+```css
+.os-two-col { display: grid; grid-template-columns: 55% 45%; gap: 24px; align-items: start; }
+.os-right { font-size: 10.5px; line-height: 1.45; color: #555; }
+.os-right h3 { font-size: 13px; margin: 0 0 8px; }
+.os-right p { margin-bottom: 4px; }
+/* 768px: */ .os-two-col { grid-template-columns: 1fr; }
+/* Print: */ .os-two-col { page-break-inside: avoid; }
+```
+
+The `.price-reveal` wrapper gets `page-break-before: always` in print CSS so the price starts a fresh PDF page.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:
