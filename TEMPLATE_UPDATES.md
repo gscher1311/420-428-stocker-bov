@@ -155,6 +155,15 @@ The `.price-reveal` wrapper gets `page-break-before: always` in print CSS so the
 
 ---
 
+## 12. Chairman's Club Description - Accurate Wording
+
+**Rule:** When describing the Chairman's Club award, use "a top-tier annual honor" rather than "the highest annual honor." The latter implies it is definitively the single highest award, which may not be accurate and could be seen as an overstatement.
+
+**Correct:** `Chairman's Club - Marcus & Millichap's top-tier annual honor`
+**Incorrect:** `Chairman's Club - Marcus & Millichap's highest annual honor`
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:

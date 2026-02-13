@@ -586,7 +586,7 @@ html_parts.append(f"""
 <div class="condition-note" style="margin-top:20px;">
 <div class="condition-note-label">Key Achievements</div>
 <p style="font-size:13px; line-height:1.8;">
-&bull; <strong>Chairman's Club</strong>  -  Marcus &amp; Millichap's highest annual honor (Glen: 2021; Filip: 2018, 2021)<br>
+&bull; <strong>Chairman's Club</strong>  -  Marcus &amp; Millichap's top-tier annual honor (Glen: 2021; Filip: 2018, 2021)<br>
 &bull; <strong>National Achievement Award</strong>  -  Glen: 5 years; Filip: 8 consecutive years<br>
 &bull; <strong>Sales Recognition Award</strong>  -  Glen: 10 consecutive years; Filip: 12 years total<br>
 &bull; <strong>Traded.co National Rankings</strong>  -  Glen Scher: #8 Deal Junkies, #8 Hot List, #8 Rising Talent<br>
