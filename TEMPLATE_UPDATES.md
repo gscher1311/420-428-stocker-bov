@@ -93,6 +93,19 @@ This replaces the older `cover-hs` pattern. Include a `.gold-line` divider betwe
 
 ---
 
+## 8. TOC Nav Compact Sizing for 12-14 Links
+
+**Rule:** The TOC nav must fit all links on a single row at 1000px desktop width without visible overflow. Use these proven values:
+
+- **Desktop:** `font-size: 11px`, `padding: 12px 8px`, `letter-spacing: 0.3px`, container `padding: 0 12px`
+- **Hidden scrollbar:** Add `scrollbar-width: none; -ms-overflow-style: none;` on `.toc-nav` and `.toc-nav::-webkit-scrollbar { display: none; }` for clean mobile horizontal scroll
+- **768px:** `font-size: 10px`, `padding: 10px 6px`, `letter-spacing: 0.2px`
+- **420px:** `font-size: 8px`, `padding: 10px 4px`, `letter-spacing: 0`
+
+These values accommodate up to 14 links (the Stocker BOV has 14 including Development and ADU). The Beach BOV with 12 links uses the same desktop sizing and fits comfortably.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:
