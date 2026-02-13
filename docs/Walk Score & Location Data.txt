@@ -1,0 +1,58 @@
+# WALK SCORE & LOCATION DATA
+## 420-428 W Stocker St, Glendale, CA 91202
+
+**Source:** walkscore.com/score/420-w-stocker-st-glendale-ca-91202
+**Accessed:** February 11, 2026
+
+---
+
+## SCORES
+
+| Metric | Score | Rating |
+|--------|-------|--------|
+| Walk Score | 88 | Very Walkable — most errands can be accomplished on foot |
+| Transit Score | 44 | Some Transit — a few nearby public transportation options |
+| Bike Score | 59 | Bikeable — some bike infrastructure |
+
+## NEIGHBORHOOD
+
+- Neighborhood: Verdugo Viejo
+- Verdugo Viejo Walk Score: 75 (13th most walkable neighborhood in Glendale)
+- City: Glendale, CA
+
+## COMMUTE TO DOWNTOWN GLENDALE
+
+| Mode | Time |
+|------|------|
+| Drive | 4 min |
+| Transit | 17 min |
+| Bike | 7 min |
+| Walk | 31 min |
+
+## NEARBY TRANSIT (Bus Lines)
+
+| Route | Name | Distance |
+|-------|------|----------|
+| 7 | Riverside Rancho to Glendale Community College | 0.1 mi |
+| 5 | Pacific Community Center to Hoover High School | 0.1 mi |
+| 92 | Metro Local Line | 0.2 mi |
+| 2 | Glendale Transportation Center to Stocker | 0.4 mi |
+| 1 | Glendale Transportation Center to Stocker | 0.4 mi |
+
+## NEARBY PARKS
+
+- Fremont Park
+- Milford Mini Park
+- Pelanconi Park
+
+## ADDITIONAL LOCATION CONTEXT (from MLS comps & research)
+
+- North of Glenoaks Blvd in prime 91202 zip code
+- "Arguably the best location in Glendale" (per 617 W Stocker listing agent)
+- Nestled below multimillion-dollar homes
+- 3 schools within 1 block walking distance
+- Starbucks and several shops/cafes within walking distance
+- Near studios, shopping, and dining
+- Close to SR-134 freeway (Pacific Ave exit, ~0.5 mi south)
+- Glendale Unified School District (high-performing)
+- Submarket: Northwest Glendale (MLS Area 1255)

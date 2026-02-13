@@ -1,0 +1,107 @@
+# GLENDALE R-1250 ZONING RESEARCH
+## 420-428 W Stocker St, Glendale, CA 91202
+
+**Source:** Glendale Municipal Code Title 30, Chapter 30.11 (ecode360.com/43352065)
+**Accessed:** February 11, 2026
+
+---
+
+## ZONE CLASSIFICATION
+
+- Assessor Code: GLR4YY
+- City Zone: R-1250 (High Density Residential)
+- Code Reference: Glendale Municipal Code Title 30, Ch. 30.11, Table 30.11-B
+- "GLR4YY" is the LA County Assessor's use code, not the city's official zone label
+- Glendale does NOT use "R-4" — its residential zones are: ROS, R1R, R1, R-3050, R-2250, R-1650, R-1250
+
+## ZONE DESCRIPTION (from Code)
+
+"The R-1250 zone is intended primarily as a zone for high-density residential development
+with a minimum of 1,250 square feet of lot area per dwelling unit or approved overlay zone
+uses, in conformance with the comprehensive general plan of the city. The location of the
+R-1250 zone is based on convenience, adequacy of services, traffic circulation and the
+existence of open space and recreation areas that support the concentration of population
+in such zones."
+
+---
+
+## R-1250 DEVELOPMENT STANDARDS (Table 30.11-B)
+
+### Density
+- Standard: 1 dwelling unit per 1,250 SF of lot area
+- Wide-lot bonus: 1 dwelling unit per 1,000 SF on lots with width ≥90 feet
+
+### Subject Property Density Analysis
+- 420 lot: 24,187 SF / 1,250 = 19 units max (no wide-lot bonus at 80 ft width)
+- 428 lot: 24,166 SF / 1,250 = 19 units max
+- Combined: 48,353 SF / 1,250 = 38 units max
+- Existing: 27 units = COMPLIANT (11 units of headroom)
+
+### Floor Area Ratio (FAR)
+- Maximum: 1.2
+- Subject: 22,674 SF / 48,353 SF = 0.47 FAR (well under limit)
+- Max buildable: 48,353 x 1.2 = 58,024 SF (35,350 SF of headroom)
+
+### Height
+- Standard: 3 stories / 36 feet maximum
+- Lots ≤90 ft wide: 2 stories / 26 feet maximum
+- +5 ft allowed for roofed areas with minimum 3:12 pitch
+- Subject lots are ~80 ft wide each = 2-story / 26 ft limit applies
+
+### Lot Coverage
+- 50% maximum (including all residential and accessory buildings)
+
+### Setbacks
+- Street Front: 20 ft minimum, avg 23 ft for garage/first floor; 23 ft min, avg 26 ft for 2nd/3rd floor
+- Street Side: 5 ft min, avg 8 ft (first floor); 8 ft min, avg 11 ft (second floor); 11 ft min, avg 14 ft (third floor)
+- Interior: 5 ft min, avg 8 ft (first floor); 8 ft min, avg 11 ft (second floor)
+- Interior abutting ROS/R1R/R1: 8 ft min, avg 11 ft (first floor), wider for upper floors
+
+### Open Space & Outdoor Space
+- Permanently Landscaped Open Space: 25% of lot area minimum
+- Private Outdoor Space: 40 SF minimum per unit (patio, deck, or balcony with 4 ft min dimension)
+- Common Outdoor Space: 200 SF per unit (first 25 units), 150 SF per unit (next 25 units)
+  - Subject: (25 x 200) + (2 x 150) = 5,300 SF required
+  - Must have 10 ft min level surface dimension and 200 SF min area
+  - No street front or street side setback area counts
+
+### Minimum Dwelling Unit Size
+- Efficiency / 1BR: 600 SF
+- 2BR: 800 SF
+- 3BR+: 1,000 SF
+- NOTE: Subject units at 650-750 SF may be below current minimums — likely legal nonconforming
+
+### Laundry Facilities
+- Required for all dwelling units on a lot
+- >3 units: common laundry room with at least 1 washer + 1 dryer per 10 units
+- Must be accessible 7:00 AM - 10:00 PM daily
+
+### Storage
+- 90 cubic feet of private storage per unit (outside the unit) unless private garage provided
+- 24 SF minimum horizontal surface, fully enclosed and lockable
+
+### Distance Between Buildings
+- Exterior walls of separate buildings: 12 ft minimum separation
+- Windows facing windows: 12+ ft unless angle ≥90 degrees
+
+### Elevator Requirement
+- Required when building has >3 units and floor area on 3rd story only + units on 1st/2nd stories
+
+### Parking
+- Per Chapter 30.32 (not extracted — need to look up specific requirements)
+
+### Design Review
+- Per Chapter 30.47
+
+---
+
+## KEY TAKEAWAYS FOR BOV
+
+1. R-1250 is Glendale's HIGHEST density residential zone
+2. Property is well within all density and FAR limits — significant upzoning/development headroom
+3. At 80 ft lot width, each lot is below the 90 ft threshold for the wide-lot density bonus
+4. Current 27 units vs 38 allowed = 11 units of headroom
+5. Current 0.47 FAR vs 1.2 allowed = potential for ~35K additional SF
+6. Height limit of 26 ft / 2 stories for lots ≤90 ft wide (not 36 ft / 3 stories)
+7. Unit sizes may be legal nonconforming (below current minimums)
+8. Glendale is NOT City of LA — no ZIMAS, no RSO, no TOC, no Measure ULA

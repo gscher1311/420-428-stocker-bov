@@ -1,0 +1,78 @@
+# GLENDALE TENANT PROTECTION & RENT CONTROL RESEARCH
+## 420-428 W Stocker St, Glendale, CA 91202
+
+**Sources:**
+- City of Glendale State Housing Laws page (glendaleca.gov)
+- Glendale Rental Rights Program Ordinance #5922 (city document)
+- Davidovich Law AB 1482 2025-2026 guidance
+- glendalerentalrights.com
+**Accessed:** February 11, 2026
+
+---
+
+## DOES GLENDALE HAVE RENT CONTROL?
+
+Glendale does NOT impose its own rent increase cap. The City's Rental Rights Program (Ord. #5922) does NOT set a separate cap — California's statewide AB 1482 (Tenant Protection Act) is the governing rent increase limit.
+
+---
+
+## AB 1482 (STATE LAW — PRIMARY RENT CONTROL)
+
+| Field | Detail |
+|-------|--------|
+| Law | AB 1482 / California Tenant Protection Act of 2019 |
+| Effective Through | January 1, 2030 |
+| Annual Rent Increase Cap | 5% + regional CPI (LA metro area, April-to-April), maximum 10% |
+| Recent Cap Example | ~8.8% (5% + 3.8% CPI) |
+| Just Cause Eviction | Yes — required for tenancies >12 months |
+| Notice Requirements | 30 days for increases <10%; 90 days for increases ≥10% |
+| Applies to Subject? | YES — built 1953/1954, 70+ years old, multifamily |
+
+### AB 1482 Exemptions (NOT applicable to subject)
+- Units with Certificate of Occupancy within last 15 years
+- Single-family homes / condos owned by individuals (not corporate entities)
+- Owner-occupied duplexes
+- Many affordable housing units
+
+---
+
+## GLENDALE LOCAL RULES (ORD. #5922 — RENTAL RIGHTS PROGRAM)
+
+| Provision | Detail |
+|-----------|--------|
+| Relocation Payments | Triggered when rent increase exceeds 7% in a 12-month period |
+| Lease Requirement | Landlord must offer a written minimum 12-month lease at time of rent increase |
+| Rent Rollback | Rent rollback and notice rules apply for covered units |
+| Rent Increase Cap | No separate city cap — AB 1482's state cap controls |
+| Local Exemptions | Units built after Feb 1, 1995 for some local provisions (but AB 1482 still applies) |
+
+### Relocation Payment Detail
+- If landlord raises rent >7% in 12 months, must provide relocation assistance
+- This is a PRACTICAL CONSTRAINT on aggressive rent increases
+- Even if AB 1482 allows 8.8%, Glendale's relocation trigger at 7% means:
+  - Increases up to 7%: no relocation payment required
+  - Increases above 7%: must pay relocation assistance (amount TBD — check current schedule)
+
+---
+
+## PRACTICAL IMPACT ON SUBJECT PROPERTY
+
+| Scenario | Analysis |
+|----------|----------|
+| All 27 units are covered | Built 1953/1954, multifamily, well over 15 years old |
+| Maximum annual increase | ~8.8% (5% + CPI), but triggers relocation payment above 7% |
+| Recommended approach | Push rents up to 7% annually without triggering relocation; achieve market in 2-3 years |
+| Below-market units | Unit 428-9 ($900), Unit 428-11 ($0 — owner's son): vacancy/turnover path to market rent |
+| Vacancy decontrol | When a unit is vacated, landlord can reset to market rent (no cap on initial rent for new tenants) |
+
+---
+
+## KEY POINTS FOR BOV
+
+1. Glendale is NOT rent-controlled in the traditional sense — no city rent board, no registration
+2. AB 1482 is the rent increase cap: 5% + CPI (max 10%)
+3. Glendale's Ord. #5922 adds relocation payments above 7% increase — practical cap is 7%
+4. Vacancy decontrol: biggest upside comes from natural turnover to market rent
+5. Just cause eviction applies — cannot terminate tenancies without cause after 12 months
+6. Must offer written 12-month lease with any rent increase
+7. All 27 units at the subject property are covered by both AB 1482 and local program

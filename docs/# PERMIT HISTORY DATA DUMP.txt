@@ -1,0 +1,57 @@
+# PERMIT HISTORY DATA DUMP
+
+**Source:** City of Glendale Permit Portal (GlendalePermits.org) | Accessed: Feb 2026
+
+---
+
+## 420 W STOCKER STREET, GLENDALE CA 91202 | APN: 5636-001-020
+
+### Permits
+
+| Permit Number | Type | Applied | Issued | Expiration | Finalized | Status | Unit | Description |
+|---|---|---|---|---|---|---|---|---|
+| BROOF-019195-2024 | Roofing Permit | 11/04/2024 | 11/04/2024 | 05/12/2025 | - | Permit Expired | - | Tear off and reroof 40 squares |
+| BROOF1212162 | Roofing Permit | 05/11/2012 | 05/11/2012 | 11/07/2012 | 05/17/2012 | Final | - | Reroof SFD (front house). Comp shingle, 36 sqs. Tear off 1 existing layer. Not in high fire hazard zone. |
+| BROOF1212163 | Roofing Permit | 05/11/2012 | 05/11/2012 | 11/07/2012 | 05/17/2012 | Final | - | Reroof garage. Comp shingle, 16 sqs. Tear off 3 existing layers. Not in high fire hazard zone. |
+| BITO1506586 | Indigenous Tree Permit | 04/09/2015 | 04/09/2015 | 10/06/2015 | - | Expired | - | Prune 1 coast live oak tree. |
+| BM20080787 | Mechanical Permit | 09/15/2008 | 09/15/2008 | 03/14/2009 | 03/11/2009 | Final | Unit I | 1 FAU up to 100K BTU, 1 A/C 3-15 HP, 1 electrical A/C & compressor, 1 new gas system |
+| BP20051128 | Plumbing Permit | 12/27/2005 | 12/27/2005 | 06/24/2006 | 12/29/2005 | Final | Unit I | Repipe (8) 2-bathrooms or less for MFD, Units A-H |
+
+---
+
+## 428 W STOCKER STREET, GLENDALE CA 91202 | APN: 5636-001-021
+
+### Permits
+
+| Permit Number | Type | Applied | Issued | Expiration | Finalized | Status | Unit | Description |
+|---|---|---|---|---|---|---|---|---|
+| BMULTI-011372-2023 | Building (Multi-family) - Alteration/Repair | 12/19/2023 | 02/02/2024 | 10/28/2024 | 05/06/2024 | Final | - | Re-coat existing walkway & stairs with new fiberglass walking surface (Life Specialty Coatings ESR 2701). No structural changes to membrane, no guardrail changes. Replace damaged stucco at coating area. |
+| BP20040053 | Plumbing Permit | 01/21/2004 | 01/21/2004 | 07/18/2004 | 01/26/2004 | Final | Apt 1 | 18 vents, 16 temperature pressure valves |
+| BR20070459 | Roofing Permit | 11/26/2007 | 11/26/2007 | 06/09/2015 | 11/30/2007 | Final | Apt 1 | Reroof. Comp shingle Class A, 65 sqs. Tear off 2 existing layers. Est. cost $12,500. Not in high fire hazard zone. |
+
+### Inspections
+
+| Inspection Number | Type | Status | Requested | Scheduled | Address |
+|---|---|---|---|---|---|
+| INSP-083152-2024 | (155) Lath/Exterior | Passed | 03/07/2024 | 03/07/2024 | 428 W Stocker St |
+| INSP-089853-2024 | (199) Final Building | Passed | 05/01/2024 | 05/01/2024 | 428 W Stocker St |
+
+---
+
+## KEY OBSERVATIONS
+
+| Parcel | Observation |
+|---|---|
+| 420 W Stocker | Property has 8 units (A-H) based on 2005 repipe permit scope |
+| 420 W Stocker | HVAC system installed in Unit I (2008) - suggests possible ADU or 9th unit designation |
+| 420 W Stocker | Roofing: Front house is 36 sqs (~3,600 SF roof), Garage is 16 sqs (~1,600 SF roof) |
+| 420 W Stocker | Most recent roof permit (2024) expired without finalization - work may not have been completed or inspected |
+| 420 W Stocker | 2012 roofing permits confirm NOT in high fire hazard zone |
+| 420 W Stocker | 1 coast live oak tree on property (protected under Glendale indigenous tree ordinance) |
+| 428 W Stocker | 2023-2024 walkway/stair recoating suggests multi-story building with exterior access corridors |
+| 428 W Stocker | 2004 plumbing permit: 18 vents + 16 T&P valves suggests significant multi-unit building (16+ water heaters) |
+| 428 W Stocker | Roof is 65 sqs (~6,500 SF) - large building footprint |
+| 428 W Stocker | 2024 building alteration passed both lath/exterior and final inspection - clean file |
+| Both | Adjacent parcels (APN 5636-001-020 and 5636-001-021) - likely same ownership or assemblage opportunity |
+| Both | No major structural permits on file - no additions, seismic retrofit, or foundation work visible in records |
+| Both | No open/active violations visible in permit search results |

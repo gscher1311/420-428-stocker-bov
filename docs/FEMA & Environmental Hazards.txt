@@ -1,0 +1,100 @@
+# FEMA FLOOD ZONE & ENVIRONMENTAL HAZARDS
+## 420-428 W Stocker St, Glendale, CA 91202
+
+**Sources:**
+- FEMA Flood Map Service Center (msc.fema.gov)
+- Glendale Building & Safety permit portal
+- Web research: soft-story retrofit ordinance, seismic, fire hazard
+**Accessed:** February 11, 2026
+
+---
+
+## FEMA FLOOD ZONE
+
+| Field | Value |
+|-------|-------|
+| Flood Zone | Zone X (shaded) |
+| Definition | Area of moderate flood hazard — between the 100-year and 500-year flood limits |
+| FIRM Panel | 06037C1345F |
+| Effective Date | September 26, 2008 |
+| Special Flood Hazard Area (SFHA)? | NO — Zone X (shaded) is NOT an SFHA |
+| Flood Insurance Required? | NO — federally required flood insurance only applies to SFHA zones (A, AE, V, etc.) |
+| Flood Insurance Recommended? | Optional — moderate risk area; some lenders may recommend but not require |
+
+### What Zone X (Shaded) Means
+- Between the 100-year (1% annual chance) and 500-year (0.2% annual chance) flood boundaries
+- Lower risk than Zone A, AE, V, or VE designations
+- Most conventional lenders do NOT require flood insurance
+- Properties in this zone have a lower but non-negligible flood risk
+
+---
+
+## SEISMIC / EARTHQUAKE
+
+| Factor | Status |
+|--------|--------|
+| Alquist-Priolo Fault Zone | Not on known active fault trace |
+| Seismic Zone | Standard Southern California seismic region |
+| Liquefaction Risk | Low to moderate — flat terrain, alluvial area typical for Glendale valley floor |
+| Landslide Risk | Low — flat area, not hillside |
+
+---
+
+## FIRE HAZARD
+
+| Factor | Status |
+|--------|--------|
+| Very High Fire Hazard Severity Zone (VHFHSZ) | NO — flat North Glendale, not hillside |
+| Wildfire Risk | Low — urban flat area well away from wildland-urban interface |
+| Confirmed by | 2012 roofing permits for 420 Stocker state "Not in high fire hazard zone" |
+
+---
+
+## SOFT-STORY RETROFIT STATUS
+
+| Factor | Status |
+|--------|--------|
+| Glendale Mandatory Soft-Story Ordinance | DOES NOT EXIST — Glendale does not have a mandatory program |
+| Status as of May 2019 | Voluntary only — city was "working on mandating" per retrofit1.com |
+| Current Status (Feb 2026) | No mandatory ordinance found — check with B&S for updates |
+| Subject Property Risk | 1953/1954 wood frame — potentially soft-story if tuck-under parking exists |
+| No Retrofit Permits on File | No soft-story retrofit permits found for either parcel |
+| Recommendation | Buyer should evaluate seismic vulnerability voluntarily; no city mandate to comply with |
+
+### Context: LA vs Glendale
+- City of Los Angeles has a MANDATORY soft-story retrofit program (Ordinances 183893 & 184081)
+- Glendale does NOT — this is a distinction that matters for buyer due diligence
+- A buyer may still want to budget for voluntary seismic retrofit as a risk mitigation measure
+
+---
+
+## AIRPORT PROXIMITY
+
+| Factor | Status |
+|--------|--------|
+| Nearest Airport | Hollywood Burbank Airport (BUR) — ~3 miles NW |
+| Airport Influence Area | Possibly in airport influence area — verify with airport land use commission |
+| Noise Impact | Moderate — flight path may produce some noise depending on wind patterns |
+
+---
+
+## ENVIRONMENTAL CONTAMINATION
+
+| Factor | Status |
+|--------|--------|
+| DTSC (Dept. of Toxic Substances Control) | No sites identified at this location |
+| GeoTracker (State Water Resources) | No sites identified at this location |
+| Phase I ESA | Not yet completed — to be verified in formal environmental assessment |
+| Known Contamination | None identified from available records |
+
+---
+
+## SUMMARY FOR BOV
+
+- FEMA Zone X (shaded): moderate flood risk, NO flood insurance required
+- No special seismic fault zones; standard SoCal seismic area
+- Not in fire hazard zone (confirmed by permits)
+- No mandatory soft-story retrofit in Glendale (voluntary only)
+- No environmental contamination identified
+- Near Burbank Airport — possible flight path noise
+- Overall: LOW environmental/hazard risk profile for this property
