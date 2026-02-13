@@ -402,20 +402,39 @@ td.num,th.num{{text-align:right;}}
 .pdf-float-btn,.toc-nav,.leaflet-map,.embed-map-wrap,.embed-map-caption,.embed-map-fallback,.page-break-marker{{display:none !important;}}
 .map-fallback{{display:block !important;}}
 
-/* === GLOBAL PRINT TWEAKS (keep desktop fonts, just adjust padding/spacing) === */
-body{{color:#222;}}
-p{{orphans:3;widows:3;}}
-.section{{padding:30px 30px;max-width:100%;}}
+/* === GLOBAL PRINT TYPOGRAPHY (11-12px sweet spot) === */
+body{{font-size:11px;line-height:1.5;color:#222;}}
+p{{font-size:11px;line-height:1.5;margin-bottom:8px;orphans:3;widows:3;}}
+.section{{padding:20px 20px;max-width:100%;}}
+.section-title{{font-size:18px;margin-bottom:2px;}}
+.section-subtitle{{font-size:10px;letter-spacing:1px;margin-bottom:6px;}}
+.section-divider{{margin-bottom:10px;height:2px;}}
+.sub-heading{{font-size:13px;margin:10px 0 6px;}}
 h2,h3,.section-title,.sub-heading{{page-break-after:avoid;}}
-table{{page-break-inside:auto;}}
+table{{page-break-inside:auto;font-size:10px;margin-bottom:8px;}}
 thead{{display:table-header-group;}}
 tr{{page-break-inside:avoid;}}
+th{{padding:4px 8px;font-size:8px;}}
+td{{padding:4px 8px;font-size:10px;}}
 .table-scroll{{overflow:visible;}}.table-scroll table{{min-width:0 !important;width:100%;}}
+.info-table td{{padding:4px 8px;font-size:10px;}}
+.two-col{{gap:14px;margin-bottom:10px;}}
+.narrative{{column-count:2;column-gap:20px;}}
+.narrative p{{font-size:10.5px;line-height:1.4;margin-bottom:6px;}}
 
 /* === COVER === */
 .cover{{min-height:7.5in;padding:0;page-break-after:always;display:flex;align-items:center;justify-content:center;}}
 .cover-bg{{filter:brightness(0.35);-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .cover-headshots{{display:none;}}
+
+/* === METRICS (all sections) === */
+.metrics-grid,.metrics-grid-4{{gap:8px;margin-bottom:10px;page-break-inside:avoid;}}
+.metrics-grid{{grid-template-columns:repeat(3,1fr);}}
+.metrics-grid-4{{grid-template-columns:repeat(4,1fr);}}
+.metric-card{{padding:8px 6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.metric-value{{font-size:18px;}}
+.metric-label{{font-size:8px;margin-top:2px;}}
+.metric-sub{{font-size:7px;}}
 
 /* === PAGE BREAKS === */
 .tr-page2{{page-break-before:always;}}
@@ -431,17 +450,50 @@ tr{{page-break-inside:avoid;}}
 .price-reveal{{page-break-before:always;}}
 .footer{{page-break-before:always;}}
 
-/* === PRINT-COLOR-ADJUST for backgrounds/images === */
-.metric-card{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.tr-map-print{{display:block;width:100%;height:260px;border-radius:4px;overflow:hidden;margin-bottom:10px;}}.tr-map-print img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.inv-photo img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.buyer-photo img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.platform-strip{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.mkt-channel,.perf-card{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+/* === TRACK RECORD === */
+.tr-tagline{{font-size:13px;padding:8px 14px;margin-bottom:8px;}}
+.tr-map-print{{display:block;width:100%;height:240px;border-radius:4px;overflow:hidden;margin-bottom:8px;}}.tr-map-print img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.tr-service-quote{{margin:10px 0;}}.tr-service-quote h3{{font-size:13px;margin-bottom:4px;}}.tr-service-quote p{{font-size:11px;line-height:1.45;}}
+.tr-mission{{padding:10px 14px;margin-bottom:12px;}}.tr-mission h3{{font-size:13px;margin-bottom:5px;}}.tr-mission p{{font-size:11px;line-height:1.4;margin-bottom:4px;}}
+.bio-grid{{gap:14px;margin:10px 0;}}.bio-headshot{{width:60px;height:60px;}}.bio-name{{font-size:13px;}}.bio-title{{font-size:9px;}}.bio-text{{font-size:10px;line-height:1.4;}}
+.costar-badge{{padding:10px 14px;margin:10px auto;}}.costar-badge-title{{font-size:15px;}}.costar-badge-sub{{font-size:9px;}}
+.condition-note{{padding:8px 12px;margin:8px 0;font-size:10px;line-height:1.45;}}
+.press-strip{{padding:8px 14px;margin:8px 0;gap:14px;}}.press-strip-label{{font-size:8px;}}.press-logo{{font-size:10px;}}
 
-/* === PREVENT PAGE BREAKS INSIDE === */
-.metrics-grid,.metrics-grid-4,.highlight-box,.buyer-profile,.condition-note,.broker-insight,.buyer-split,.loc-grid,.inv-split,.mkt-channels,.perf-grid{{page-break-inside:avoid;}}
+/* === MARKETING + PERFORMANCE === */
+.mkt-quote{{padding:8px 14px;margin:8px 0;font-size:12px;line-height:1.5;}}
+.mkt-channels{{gap:10px;margin-top:10px;}}.mkt-channel{{padding:10px 14px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.mkt-channel h4{{font-size:12px;margin-bottom:4px;}}.mkt-channel ul{{margin:0;padding-left:16px;}}.mkt-channel li{{font-size:10px;line-height:1.4;margin-bottom:2px;}}
+.perf-grid{{gap:10px;margin-top:10px;}}.perf-card{{padding:10px 14px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.perf-card h4{{font-size:12px;margin-bottom:4px;}}.perf-card ul{{margin:0;padding-left:16px;}}.perf-card li{{font-size:10px;line-height:1.4;margin-bottom:2px;}}
+.platform-strip{{padding:6px 12px;margin-top:10px;gap:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.platform-strip-label{{font-size:8px;}}.platform-name{{font-size:9px;}}
+
+/* === INVESTMENT OVERVIEW === */
+.inv-split{{grid-template-columns:50% 50%;gap:14px;}}.inv-left .metrics-grid-4{{gap:6px;margin-bottom:6px;}}
+.inv-text p{{font-size:10px;line-height:1.4;margin-bottom:4px;}}.inv-logo{{width:140px;margin-top:6px;}}
+.inv-right{{padding-top:45px;}}.inv-photo{{height:200px;}}.inv-photo img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.inv-highlights{{padding:10px 14px;}}.inv-highlights h4{{font-size:10px;margin-bottom:4px;}}.inv-highlights li{{font-size:9px;line-height:1.3;margin-bottom:2px;}}
+
+/* === LOCATION OVERVIEW === */
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:14px;page-break-inside:avoid;}}.loc-left p{{font-size:10.5px;line-height:1.4;margin-bottom:5px;}}
+.loc-wide-map{{height:200px;margin-top:8px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
+
+/* === PROPERTY DETAILS === */
+.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}}.prop-tables-bottom table{{font-size:9px;margin-bottom:4px;}}.prop-tables-bottom th{{font-size:7.5px;padding:3px 6px;}}.prop-tables-bottom td{{padding:3px 6px;font-size:9px;}}.prop-tables-bottom .sub-heading{{font-size:11px;margin:0 0 4px;}}
+
+/* === BUYER PROFILE + OBJECTIONS === */
+.buyer-split{{grid-template-columns:1fr 1fr;gap:14px;page-break-inside:avoid;}}
+.buyer-profile{{padding:8px 12px;margin:6px 0;}}.buyer-profile-label{{font-size:10px;margin-bottom:5px;}}.buyer-profile li{{padding:4px 0;font-size:10.5px;line-height:1.4;}}.bp-closing{{font-size:10px;}}
+.buyer-objections .obj-item{{margin-bottom:8px;}}.buyer-objections .obj-q{{font-size:11px;margin-bottom:2px;}}.buyer-objections .obj-a{{font-size:10px;line-height:1.4;}}
+.buyer-photo{{height:180px;margin-top:8px;border-radius:4px;overflow:hidden;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+
+/* === OTHER SECTIONS === */
+.highlight-box{{padding:8px 12px;margin:8px 0;}}.highlight-box h4{{font-size:11px;margin-bottom:4px;}}.highlight-box li{{font-size:10px;margin-bottom:2px;line-height:1.4;}}
+.photo-grid{{gap:6px;margin-bottom:8px;}}.photo-grid img{{height:140px;}}
+.adu-img-wrap{{margin-bottom:8px;}}.adu-img-wrap img{{max-height:200px;width:auto;margin:0 auto;display:block;}}
+.img-float-right{{float:right;width:40%;margin:0 0 8px 12px;}}.img-float-right img{{max-height:180px;width:auto;}}
+.os-two-col{{page-break-inside:avoid;grid-template-columns:55% 45%;gap:14px;}}.os-right{{font-size:10px;line-height:1.35;}}.os-right p{{margin-bottom:3px;}}.os-right h3{{font-size:11px;margin:0 0 5px;}}
+.price-reveal .condition-note{{padding:6px 10px;margin:6px 0;font-size:10px;line-height:1.35;}}
+.footer{{padding:20px 30px;}}.footer-logo{{width:120px;margin-bottom:10px;}}.footer-headshot{{width:50px;height:50px;}}.footer-name{{font-size:13px;}}.footer-title{{font-size:10px;}}.footer-contact{{font-size:10px;line-height:1.5;}}.footer-disclaimer{{font-size:8px;}}
 }}
 </style>
 </head>

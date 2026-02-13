@@ -329,7 +329,7 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 **1. PDF Worker Viewport:** The Cloudflare PDF worker (`laaa-pdf-worker`) sets `page.setViewport({ width: 1100, height: 850 })` to render at the same 1100px width as the desktop website. Previously it used Puppeteer's default 800px, causing layout mismatches.
 
-**2. Minimal Print CSS:** The `@media print` block no longer overrides font sizes. It ONLY handles: `@page` setup (letter landscape, margins), hiding chrome (nav, PDF button, interactive maps, page-break markers), page-break rules for each section, section padding adjustment (30px 30px), and `print-color-adjust: exact` for backgrounds/images. Desktop fonts (13-14px) render identically in the PDF.
+**2. Print CSS with 11-12px Fonts:** The `@media print` block uses **11-12px fonts** as the sweet spot between readability and page fit. This is larger than the original 9-10px (which was too small/bunched) but smaller than desktop 13-14px (which overflowed every page). Each section is individually tuned to fit within the ~847px effective viewport height per landscape letter page. Section padding is reduced to 20px 20px in print. Key font sizes: body 11px, section-title 18px, sub-heading 13px, table cells 9-10px, highlights 9-10px.
 
 **3. Page Dividers:** A `.page-break-marker` element (dashed gray line) is inserted between sections on the website, showing users exactly where PDF page breaks will occur. These markers are hidden in print via `display: none`.
 
@@ -337,7 +337,7 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 **5. Investment Overview Photo Alignment:** The `.inv-right` column has `padding-top: 70px` so the property photo's top edge aligns with the top of the metric cards in the left column.
 
-**Result:** What you see on the desktop at 100% zoom is what the PDF outputs. No more bunched text, no more whitespace mismatches, no more font size discrepancies.
+**Result:** The PDF closely matches the desktop layout structure with properly legible text that fits on landscape letter pages. Each templated section (Track Record, Marketing, Performance, Investment Overview, Location, Property Details, Buyer Profile) fits on exactly one PDF page. Page dividers on the website show where breaks occur.
 
 ---
 
