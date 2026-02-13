@@ -341,6 +341,26 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 ---
 
+## 22. Track Record Restructure, Marketing Merge, Location Fix, Property Details Trim
+
+**Track Record Page 1:** The "We Didn't Invent Great Service..." heading now leads directly into the 3 mission statement paragraphs (moved from Page 2). The old standalone mission statement section and the 1031 exchange paragraph are removed.
+
+**Track Record Page 2:** Glen/Filip bios with headshots at top, followed by a 3-column `.team-grid` showing all 9 team members (7 associates + 2 support staff) with 40px circular headshots, name, and title. Then CoStar badge, Key Achievements, and Press Strip.
+
+**Marketing & Performance Combined:** The two half-empty pages merged into one `#marketing` section titled "Our Marketing Approach & Results". Two rows of 4 metric cards (marketing stats top, performance stats bottom) + proactive quote + 2x2 channel grid + 2x2 performance grid + platform strip. The `#performance` section is deleted.
+
+**Cover Page Headshots:** Print CSS changed from `.cover-headshots { display: none }` to `display: flex` so headshots render in PDF.
+
+**Google Maps Iframe:** Increased from 350px to 420px on desktop for better visual presence. No PDF impact (iframe hidden in print).
+
+**Gold Sub-Labels:** `.metric-sub` increased from 7px to 9px in print for readability. Text made more descriptive where needed.
+
+**Location Overview Fixed Boxes:** `.loc-left` and `.loc-right` constrained to `max-height: 380px` desktop / `320px` print with `overflow: hidden`. Info-table gets blue `<thead>` header row ("Location Details"). AI must keep paragraphs concise to fit the fixed box.
+
+**Property Details Max Row Budget:** Tables trimmed to fit one page. "Lot Dimensions" and "Per Parcel" merged into Lot Size. Two Roof rows merged into one. Two Plumbing rows merged into one. "Seismic" and "Protected Tree" removed from Regulatory. **Template rule: max 35 total data rows across all tables on this page.** AI priority: remove duplicates, condense related items, then delete least buyer-relevant.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:

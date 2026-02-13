@@ -45,6 +45,15 @@ IMG = {
     "aerial_outline": load_image_b64("Screenshot 2026-02-11 135520.png"),
     "loc_map": load_image_b64("location-map.png"),
     "closings_map": load_image_b64("closings-map.png"),
+    "team_aida": load_image_b64("Aida_Memary.png"),
+    "team_logan": load_image_b64("Logan_Ward.png"),
+    "team_morgan": load_image_b64("Morgan_Wetmore.png"),
+    "team_luka": load_image_b64("Luka_Leader.png"),
+    "team_jason": load_image_b64("Jason_Mandel.png"),
+    "team_alexandro": load_image_b64("Alexandro_Tapia.png"),
+    "team_blake": load_image_b64("Blake_Lewitt.png"),
+    "team_mike": load_image_b64("Mike_Palade.png"),
+    "team_tony": load_image_b64("Tony_Dang.png"),
 }
 
 # ============================================================
@@ -360,7 +369,7 @@ table{{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:13px;}}t
 .condition-note{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 20px;margin:24px 0;border-radius:0 4px 4px 0;font-size:13px;line-height:1.6;}}
 .buyer-profile{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin:24px 0;border-radius:0 4px 4px 0;}}.buyer-profile-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#1B3A5C;margin-bottom:12px;}}.buyer-profile ul{{list-style:none;padding:0;margin:0;}}.buyer-profile li{{padding:8px 0;border-bottom:1px solid #dce3eb;font-size:14px;line-height:1.6;color:#333;}}.buyer-profile li:last-child{{border-bottom:none;}}.buyer-profile li strong{{color:#1B3A5C;}}.buyer-profile .bp-closing{{font-size:13px;color:#555;margin-top:12px;font-style:italic;}}
 .leaflet-map{{height:400px;border-radius:4px;border:1px solid #ddd;margin-bottom:30px;z-index:1;}}.map-fallback{{display:none;font-size:12px;color:#666;font-style:italic;margin-bottom:30px;}}
-.embed-map-wrap{{position:relative;width:100%;margin-bottom:20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.embed-map-wrap iframe{{display:block;width:100%;height:350px;border:0;}}.embed-map-caption{{font-size:12px;color:#888;text-align:center;margin-top:8px;font-style:italic;}}.embed-map-fallback{{display:none;font-size:12px;color:#666;font-style:italic;margin-bottom:30px;}}
+.embed-map-wrap{{position:relative;width:100%;margin-bottom:20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.embed-map-wrap iframe{{display:block;width:100%;height:420px;border:0;}}.embed-map-caption{{font-size:12px;color:#888;text-align:center;margin-top:8px;font-style:italic;}}.embed-map-fallback{{display:none;font-size:12px;color:#666;font-style:italic;margin-bottom:30px;}}
 .adu-img-wrap{{margin-bottom:20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.adu-img-wrap img{{width:100%;display:block;}}
 .footer{{background:#1B3A5C;color:#fff;padding:50px 40px;text-align:center;}}.footer-logo{{width:180px;margin-bottom:30px;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3));}}.footer-team{{display:flex;justify-content:center;gap:40px;margin-bottom:30px;flex-wrap:wrap;}}.footer-person{{text-align:center;flex:1;min-width:280px;}}.footer-headshot{{width:70px;height:70px;border-radius:50%;border:2px solid #C5A258;margin-bottom:10px;object-fit:cover;}}.footer-name{{font-size:16px;font-weight:600;}}.footer-title{{font-size:12px;color:#C5A258;margin-bottom:8px;}}.footer-contact{{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.8;}}.footer-contact a{{color:rgba(255,255,255,0.7);text-decoration:none;}}.footer-office{{font-size:12px;color:rgba(255,255,255,0.5);margin-top:20px;}}.footer-disclaimer{{font-size:10px;color:rgba(255,255,255,0.35);margin-top:20px;max-width:800px;margin-left:auto;margin-right:auto;line-height:1.6;}}
 p{{margin-bottom:16px;font-size:14px;line-height:1.7;}}
@@ -385,12 +394,13 @@ td.num,th.num{{text-align:right;}}
 .condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
 .os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:block;}}.loc-wide-map{{width:100%;height:200px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:20px;}}.loc-wide-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left{{max-height:380px;overflow:hidden;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:block;max-height:380px;overflow:hidden;}}.loc-wide-map{{width:100%;height:200px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:20px;}}.loc-wide-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .tr-tagline{{font-size:20px;font-weight:600;color:#1B3A5C;text-align:center;padding:16px 24px;margin-bottom:20px;border-left:4px solid #C5A258;background:#FFF8E7;border-radius:0 4px 4px 0;font-style:italic;}}.tr-map-print{{display:none;}}.tr-service-quote{{margin:24px 0;}}.tr-service-quote h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px;line-height:1.3;}}.tr-service-quote p{{font-size:14px;line-height:1.7;}}.tr-mission{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin-bottom:24px;border-radius:0 4px 4px 0;}}.tr-mission h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px;}}.tr-mission p{{font-size:13px;line-height:1.7;margin-bottom:10px;}}
 .inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-left .metrics-grid-4{{grid-template-columns:repeat(2,1fr);}}.inv-text p{{font-size:13px;line-height:1.6;margin-bottom:10px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;padding-top:70px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
 .buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}.buyer-photo{{width:100%;height:220px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:24px;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}}.prop-tables-bottom .sub-heading{{font-size:15px;margin:0 0 10px;}}
 .page-break-marker{{height:4px;background:repeating-linear-gradient(90deg,#ddd 0,#ddd 8px,transparent 8px,transparent 16px);margin:0;}}
+.team-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;}}.team-card{{text-align:center;padding:8px;}}.team-headshot{{width:40px;height:40px;border-radius:50%;border:2px solid #C5A258;object-fit:cover;margin:0 auto 4px;display:block;}}.team-card-name{{font-size:12px;font-weight:700;color:#1B3A5C;}}.team-card-title{{font-size:9px;color:#C5A258;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}}
 .mkt-quote{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 24px;margin:20px 0;border-radius:0 4px 4px 0;font-size:15px;font-style:italic;line-height:1.6;color:#1B3A5C;}}.mkt-channels{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.mkt-channel{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.mkt-channel h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.mkt-channel ul{{margin:0;padding-left:18px;}}.mkt-channel li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}
 .perf-grid{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.perf-card{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.perf-card h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.perf-card ul{{margin:0;padding-left:18px;}}.perf-card li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}.platform-strip{{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin-top:24px;padding:14px 20px;background:#1B3A5C;border-radius:6px;}}.platform-strip-label{{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;font-weight:600;}}.platform-name{{font-size:12px;font-weight:600;color:#fff;letter-spacing:0.5px;}}
 @media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}.mkt-channels,.perf-grid{{grid-template-columns:1fr;}}}}
@@ -425,7 +435,7 @@ td{{padding:4px 8px;font-size:10px;}}
 /* === COVER === */
 .cover{{min-height:7.5in;padding:0;page-break-after:always;display:flex;align-items:center;justify-content:center;}}
 .cover-bg{{filter:brightness(0.35);-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.cover-headshots{{display:none;}}
+.cover-headshots{{display:flex;gap:28px;}}
 
 /* === METRICS (all sections) === */
 .metrics-grid,.metrics-grid-4{{gap:8px;margin-bottom:10px;page-break-inside:avoid;}}
@@ -434,12 +444,11 @@ td{{padding:4px 8px;font-size:10px;}}
 .metric-card{{padding:8px 6px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .metric-value{{font-size:18px;}}
 .metric-label{{font-size:8px;margin-top:2px;}}
-.metric-sub{{font-size:7px;}}
+.metric-sub{{font-size:9px;}}
 
 /* === PAGE BREAKS === */
 .tr-page2{{page-break-before:always;}}
 #marketing{{page-break-before:always;}}
-#performance{{page-break-before:always;}}
 #investment{{page-break-before:always;page-break-after:always;}}
 #prop-details{{page-break-before:always;}}
 #location{{page-break-before:always;}}
@@ -459,6 +468,7 @@ td{{padding:4px 8px;font-size:10px;}}
 .costar-badge{{padding:10px 14px;margin:10px auto;}}.costar-badge-title{{font-size:15px;}}.costar-badge-sub{{font-size:9px;}}
 .condition-note{{padding:8px 12px;margin:8px 0;font-size:10px;line-height:1.45;}}
 .press-strip{{padding:8px 14px;margin:8px 0;gap:14px;}}.press-strip-label{{font-size:8px;}}.press-logo{{font-size:10px;}}
+.team-grid{{gap:8px;margin:8px 0;}}.team-card{{padding:4px;}}.team-headshot{{width:35px;height:35px;}}.team-card-name{{font-size:9px;}}.team-card-title{{font-size:7px;}}
 
 /* === MARKETING + PERFORMANCE === */
 .mkt-quote{{padding:8px 14px;margin:8px 0;font-size:12px;line-height:1.5;}}
@@ -473,7 +483,7 @@ td{{padding:4px 8px;font-size:10px;}}
 .inv-highlights{{padding:10px 14px;}}.inv-highlights h4{{font-size:10px;margin-bottom:4px;}}.inv-highlights li{{font-size:9px;line-height:1.3;margin-bottom:2px;}}
 
 /* === LOCATION OVERVIEW === */
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:14px;page-break-inside:avoid;}}.loc-left p{{font-size:10.5px;line-height:1.4;margin-bottom:5px;}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:14px;page-break-inside:avoid;}}.loc-left{{max-height:320px;overflow:hidden;}}.loc-left p{{font-size:10.5px;line-height:1.4;margin-bottom:5px;}}.loc-right{{max-height:320px;overflow:hidden;}}
 .loc-wide-map{{height:200px;margin-top:8px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
 
@@ -577,19 +587,12 @@ html_parts.append(f"""
 
 <div class="tr-service-quote">
 <h3>We Didn&rsquo;t Invent Great Service, We Just Work Relentlessly to Provide It</h3>
-<p>With over $1.6 billion in sales volume and 500+ closed transactions since 2013, the LA Apartment Advisors (LAAA Team) strive to offer an uncompromising, transparent and elevated real estate experience within the procurement and disposition of multifamily property and land for multifamily development throughout Los Angeles county.</p>
-</div>
-
-<p>Over <strong>60% of all Marcus &amp; Millichap transactions involve a 1031 exchange</strong>, creating a perpetual buyer pipeline that benefits every LAAA listing. This exchange network, combined with M&amp;M's proprietary MNet buyer-matching system across 80+ offices and 1,700+ agents nationally, delivers a level of market exposure and deal execution that competitors cannot replicate. Half of our apartment listings sell in under 5 weeks.</p>
-
-<div class="tr-page2">
-
-<div class="tr-mission">
-<h3>LAAA Team Mission Statement</h3>
 <p>At LAAA Team, we are dedicated to delivering expert multifamily brokerage services in Los Angeles, helping investors navigate the market with precision, strategy, and results-driven execution. With over 500 closed transactions and $1.6B in total sales volume, our team thrives on providing data-driven insights, strategic deal structuring, and hands-on client service to maximize value for our clients.</p>
 <p>Founded by Glen Scher and Filip Niculete, LAAA Team operates with a commitment to transparency, efficiency, and unmatched market expertise. We take a relationship-first approach, guiding property owners, investors, and developers through every stage of acquisition, disposition, and asset repositioning.</p>
 <p>Our mission is simple: To be the most trusted and results-oriented multifamily advisors in Los Angeles, leveraging deep market knowledge, innovative technology, and a proactive deal-making strategy to drive long-term success for our clients.</p>
 </div>
+
+<div class="tr-page2">
 
 <div class="bio-grid">
 <div class="bio-card">
@@ -608,6 +611,19 @@ html_parts.append(f"""
 <div class="bio-text">Senior Managing Director at Marcus &amp; Millichap and co-founder of the LAAA Team. Together, Glen and Filip have closed over $1.6B in transactions and consistently lead the market in inventory. Born in Romania and raised in the San Fernando Valley, Filip studied Finance at San Diego State University and joined M&amp;M in 2011. He has built a reputation for execution, integrity, and relentless work ethic across 15 years in Los Angeles multifamily.</div>
 </div>
 </div>
+</div>
+
+<h3 class="sub-heading" style="text-align:center;margin-top:16px;">Our Team</h3>
+<div class="team-grid">
+<div class="team-card"><img class="team-headshot" src="{IMG['team_aida']}" alt="Aida Memary"><div class="team-card-name">Aida Memary</div><div class="team-card-title">Associate Investments</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_logan']}" alt="Logan Ward"><div class="team-card-name">Logan Ward</div><div class="team-card-title">Associate Investments</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_morgan']}" alt="Morgan Wetmore"><div class="team-card-name">Morgan Wetmore</div><div class="team-card-title">Associate Investments</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_luka']}" alt="Luka Leader"><div class="team-card-name">Luka Leader</div><div class="team-card-title">Associate Investments</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_jason']}" alt="Jason Mandel"><div class="team-card-name">Jason Mandel</div><div class="team-card-title">Associate Investments</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_alexandro']}" alt="Alexandro Tapia"><div class="team-card-name">Alexandro Tapia</div><div class="team-card-title">Associate Investments</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_blake']}" alt="Blake Lewitt"><div class="team-card-name">Blake Lewitt</div><div class="team-card-title">Associate Investments</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_mike']}" alt="Mike Palade"><div class="team-card-name">Mike Palade</div><div class="team-card-title">Agent Assistant</div></div>
+<div class="team-card"><img class="team-headshot" src="{IMG['team_tony']}" alt="Tony H. Dang"><div class="team-card-name">Tony H. Dang</div><div class="team-card-title">Business Operations Manager</div></div>
 </div>
 
 <div class="costar-badge">
@@ -640,11 +656,11 @@ html_parts.append(f"""
 </div>
 """)
 
-# ==================== OUR MARKETING APPROACH (standard template, same for every BOV) ====================
+# ==================== OUR MARKETING APPROACH & RESULTS (combined, one page) ====================
 html_parts.append("""
 <div class="page-break-marker"></div>
 <div class="section" id="marketing">
-<div class="section-title">Our Marketing Approach</div>
+<div class="section-title">Our Marketing Approach &amp; Results</div>
 <div class="section-subtitle">How We Market Your Listing</div>
 <div class="section-divider"></div>
 
@@ -652,7 +668,7 @@ html_parts.append("""
 <div class="metric-card"><span class="metric-value">30,000+</span><span class="metric-label">Emails Sent</span><span class="metric-sub">Per Listing</span></div>
 <div class="metric-card"><span class="metric-value">10,000+</span><span class="metric-label">Online Views</span><span class="metric-sub">Per Listing</span></div>
 <div class="metric-card"><span class="metric-value">3.7</span><span class="metric-label">Average Offers</span><span class="metric-sub">Per Listing</span></div>
-<div class="metric-card"><span class="metric-value">18</span><span class="metric-label">Days to Escrow</span><span class="metric-sub">Average</span></div>
+<div class="metric-card"><span class="metric-value">18</span><span class="metric-label">Days to Escrow</span><span class="metric-sub">Per Listing Average</span></div>
 </div>
 
 <div class="mkt-quote">
@@ -681,7 +697,7 @@ html_parts.append("""
 <ul>
 <li><strong>9 listing platforms</strong> with highest-tier exposure on each</li>
 <li><strong>10,000+ views per listing</strong> across all platforms combined</li>
-<li>Custom profile created on MLS, CoStar, LoopNet, Crexi, Brevitas, Redfin, M&amp;M, LAAA.com, and ApartmentBuildings.com</li>
+<li>Custom profile on MLS, CoStar, LoopNet, Crexi, Brevitas, Redfin, M&amp;M, LAAA.com, ApartmentBuildings.com</li>
 </ul>
 </div>
 <div class="mkt-channel">
@@ -689,27 +705,16 @@ html_parts.append("""
 <ul>
 <li><strong>"Just Listed" postcards</strong> mailed to nearby property owners</li>
 <li><strong>Social media</strong> across Facebook, LinkedIn, Instagram, and X</li>
-<li><strong>Current inventory attachment</strong> sent ~25 times/day by all team members to active buyers</li>
+<li><strong>Current inventory attachment</strong> sent ~25 times/day by all team members</li>
 </ul>
 </div>
 </div>
 
-</div>
-""")
-
-# ==================== LISTING PERFORMANCE (standard template, same for every BOV) ====================
-html_parts.append("""
-<div class="page-break-marker"></div>
-<div class="section section-alt" id="performance">
-<div class="section-title">Listing Performance</div>
-<div class="section-subtitle">Historical Results Across 500+ Listings</div>
-<div class="section-divider"></div>
-
-<div class="metrics-grid-4">
+<div class="metrics-grid-4" style="margin-top:16px;">
 <div class="metric-card"><span class="metric-value">97.6%</span><span class="metric-label">Average SP/LP</span><span class="metric-sub">Sale Price to List Price</span></div>
 <div class="metric-card"><span class="metric-value">21%</span><span class="metric-label">Sell At or Above</span><span class="metric-sub">Asking Price</span></div>
 <div class="metric-card"><span class="metric-value">10</span><span class="metric-label">Day Avg Contingency</span><span class="metric-sub">Due Diligence Period</span></div>
-<div class="metric-card"><span class="metric-value">61%</span><span class="metric-label">Sellers Do 1031</span><span class="metric-sub">Exchange</span></div>
+<div class="metric-card"><span class="metric-value">61%</span><span class="metric-label">Sellers Do 1031</span><span class="metric-sub">Of All Sellers</span></div>
 </div>
 
 <div class="perf-grid">
@@ -735,7 +740,7 @@ html_parts.append("""
 <li><strong>10-day average</strong> contingency period</li>
 <li>We almost never allow a loan or appraisal contingency</li>
 <li><strong>Less than 60 days</strong> average escrow timeframe</li>
-<li><strong>10%</strong> of our listings open escrow with zero contingencies</li>
+<li><strong>10%</strong> open escrow with zero contingencies</li>
 </ul>
 </div>
 <div class="perf-card">
@@ -743,7 +748,7 @@ html_parts.append("""
 <ul>
 <li><strong>61%</strong> of our sellers complete a 1031 exchange</li>
 <li><strong>29%</strong> of listings sell to a 1031 exchange buyer</li>
-<li><strong>76%</strong> of our transactions involve at least one exchange party</li>
+<li><strong>76%</strong> of transactions involve at least one exchange</li>
 </ul>
 </div>
 </div>
@@ -831,6 +836,8 @@ html_parts.append(f"""
 </div>
 <div class="loc-right">
 <table class="info-table">
+<thead><tr><th colspan="2">Location Details</th></tr></thead>
+<tbody>
 <tr><td>Walk Score</td><td>88 (Very Walkable)</td></tr>
 <tr><td>Transit Score</td><td>44 (Some Transit)</td></tr>
 <tr><td>Bike Score</td><td>59 (Bikeable)</td></tr>
@@ -841,6 +848,7 @@ html_parts.append(f"""
 <tr><td>FEMA Flood Zone</td><td>Zone X (Shaded)</td></tr>
 <tr><td>Fire Hazard Zone</td><td>Not in VHFHSZ</td></tr>
 <tr><td>Environmental</td><td>No known contamination</td></tr>
+</tbody>
 </table>
 </div>
 </div>
@@ -866,9 +874,7 @@ html_parts.append("""
 <tr><td>Year Built</td><td>1953 / 1954</td></tr>
 <tr><td>Units</td><td>27 (1 house + 24x 2BR + 2x 1BR)</td></tr>
 <tr><td>Building SF</td><td>22,674</td></tr>
-<tr><td>Lot Size</td><td>1.11 Acres (48,353 SF)</td></tr>
-<tr><td>Lot Dimensions</td><td>160 ft x 300 ft (combined)</td></tr>
-<tr><td>Per Parcel</td><td>80 ft x 300 ft each</td></tr>
+<tr><td>Lot Size</td><td>1.11 Acres (48,353 SF) - 160 x 300 ft</td></tr>
 <tr><td>Construction</td><td>Wood Frame</td></tr>
 <tr><td>Buildings</td><td>5</td></tr>
 </tbody>
@@ -896,10 +902,8 @@ html_parts.append("""
 <table>
 <thead><tr><th>System</th><th>Status</th><th>Year</th></tr></thead>
 <tbody>
-<tr><td>Roof (420 House + Garage)</td><td>Comp shingle</td><td>2012</td></tr>
-<tr><td>Roof (428)</td><td>Comp shingle Class A</td><td>2007</td></tr>
-<tr><td>Plumbing (420)</td><td>Repiped, Units A-H</td><td>2005</td></tr>
-<tr><td>Plumbing (428)</td><td>18 vents, 16 T&P valves</td><td>2004</td></tr>
+<tr><td>Roofing</td><td>420: Comp shingle (2012); 428: Class A (2007)</td><td>2007-12</td></tr>
+<tr><td>Plumbing</td><td>420: Repiped A-H (2005); 428: vents/valves (2004)</td><td>2004-05</td></tr>
 <tr><td>HVAC</td><td>FAU (420 Unit I); Window units (428)</td><td>Various</td></tr>
 <tr><td>Electrical</td><td>Major plumbing/electrical work</td><td>2024</td></tr>
 <tr><td>Windows</td><td>Replaced ($10,700)</td><td>2024</td></tr>
@@ -919,8 +923,6 @@ html_parts.append("""
 <tr><td>Rent Increase Cap</td><td>5% + CPI (max 10%); relocation if >7%</td></tr>
 <tr><td>Code Violations</td><td>None on file</td></tr>
 <tr><td>Soft-Story Retrofit</td><td>Not mandatory in Glendale</td></tr>
-<tr><td>Seismic</td><td>Standard SoCal zone</td></tr>
-<tr><td>Protected Tree</td><td>1 coast live oak (420 parcel)</td></tr>
 </tbody>
 </table>
 </div>
