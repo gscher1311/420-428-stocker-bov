@@ -41,6 +41,7 @@ IMG = {
     "grid4": load_image_b64("Screenshot 2026-02-11 135431.png"),
     "adu_aerial": load_image_b64("Gemini_Generated_Image_w3ubtuw3ubtuw3ub.jpeg"),
     "adu_parking": load_image_b64("back parking (potentail spot for ADUs).png"),
+    "aerial_outline": load_image_b64("Screenshot 2026-02-11 135520.png"),
 }
 
 # ============================================================
@@ -98,8 +99,8 @@ def calc_metrics(price):
             "per_unit": price / UNITS, "per_sf": price / SF,
             "cur_cap": cur_noi / price * 100, "pf_cap": pf_noi / price * 100, "grm": price / GSR}
 
-# Descending, $100K increments, ~4 above + suggested + ~5 below
-MATRIX_PRICES = list(range(LIST_PRICE + 400_000, LIST_PRICE - 600_000, -100_000))
+# Descending, $100K increments, matching PDF model range ($9.5M to $8.5M)
+MATRIX_PRICES = list(range(9_500_000, 8_400_000, -100_000))
 MATRIX = [calc_metrics(p) for p in MATRIX_PRICES]
 AT_LIST = calc_metrics(LIST_PRICE)
 AT_APT = calc_metrics(APT_VALUE)
@@ -138,15 +139,15 @@ SALE_COMPS = [
 ]
 
 # ============================================================
-# OPERATING STATEMENT
+# OPERATING STATEMENT — uses PDF model figures at $9.0M apartment value (source of truth)
 # ============================================================
-TAXES_AT_LIST = LIST_PRICE * TAX_RATE
+TAXES_AT_APT_VALUE = APT_VALUE * TAX_RATE  # $101,700 per PDF model at $9.0M
 CUR_EGI = GSR * (1 - VACANCY_PCT) + OTHER_INCOME
 PF_EGI = PF_GSR * (1 - VACANCY_PCT) + OTHER_INCOME
 CUR_MGMT = CUR_EGI * 0.04
 PF_MGMT = PF_EGI * 0.04
-CUR_TOTAL_EXP = TAXES_AT_LIST + 28074 + 24945 + 2979 + 17700 + 20250 + 4800 + 700 + 24000 + 2160 + 4050 + CUR_MGMT
-PF_TOTAL_EXP = TAXES_AT_LIST + 28074 + 24945 + 2979 + 17700 + 20250 + 4800 + 700 + 24000 + 2160 + 4050 + PF_MGMT
+CUR_TOTAL_EXP = TAXES_AT_APT_VALUE + 28074 + 24945 + 2979 + 17700 + 20250 + 4800 + 700 + 24000 + 2160 + 4050 + CUR_MGMT
+PF_TOTAL_EXP = TAXES_AT_APT_VALUE + 28074 + 24945 + 2979 + 17700 + 20250 + 4800 + 700 + 24000 + 2160 + 4050 + PF_MGMT
 CUR_NOI_AT_LIST = CUR_EGI - CUR_TOTAL_EXP
 PF_NOI_AT_LIST = PF_EGI - PF_TOTAL_EXP
 
@@ -239,7 +240,7 @@ income_lines = [
 ]
 # Expense section
 expense_lines = [
-    ("Real Estate Taxes", TAXES_AT_LIST),
+    ("Real Estate Taxes", TAXES_AT_APT_VALUE),
     ("Insurance", 28074),
     ("Water & Power", 24945),
     ("Gas", 2979),
@@ -598,10 +599,10 @@ html_parts.append(f"""
 <div class="section-divider"></div>
 
 <div class="photo-grid">
-<img src="{IMG['grid1']}" alt="420 W Stocker - Front House">
-<img src="{IMG['grid2']}" alt="428 W Stocker - Exterior">
-<img src="{IMG['grid3']}" alt="Property Courtyard with Mountain Views">
-<img src="{IMG['grid4']}" alt="428 Building Interior Courtyard">
+<img src="{IMG['grid1']}" alt="Property Photo">
+<img src="{IMG['grid2']}" alt="Property Photo">
+<img src="{IMG['grid3']}" alt="Property Photo">
+<img src="{IMG['grid4']}" alt="Property Photo">
 </div>
 
 <div class="narrative">
@@ -726,6 +727,8 @@ html_parts.append(f"""
 <tr><td>Submarket</td><td>Glenwood (NW Glendale)</td></tr>
 </table>
 </div>
+
+<div class="adu-img-wrap"><img src="{IMG['aerial_outline']}" alt="Property Photo"></div>
 
 <p>Each of the two parcels measures 80 feet wide by 300 feet deep. Side by side, the combined site spans 160 feet of frontage by 300 feet of depth, totaling approximately 48,353 SF (1.11 acres). This is among the largest multifamily land assemblages in the Glenwood submarket and is a primary driver of the property's ADU development potential. The dual-parcel structure provides operational flexibility and independent ADU entitlements on each lot under SB 1211.</p>
 
@@ -857,6 +860,12 @@ html_parts.append("""
 
 <p><strong>Critical constraint: lot width.</strong> Each parcel is 80 feet wide, which is below the 90-foot threshold in Glendale's zoning code. For lots under 90 feet, the height limit is capped at <strong>2 stories and 26 feet</strong> (GMC &sect;30.11.030). This eliminates the possibility of a 3-story, 36-foot building that lots 90+ feet wide would allow. The practical impact: a developer would tear down 27 existing units to build a maximum of 38 &mdash; a <strong>net gain of only 11 units</strong>.</p>
 
+<div class="condition-note" style="margin-top:24px;">
+<div class="condition-note-label">Lot Merger Scenario &mdash; Long-Term Optionality</div>
+<p style="font-size:14px; line-height:1.7;">If both 80-foot parcels were merged into a single 160-foot lot under Glendale Municipal Code Title 16, Chapter 16.36 (an administrative, non-discretionary process), the combined width would exceed the 90-foot threshold by 70 feet. This would unlock <strong>3 stories / 36 feet</strong> under GMC &sect;30.11.030 Table 30.11-B, along with enhanced FAR and density allowances for wider lots. Coupled with the State Density Bonus (using the lot-width-enhanced base density per GMC &sect;30.36.030), the theoretical unit count could increase significantly beyond the 38-unit base. A real-world precedent exists at 515 Pioneer Drive in Glendale, where a 36-foot base height under R-3050 was compounded with density bonus auto-height increases.<br><br>
+<strong>However, this is a long-term optionality point, not a near-term strategy.</strong> As demonstrated in Part C below, even under the most favorable development assumptions the economics produce a $13-15M loss. The lot merger scenario preserves future densification potential for a generational holder, but the practical value-creation path today remains ADU infill construction in the rear parking area.</p>
+</div>
+
 <h3 class="sub-heading">Part B: State Density Bonus Law</h3>
 
 <p>Under California's Density Bonus Law (Gov. Code &sect;65915), a developer who includes affordable units can receive up to a 50% density bonus above the base zoning allowance:</p>
@@ -942,8 +951,8 @@ html_parts.append(f"""
 <div class="section-subtitle">By-Right Value Creation in the Rear Parking Area</div>
 <div class="section-divider"></div>
 
-<div class="adu-img-wrap"><img src="{IMG['adu_aerial']}" alt="Combined Lot Dimensions - 300ft x 160ft with 50ft ADU Zone"></div>
-<div class="adu-img-wrap"><img src="{IMG['adu_parking']}" alt="Rear Parking Area - Ground Level View"></div>
+<div class="adu-img-wrap"><img src="{IMG['adu_aerial']}" alt="Property Photo"></div>
+<div class="adu-img-wrap"><img src="{IMG['adu_parking']}" alt="Property Photo"></div>
 
 <p>As shown in the aerial image above, the rear approximately 50 feet of the combined property (highlighted in yellow) currently serves as surface parking for both buildings. This ~8,000 SF area, spanning the full 160-foot width of the combined site, represents the primary buildable zone for ADU construction under California's SB 1211 legislation.</p>
 
@@ -1195,7 +1204,7 @@ html_parts.append(f"""
 <thead><tr><th>Unit</th><th>Type</th><th>SF</th><th>Current Rent</th><th>Rent/SF</th><th>Market Rent</th><th>Market/SF</th></tr></thead>
 <tbody>{rent_roll_html}</tbody>
 </table></div>
-<p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: Unit numbering skips 428-13 per original building convention. All 27 units are accounted for.</p>
+<p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: Unit numbering skips 428-13 per original building convention. All 27 units are accounted for. Total SF in the rent roll reflects approximate livable area per unit; the 22,674 SF used in $/SF calculations is gross building area per LA County Assessor records.</p>
 
 <h3 class="sub-heading">Operating Statement</h3>
 <table>
@@ -1206,7 +1215,7 @@ html_parts.append(f"""
 <thead><tr><th>Expenses</th><th class="num">Annual</th><th class="num">Per Unit</th><th class="num">% EGI</th></tr></thead>
 <tbody>{op_expense_html}</tbody>
 </table>
-<p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: The operating statement above uses property taxes reassessed at the $9,350,000 asking price (yielding current NOI of ${CUR_NOI_AT_LIST:,.0f}). The pricing rationale references a normalized NOI of $449,791, which uses taxes reassessed at the $9,000,000 apartment income value. Both figures are internally consistent; the difference is the tax reassessment basis.</p>
+<p style="font-size:11px;color:#888;font-style:italic;margin-top:-16px;margin-bottom:20px;">Note: The operating statement above uses property taxes reassessed at the $9,000,000 apartment income value, consistent with the PDF pricing model (source of truth). The pricing matrix below recalculates taxes at each price point for maximum accuracy.</p>
 
 <h3 class="sub-heading">Notes to Operating Statement</h3>
 <div style="font-size:12px;line-height:1.7;color:#555;margin-bottom:30px;">
