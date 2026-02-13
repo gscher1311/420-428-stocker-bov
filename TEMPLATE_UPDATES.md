@@ -273,6 +273,34 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 ---
 
+## 19. Page-Aware PDF Formatting Pass - Consolidation & Sizing
+
+**Rule:** Every BOV section must be designed to fill exactly one landscape PDF page (10" x 7.7" usable) and approximately one desktop viewport at 100% zoom. No bunched text, no wasted whitespace, no distorted images.
+
+**Key changes from this pass:**
+
+1. **Track Record Page 1:** Hide `.embed-map-fallback` in print (static map replaces it). Reduce Google Maps iframe from 450px to 350px on desktop so the page fits one viewport.
+
+2. **Investment Overview:** Force `.inv-left .metrics-grid-4` to `grid-template-columns: repeat(2, 1fr)` so metric cards display as a 2x2 grid (not 4-across, which is too narrow in the 50% column). Replace "5 Buildings" metric with "1953/54 Year Built". Reduce `.inv-text p` to `font-size: 13px; line-height: 1.6` on desktop.
+
+3. **Location Overview:** Expand `.loc-wide-map` from 150px to 250px in print to fill the page. Tighten `.loc-left p` to `9.5px / 1.35` in print.
+
+4. **Property Details (consolidated):** Building Systems, Regulatory & Compliance, and Transaction History tables are merged into one `#prop-details` page. Uses `.prop-tables-bottom` 2-column grid for Building Systems (left) and Regulatory (right), with Transaction History full-width below. The `#building-systems`, `#regulatory`, and `#transactions` sections are deleted. Their TOC nav links are removed.
+
+5. **Buyer Profile & Objections:** Increased print font sizes (10.5px profile, 11.5px questions, 10px answers). Added full-width property photo (`.buyer-photo`, 220px) below the `.buyer-split` grid to fill remaining page space.
+
+**Print CSS budgets (target ~80-90% of 740px per page):**
+- Track Record Page 1: ~600px content
+- Track Record Page 2: ~540px content
+- Investment Overview: ~510px content
+- Location Overview: ~650px content
+- Property Details: ~635px content
+- Buyer Profile: ~590px content
+
+**Image frames:** All use `object-fit: cover; object-position: center` in fixed-height containers. No image distortion is possible.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:

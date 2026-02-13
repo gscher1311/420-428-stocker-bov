@@ -360,7 +360,7 @@ table{{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:13px;}}t
 .condition-note{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 20px;margin:24px 0;border-radius:0 4px 4px 0;font-size:13px;line-height:1.6;}}
 .buyer-profile{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin:24px 0;border-radius:0 4px 4px 0;}}.buyer-profile-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#1B3A5C;margin-bottom:12px;}}.buyer-profile ul{{list-style:none;padding:0;margin:0;}}.buyer-profile li{{padding:8px 0;border-bottom:1px solid #dce3eb;font-size:14px;line-height:1.6;color:#333;}}.buyer-profile li:last-child{{border-bottom:none;}}.buyer-profile li strong{{color:#1B3A5C;}}.buyer-profile .bp-closing{{font-size:13px;color:#555;margin-top:12px;font-style:italic;}}
 .leaflet-map{{height:400px;border-radius:4px;border:1px solid #ddd;margin-bottom:30px;z-index:1;}}.map-fallback{{display:none;font-size:12px;color:#666;font-style:italic;margin-bottom:30px;}}
-.embed-map-wrap{{position:relative;width:100%;margin-bottom:20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.embed-map-wrap iframe{{display:block;width:100%;height:450px;border:0;}}.embed-map-caption{{font-size:12px;color:#888;text-align:center;margin-top:8px;font-style:italic;}}.embed-map-fallback{{display:none;font-size:12px;color:#666;font-style:italic;margin-bottom:30px;}}
+.embed-map-wrap{{position:relative;width:100%;margin-bottom:20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.embed-map-wrap iframe{{display:block;width:100%;height:350px;border:0;}}.embed-map-caption{{font-size:12px;color:#888;text-align:center;margin-top:8px;font-style:italic;}}.embed-map-fallback{{display:none;font-size:12px;color:#666;font-style:italic;margin-bottom:30px;}}
 .adu-img-wrap{{margin-bottom:20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.adu-img-wrap img{{width:100%;display:block;}}
 .footer{{background:#1B3A5C;color:#fff;padding:50px 40px;text-align:center;}}.footer-logo{{width:180px;margin-bottom:30px;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.3));}}.footer-team{{display:flex;justify-content:center;gap:40px;margin-bottom:30px;flex-wrap:wrap;}}.footer-person{{text-align:center;flex:1;min-width:280px;}}.footer-headshot{{width:70px;height:70px;border-radius:50%;border:2px solid #C5A258;margin-bottom:10px;object-fit:cover;}}.footer-name{{font-size:16px;font-weight:600;}}.footer-title{{font-size:12px;color:#C5A258;margin-bottom:8px;}}.footer-contact{{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.8;}}.footer-contact a{{color:rgba(255,255,255,0.7);text-decoration:none;}}.footer-office{{font-size:12px;color:rgba(255,255,255,0.5);margin-top:20px;}}.footer-disclaimer{{font-size:10px;color:rgba(255,255,255,0.35);margin-top:20px;max-width:800px;margin-left:auto;margin-right:auto;line-height:1.6;}}
 p{{margin-bottom:16px;font-size:14px;line-height:1.7;}}
@@ -387,14 +387,15 @@ td.num,th.num{{text-align:right;}}
 .os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
 .loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:block;}}.loc-wide-map{{width:100%;height:200px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:20px;}}.loc-wide-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .tr-tagline{{font-size:20px;font-weight:600;color:#1B3A5C;text-align:center;padding:16px 24px;margin-bottom:20px;border-left:4px solid #C5A258;background:#FFF8E7;border-radius:0 4px 4px 0;font-style:italic;}}.tr-map-print{{display:none;}}.tr-service-quote{{margin:24px 0;}}.tr-service-quote h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px;line-height:1.3;}}.tr-service-quote p{{font-size:14px;line-height:1.7;}}.tr-mission{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin-bottom:24px;border-radius:0 4px 4px 0;}}.tr-mission h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px;}}.tr-mission p{{font-size:13px;line-height:1.7;margin-bottom:10px;}}
-.inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-text p{{font-size:13.5px;line-height:1.65;margin-bottom:12px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
-.buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}
+.inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-left .metrics-grid-4{{grid-template-columns:repeat(2,1fr);}}.inv-text p{{font-size:13px;line-height:1.6;margin-bottom:10px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
+.buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}.buyer-photo{{width:100%;height:220px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:24px;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
+.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}}.prop-tables-bottom .sub-heading{{font-size:15px;margin:0 0 10px;}}
 @media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-headshot{{width:50px;height:50px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 4px;}}.toc-nav a{{font-size:8px;padding:10px 4px;letter-spacing:0;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter landscape;margin:0.4in 0.5in;}}
-.pdf-float-btn,.toc-nav,.leaflet-map,.embed-map-wrap,.embed-map-caption{{display:none !important;}}
-.map-fallback,.embed-map-fallback{{display:block !important;}}
+.pdf-float-btn,.toc-nav,.leaflet-map,.embed-map-wrap,.embed-map-caption,.embed-map-fallback{{display:none !important;}}
+.map-fallback{{display:block !important;}}
 body{{font-size:11px;line-height:1.5;color:#222;}}
 p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 
@@ -421,9 +422,6 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 #investment{{page-break-before:always;}}
 #location{{page-break-before:auto;}}
 #property-info{{page-break-before:auto;}}
-#building-systems{{page-break-before:auto;}}
-#regulatory{{page-break-before:auto;}}
-#transactions{{page-break-before:auto;}}
 #development{{page-break-before:always;}}
 #adu-opportunity{{page-break-before:always;}}
 #sale-comps{{page-break-before:always;}}
@@ -436,12 +434,12 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 .metric-card{{page-break-inside:avoid;}}
 .highlight-box,.buyer-profile,.condition-note,.broker-insight{{page-break-inside:avoid;}}
 .os-two-col{{page-break-inside:avoid;grid-template-columns:55% 45%;gap:16px;}}.os-right{{font-size:9.5px;line-height:1.35;}}.os-right p{{margin-bottom:3px;}}.os-right h3{{font-size:11px;margin:0 0 6px;}}
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:10px;line-height:1.4;margin-bottom:6px;}}.loc-wide-map{{height:150px;margin-top:10px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:9.5px;line-height:1.35;margin-bottom:5px;}}.loc-wide-map{{height:250px;margin-top:8px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
 .tr-map-print{{display:block;width:100%;height:260px;border-radius:4px;overflow:hidden;margin-bottom:10px;}}.tr-map-print img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.tr-page2{{page-break-before:always;}}.tr-tagline{{font-size:14px;padding:10px 16px;margin-bottom:10px;}}.tr-service-quote h3{{font-size:13px;margin-bottom:4px;}}.tr-service-quote p{{font-size:10px;line-height:1.45;margin-bottom:6px;}}.tr-mission{{padding:12px 16px;margin-bottom:14px;}}.tr-mission h3{{font-size:13px;margin-bottom:6px;}}.tr-mission p{{font-size:10px;line-height:1.4;margin-bottom:5px;}}
 .bio-grid{{gap:16px;margin:12px 0;}}.bio-headshot{{width:60px;height:60px;}}.bio-name{{font-size:14px;}}.bio-title{{font-size:9px;}}.bio-text{{font-size:10px;line-height:1.4;}}.costar-badge{{padding:12px 16px;margin:14px auto;}}.costar-badge-title{{font-size:16px;}}.costar-badge-sub{{font-size:10px;}}.press-strip{{padding:10px 16px;margin:10px 0;gap:16px;}}.press-strip-label{{font-size:8px;}}.press-logo{{font-size:10px;}}
 #investment{{page-break-after:always;}}.inv-split{{grid-template-columns:50% 50%;gap:14px;}}.inv-text p{{font-size:9.5px;line-height:1.4;margin-bottom:5px;}}.inv-logo{{width:140px;margin-top:8px;}}.inv-photo{{height:220px;}}.inv-highlights{{padding:10px 14px;}}.inv-highlights h4{{font-size:10px;}}.inv-highlights li{{font-size:8.5px;line-height:1.3;margin-bottom:2px;}}.inv-left .metrics-grid-4{{gap:6px;margin-bottom:8px;}}
-#prop-details{{page-break-before:always;}}.prop-details-area{{max-height:680px;overflow:hidden;}}
-.buyer-split{{grid-template-columns:1fr 1fr;gap:16px;page-break-inside:avoid;}}.buyer-objections .obj-q{{font-size:11px;}}.buyer-objections .obj-a{{font-size:9.5px;line-height:1.4;}}
+#prop-details{{page-break-before:always;}}.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;}}.prop-tables-bottom table{{font-size:9px;margin-bottom:6px;}}.prop-tables-bottom th{{font-size:7.5px;padding:3px 6px;}}.prop-tables-bottom td{{padding:3px 6px;font-size:9px;}}.prop-tables-bottom .sub-heading{{font-size:11px;margin:0 0 6px;}}
+.buyer-split{{grid-template-columns:1fr 1fr;gap:16px;page-break-inside:avoid;}}.buyer-profile li{{font-size:10.5px;line-height:1.5;padding:5px 0;}}.buyer-objections .obj-item{{margin-bottom:10px;}}.buyer-objections .obj-q{{font-size:11.5px;margin-bottom:3px;}}.buyer-objections .obj-a{{font-size:10px;line-height:1.45;}}.buyer-photo{{height:220px;margin-top:12px;border-radius:4px;overflow:hidden;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .price-reveal{{page-break-before:always;}}
 table{{page-break-inside:auto;font-size:10.5px;margin-bottom:12px;}}
 thead{{display:table-header-group;}}
@@ -539,9 +537,6 @@ html_parts.append(f"""
 <a href="#investment">Investment</a>
 <a href="#location">Location</a>
 <a href="#prop-details">Property</a>
-<a href="#building-systems">Systems</a>
-<a href="#regulatory">Regulatory</a>
-<a href="#transactions">History</a>
 <a href="#development">Development</a>
 <a href="#adu-opportunity">ADU</a>
 <a href="#sale-comps">Sale Comps</a>
@@ -652,7 +647,7 @@ html_parts.append(f"""
 <div class="metric-card"><span class="metric-value">27</span><span class="metric-label">Total Units</span></div>
 <div class="metric-card"><span class="metric-value">22,674</span><span class="metric-label">Building SF</span></div>
 <div class="metric-card"><span class="metric-value">1.11 Ac</span><span class="metric-label">Combined Lot</span></div>
-<div class="metric-card"><span class="metric-value">5</span><span class="metric-label">Buildings</span></div>
+<div class="metric-card"><span class="metric-value">1953/54</span><span class="metric-label">Year Built</span></div>
 </div>
 
 <div class="inv-text">
@@ -721,14 +716,13 @@ html_parts.append(f"""
 </div>
 """)
 
-# ==================== PROPERTY DETAILS (full-page AI-driven area) ====================
-html_parts.append(f"""
+# ==================== PROPERTY DETAILS (consolidated: all tables on one page) ====================
+html_parts.append("""
 <div class="section" id="prop-details">
 <div class="section-title">Property Details</div>
 <div class="section-subtitle">420-428 W Stocker St, Glendale, CA 91202</div>
 <div class="section-divider"></div>
 
-<div class="prop-details-area">
 <div class="two-col">
 <table class="info-table">
 <tr><td>Address</td><td>420-428 W Stocker St, Glendale, CA 91202</td></tr>
@@ -756,10 +750,53 @@ html_parts.append(f"""
 </table>
 </div>
 
-<div class="img-float-right"><img src="{IMG['aerial_outline']}" alt="Aerial Property Outline"></div>
-
-<p>Each of the two parcels measures 80 feet wide by 300 feet deep. Side by side, the combined site spans 160 feet of frontage by 300 feet of depth, totaling approximately 48,353 SF (1.11 acres). This is among the largest multifamily land assemblages in the Glenwood submarket and is a primary driver of the property's ADU development potential. The dual-parcel structure provides operational flexibility and independent ADU entitlements on each lot under SB 1211.</p>
+<div class="prop-tables-bottom">
+<div>
+<h3 class="sub-heading" style="margin-top:0;">Building Systems &amp; Capital Improvements</h3>
+<table>
+<thead><tr><th>System</th><th>Status</th><th>Year</th></tr></thead>
+<tbody>
+<tr><td>Roof (420 House + Garage)</td><td>Comp shingle</td><td>2012</td></tr>
+<tr><td>Roof (428)</td><td>Comp shingle Class A</td><td>2007</td></tr>
+<tr><td>Plumbing (420)</td><td>Repiped, Units A-H</td><td>2005</td></tr>
+<tr><td>Plumbing (428)</td><td>18 vents, 16 T&P valves</td><td>2004</td></tr>
+<tr><td>HVAC</td><td>FAU (420 Unit I); Window units (428)</td><td>Various</td></tr>
+<tr><td>Electrical</td><td>Major plumbing/electrical work</td><td>2024</td></tr>
+<tr><td>Windows</td><td>Replaced ($10,700)</td><td>2024</td></tr>
+<tr><td>Deck/Walkway (428)</td><td>Fiberglass recoat, permitted</td><td>2023-24</td></tr>
+<tr><td>Exterior Paint</td><td>Full exterior repaint</td><td>2024</td></tr>
+<tr><td>Appliances</td><td>Replacements ($9,005)</td><td>2024</td></tr>
+</tbody>
+</table>
 </div>
+<div>
+<h3 class="sub-heading" style="margin-top:0;">Regulatory &amp; Compliance</h3>
+<table>
+<thead><tr><th>Item</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Rent Control</td><td>AB 1482 + Glendale Ord. 5922</td></tr>
+<tr><td>Just Cause Eviction</td><td>Required (pre-1995 construction)</td></tr>
+<tr><td>Rent Increase Cap</td><td>5% + CPI (max 10%); relocation if >7%</td></tr>
+<tr><td>Code Violations</td><td>None on file</td></tr>
+<tr><td>Soft-Story Retrofit</td><td>Not mandatory in Glendale</td></tr>
+<tr><td>Seismic</td><td>Standard SoCal zone</td></tr>
+<tr><td>Protected Tree</td><td>1 coast live oak (420 parcel)</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<h3 class="sub-heading">Transaction History</h3>
+<table>
+<thead><tr><th>Date</th><th>Event</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>1991</td><td>Earliest recorded deed</td><td>Gerald family ownership begins</td></tr>
+<tr><td>2007</td><td>Family transfer</td><td>Michael A Gerald to Isabelle P Gerald</td></tr>
+<tr><td>2015</td><td>Refinance</td><td>Chase, $3,500,000</td></tr>
+<tr><td>2022</td><td>Refinance</td><td>Chase, $1,350,000 (420) + $250,000 (428)</td></tr>
+<tr class="highlight"><td>2026</td><td>Proposed Sale</td><td>First arms-length sale in 34+ years</td></tr>
+</tbody>
+</table>
 
 </div>
 """)
@@ -813,85 +850,7 @@ html_parts.append(f"""
 </div>
 </div>
 
-</div>
-""")
-
-# ==================== BUILDING SYSTEMS (same as V1) ====================
-html_parts.append("""
-<div class="section section-alt" id="building-systems">
-<div class="section-title">Building Systems &amp; Capital Improvements</div>
-<div class="section-subtitle">Recent Improvements &amp; Condition Assessment</div>
-<div class="section-divider"></div>
-<div class="table-scroll"><table>
-<thead><tr><th>System</th><th>Condition / Status</th><th>Year</th></tr></thead>
-<tbody>
-<tr><td>Roof (420 Front House)</td><td>Comp shingle, 36 squares</td><td>2012</td></tr>
-<tr><td>Roof (420 Garage)</td><td>Comp shingle, 16 squares</td><td>2012</td></tr>
-<tr><td>Roof (428)</td><td>Comp shingle Class A, 65 squares</td><td>2007</td></tr>
-<tr><td>Plumbing (420)</td><td>Repiped, Units A-H (8 units)</td><td>2005</td></tr>
-<tr><td>Plumbing (428)</td><td>18 vents, 16 T&P valves replaced</td><td>2004</td></tr>
-<tr><td>HVAC (420 Unit I)</td><td>FAU up to 100K BTU, A/C 3-15 HP</td><td>2008</td></tr>
-<tr><td>HVAC (428)</td><td>Window units</td><td>Various</td></tr>
-<tr><td>Electrical</td><td>Major plumbing/electrical work (seller reported)</td><td>2024</td></tr>
-<tr><td>Windows</td><td>Replaced (seller reported, $10,700)</td><td>2024</td></tr>
-<tr><td>Deck/Walkway (428)</td><td>Fiberglass recoat, stucco repair (permitted, finaled)</td><td>2023-24</td></tr>
-<tr><td>Exterior Paint</td><td>Full exterior paint (seller reported)</td><td>2024</td></tr>
-<tr><td>Appliances</td><td>Replacements (seller reported, $9,005)</td><td>2024</td></tr>
-<tr><td>Parking</td><td>Surface lot + carport (rear area = ADU potential)</td><td>Original</td></tr>
-<tr><td>Laundry</td><td>To be verified on inspection</td><td>TBD</td></tr>
-</tbody>
-</table></div>
-<div class="condition-note"><strong>Note:</strong> The current owner invested approximately $117,000 in capital improvements during 2024 (plumbing/electrical, deck, windows, HVAC, painting, appliances). Several of these items were not reflected in Glendale Building &amp; Safety permit records. Buyer should verify scope and completion during due diligence. One coast live oak tree on the 420 parcel is protected under Glendale's Indigenous Tree Ordinance.</div>
-
-
-</div>
-""")
-
-# ==================== REGULATORY (same as V1) ====================
-html_parts.append("""
-<div class="section" id="regulatory">
-<div class="section-title">Regulatory &amp; Compliance Summary</div>
-<div class="section-subtitle">City of Glendale Jurisdiction</div>
-<div class="section-divider"></div>
-<div class="table-scroll"><table>
-<thead><tr><th>Item</th><th>Status</th></tr></thead>
-<tbody>
-<tr><td>Rent Control</td><td>AB 1482 (Tenant Protection Act) + Glendale Ordinance 5922</td></tr>
-<tr><td>Just Cause Eviction</td><td>Required (both buildings qualify, built before Feb 1, 1995)</td></tr>
-<tr><td>Annual Rent Increase Cap</td><td>5% + CPI (max 10%) per AB 1482; Glendale triggers relocation if >7%</td></tr>
-<tr><td>Zoning</td><td>R-1250 (Glendale High Density Residential)</td></tr>
-<tr><td>Code Violations</td><td>None on file (Glendale permit portal)</td></tr>
-<tr><td>Soft-Story Retrofit</td><td>Not mandatory in Glendale (voluntary program)</td></tr>
-<tr><td>FEMA Flood Zone</td><td>Zone X (Shaded)  -  moderate risk, no insurance required</td></tr>
-<tr><td>Fire Hazard</td><td>Not in Very High Fire Hazard Severity Zone</td></tr>
-<tr><td>Seismic</td><td>Standard SoCal zone, no Alquist-Priolo designation</td></tr>
-<tr><td>Protected Tree</td><td>1 coast live oak on 420 parcel (Indigenous Tree Ordinance)</td></tr>
-</tbody>
-</table></div>
-<div class="condition-note"><strong>Glendale Rent Control:</strong> Glendale Ordinance No. 5922 (updated March 2024) provides just cause eviction protections, requires a 12-month lease offer before rent increases, and mandates relocation assistance (3 months' rent) when cumulative increases exceed 7% in any 12-month period. This applies to all units built on or before February 1, 1995. Both buildings qualify (1953/1954 construction). Glendale does not operate a rent board, does not require unit registration, and does not impose a local transfer tax.</div>
-
-
-</div>
-""")
-
-# ==================== TRANSACTION HISTORY (same as V1) ====================
-html_parts.append("""
-<div class="section section-alt" id="transactions">
-<div class="section-title">Transaction History</div>
-<div class="section-subtitle">Ownership &amp; Sale History</div>
-<div class="section-divider"></div>
-<div class="table-scroll"><table>
-<thead><tr><th>Date</th><th>Event</th><th>Price</th><th>$/Unit</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>1991</td><td>Earliest recorded deed</td><td> - </td><td> - </td><td>Gerald family ownership begins</td></tr>
-<tr><td>2007</td><td>Family transfer</td><td> - </td><td> - </td><td>Michael A Gerald to Isabelle P Gerald</td></tr>
-<tr><td>2015</td><td>Refinance</td><td> - </td><td> - </td><td>Chase, $3,500,000 (released 2022)</td></tr>
-<tr><td>2022</td><td>Refinance</td><td> - </td><td> - </td><td>Chase, $1,350,000 (420) + $250,000 (428)</td></tr>
-<tr class="highlight"><td>2026</td><td>Proposed Sale</td><td> - </td><td> - </td><td>First arms-length sale in 34+ years</td></tr>
-</tbody>
-</table></div>
-<p>The proposed sale would represent the first arms-length transaction of this property in over three decades. The current assessed value of $4,238,666 reflects a long-term Proposition 13 tax basis. A buyer should anticipate property tax reassessment to approximately 1.13% of the sale price upon close of escrow. Pricing analysis and recommended list price are presented in the Financial Analysis section below.</p>
-
+<div class="buyer-photo"><img src="{IMG['grid2']}" alt="428 Stocker St - Property Photo"></div>
 
 </div>
 """)
