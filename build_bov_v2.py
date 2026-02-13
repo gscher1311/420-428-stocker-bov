@@ -43,47 +43,14 @@ IMG = {
     "adu_aerial": load_image_b64("Gemini_Generated_Image_w3ubtuw3ubtuw3ub.jpeg"),
     "adu_parking": load_image_b64("back parking (potentail spot for ADUs).png"),
     "aerial_outline": load_image_b64("Screenshot 2026-02-11 135520.png"),
+    "loc_map": load_image_b64("location-map.png"),
 }
 
 # ============================================================
-# STATIC LOCATION MAP — Download OSM tiles at build time
+# SUBJECT COORDINATES (used for Leaflet comp maps)
 # ============================================================
 import math
 SUBJECT_LAT, SUBJECT_LNG = 34.162911, -118.26303
-
-def _osm_tile_coords(lat, lng, zoom):
-    """Convert lat/lng to OSM tile x,y at given zoom."""
-    lat_rad = math.radians(lat)
-    n = 2 ** zoom
-    x = int((lng + 180.0) / 360.0 * n)
-    y = int((1.0 - math.log(math.tan(lat_rad) + 1.0 / math.cos(lat_rad)) / math.pi) / 2.0 * n)
-    return x, y
-
-def download_loc_map_tiles(lat, lng, zoom=15):
-    """Download a 3x2 grid of OSM tiles centered on lat/lng, return list of base64 strings."""
-    cx, cy = _osm_tile_coords(lat, lng, zoom)
-    tiles = []
-    for dy in range(-1, 1):      # 2 rows
-        row = []
-        for dx in range(-1, 2):   # 3 cols
-            tx, ty = cx + dx, cy + dy
-            url = f"https://a.tile.openstreetmap.org/{zoom}/{tx}/{ty}.png"
-            req = urllib.request.Request(url, headers={"User-Agent": "LAAA-BOV-Builder/2.0"})
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                data = base64.b64encode(resp.read()).decode("ascii")
-            row.append(f"data:image/png;base64,{data}")
-        tiles.append(row)
-    return tiles
-
-LOC_MAP_TILES = None
-try:
-    print("Downloading static location map tiles...")
-    LOC_MAP_TILES = download_loc_map_tiles(SUBJECT_LAT, SUBJECT_LNG)
-    total_kb = sum(len(t) for row in LOC_MAP_TILES for t in row) // 1024
-    print(f"  Loaded 6 map tiles ({total_kb}KB total b64)")
-except Exception as e:
-    print(f"  WARNING: Could not download map tiles: {e}")
-    LOC_MAP_TILES = None
 
 # ============================================================
 # GEOCODING — Use cached coords from V1 to avoid re-hitting API
@@ -417,7 +384,7 @@ td.num,th.num{{text-align:right;}}
 .condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
 .os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:flex;flex-direction:column;gap:16px;}}.loc-map{{position:relative;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.loc-map-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}}.loc-map-grid img{{width:100%;display:block;}}.loc-map-pin{{position:absolute;top:50%;left:50%;transform:translate(-50%,-100%);width:28px;height:28px;background:#C5A258;border-radius:50% 50% 50% 0;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,0.4);transform:translate(-50%,-100%) rotate(-45deg);}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:flex;flex-direction:column;gap:16px;}}.loc-map{{width:100%;height:240px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.loc-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 @media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-right{{order:-1;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-headshot{{width:50px;height:50px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 4px;}}.toc-nav a{{font-size:8px;padding:10px 4px;letter-spacing:0;}}.leaflet-map{{height:240px;}}}}
 @media print{{
@@ -465,7 +432,7 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 .metric-card{{page-break-inside:avoid;}}
 .highlight-box,.buyer-profile,.condition-note,.broker-insight{{page-break-inside:avoid;}}
 .os-two-col{{page-break-inside:avoid;grid-template-columns:55% 45%;gap:16px;}}.os-right{{font-size:9.5px;line-height:1.35;}}.os-right p{{margin-bottom:3px;}}.os-right h3{{font-size:11px;margin:0 0 6px;}}
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:10px;line-height:1.4;margin-bottom:6px;}}.loc-map{{max-height:200px;overflow:hidden;}}.loc-map-grid img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:10px;line-height:1.4;margin-bottom:6px;}}.loc-map{{height:180px;}}.loc-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
 .price-reveal{{page-break-before:always;}}
 table{{page-break-inside:auto;font-size:10.5px;margin-bottom:12px;}}
 thead{{display:table-header-group;}}
@@ -689,14 +656,7 @@ html_parts.append(f"""
 """)
 
 # ==================== LOCATION OVERVIEW (NEW — 2-col grid) ====================
-if LOC_MAP_TILES:
-    tile_rows_html = ""
-    for row in LOC_MAP_TILES:
-        for t in row:
-            tile_rows_html += f'<img src="{t}" alt="">'
-    loc_map_html = f'<div class="loc-map"><div class="loc-map-grid">{tile_rows_html}</div><div class="loc-map-pin"></div></div>'
-else:
-    loc_map_html = ''
+loc_map_html = f'<div class="loc-map"><img src="{IMG["loc_map"]}" alt="Property Location - 420-428 W Stocker St, Glendale"></div>' if IMG.get("loc_map") else ''
 html_parts.append(f"""
 <div class="section section-alt" id="location">
 <div class="section-title">Location Overview</div>
