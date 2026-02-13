@@ -323,6 +323,24 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 ---
 
+## 21. Page-Aware PDF Matching
+
+**Rule:** The PDF output must match the desktop website view. This is achieved through three coordinated changes:
+
+**1. PDF Worker Viewport:** The Cloudflare PDF worker (`laaa-pdf-worker`) sets `page.setViewport({ width: 1100, height: 850 })` to render at the same 1100px width as the desktop website. Previously it used Puppeteer's default 800px, causing layout mismatches.
+
+**2. Minimal Print CSS:** The `@media print` block no longer overrides font sizes. It ONLY handles: `@page` setup (letter landscape, margins), hiding chrome (nav, PDF button, interactive maps, page-break markers), page-break rules for each section, section padding adjustment (30px 30px), and `print-color-adjust: exact` for backgrounds/images. Desktop fonts (13-14px) render identically in the PDF.
+
+**3. Page Dividers:** A `.page-break-marker` element (dashed gray line) is inserted between sections on the website, showing users exactly where PDF page breaks will occur. These markers are hidden in print via `display: none`.
+
+**4. Property Details Table Headers:** All info-tables on the Property Details page have `<thead>` rows with navy-blue headers for consistency (Property Overview, Site & Zoning, Building Systems, Regulatory).
+
+**5. Investment Overview Photo Alignment:** The `.inv-right` column has `padding-top: 70px` so the property photo's top edge aligns with the top of the metric cards in the left column.
+
+**Result:** What you see on the desktop at 100% zoom is what the PDF outputs. No more bunched text, no more whitespace mismatches, no more font size discrepancies.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:
