@@ -414,6 +414,28 @@ Print CSS for summary page uses 8.5px body font with 7.5px headers and 2px/6px c
 
 ---
 
+## 25. Financial Analysis Section Restructure -- Operating Statement, Summary Page, Trade Range
+
+**Operating Statement Page Break:** Added `page-break-before: always` to `.os-two-col` in print CSS so the Operating Statement + Notes section always starts on its own PDF page. The rent roll can flow to multiple pages for large unit counts, but the operating statement is always a standalone PDF page. **Template rule: the operating statement and its notes must always be on their own PDF page.**
+
+**Operating Statement Equal-Height Columns:** Changed `.os-two-col` from `align-items: start` to `align-items: stretch` so the left column (tables) and right column (notes) stretch to the same height. The notes column now has a subtle background (`#f8f9fb`) and border to visually distinguish it and fill the full height. This matches the PDF model's layout where the operating statement and notes appear as two equal-height panels.
+
+**Note Reference Numbers on Expense Items:** Added `[1]` through `[13]` reference numbers to each income/expense line item in the operating statement table. Income items: `[1]` = Other Income. Expense items: `[2]` = Real Estate Taxes through `[13]` = Management Fee. These correspond to the numbered notes in the right column. Uses `.note-ref` class (gold, superscript, 9px desktop / 7px print). **Template rule: every expense/income item that has a corresponding note must show its reference number inline.**
+
+**Trade Range Moved:** The trade range callout ("A TRADE PRICE IN THE CURRENT INVESTMENT ENVIRONMENT OF $8,850,000 -- $9,350,000") was moved from the bottom of the Financial Summary page to below the Pricing Matrix table and above the Pricing Rationale text on the price-reveal page. This is the correct placement -- the trade range is a pricing conclusion, not a financial summary element.
+
+**Financial Summary Restyled to Match PDF Model:** The Financial Summary page was restyled to closely match the pricing model PDF's page 5:
+- Added "SUMMARY" banner at the top (navy background, white text, centered, uppercase)
+- All summary tables now have visible 1px borders (`border: 1px solid #dce3eb`)
+- Navy section headers with white text match the PDF model's section delineation
+- Added alternating row backgrounds (`tr:nth-child(even)`) for readability
+- Summary/total rows have navy top border + light background matching the PDF model's bold totals
+- Print CSS uses 8px body / 7px headers / 2-5px cell padding for maximum density
+- Container has border + border-radius on desktop for clean visual separation
+- **Template rule: the Financial Summary page should mirror the pricing model's page 5 layout exactly -- SUMMARY banner, two-column grid, navy section headers, bordered tables, alternating row colors.**
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:

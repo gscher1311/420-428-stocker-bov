@@ -323,40 +323,42 @@ med_grm = statistics.median(grms)
 sale_comps_html += f'<tr style="font-weight:600;background:#f0f4f8;"><td></td><td>Medians</td><td></td><td>{med_units}</td><td></td><td>{fc(med_price)}</td><td>{fc(med_ppu)}</td><td>${med_psf:.0f}</td><td>{med_cap:.2f}%</td><td>{med_grm:.2f}</td><td></td><td></td></tr>'
 
 # Operating statement
-# Operating statement — single-column format: Annual, Per Unit, % EGI
+# Operating statement — single-column format: Annual, Per Unit, % EGI, Note#
 # Income section (% EGI = "—" for income lines)
 income_lines = [
-    ("Gross Scheduled Rent", GSR, False),
-    ("Less: Vacancy (5%)", -(GSR * VACANCY_PCT), False),
-    ("Other Income (Parking)", OTHER_INCOME, False),
+    ("Gross Scheduled Rent", GSR, False, None),
+    ("Less: Vacancy (5%)", -(GSR * VACANCY_PCT), False, None),
+    ("Other Income (Parking)", OTHER_INCOME, False, 1),
 ]
-# Expense section
+# Expense section (note numbers [2]-[13] match the notes on the right)
 expense_lines = [
-    ("Real Estate Taxes", TAXES_AT_APT_VALUE),
-    ("Insurance", 28074),
-    ("Water & Power", 24945),
-    ("Gas", 2979),
-    ("Trash Removal", 17700),
-    ("Repairs & Maintenance", 20250),
-    ("Landscaping", 4800),
-    ("Pest Control", 700),
-    ("On-site Manager", 24000),
-    ("General & Administrative", 2160),
-    ("Operating Reserves", 4050),
-    ("Management Fee (4%)", CUR_MGMT),
+    ("Real Estate Taxes", TAXES_AT_APT_VALUE, 2),
+    ("Insurance", 28074, 3),
+    ("Water & Power", 24945, 4),
+    ("Gas", 2979, 5),
+    ("Trash Removal", 17700, 6),
+    ("Repairs & Maintenance", 20250, 7),
+    ("Landscaping", 4800, 8),
+    ("Pest Control", 700, 9),
+    ("On-site Manager", 24000, 10),
+    ("General & Administrative", 2160, 11),
+    ("Operating Reserves", 4050, 12),
+    ("Management Fee (4%)", CUR_MGMT, 13),
 ]
 
 op_income_html = ""
-for label, val, _ in income_lines:
+for label, val, _, note_num in income_lines:
     v_str = f"${val:,.0f}" if val >= 0 else f"(${abs(val):,.0f})"
     pu = f"${val/UNITS:,.0f}" if val >= 0 else f"(${abs(val)/UNITS:,.0f})"
-    op_income_html += f"<tr><td>{label}</td><td class='num'>{v_str}</td><td class='num'>{pu}</td><td class='num'> - </td></tr>\n"
+    note_ref = f'<span class="note-ref">[{note_num}]</span>' if note_num else ""
+    op_income_html += f"<tr><td>{label} {note_ref}</td><td class='num'>{v_str}</td><td class='num'>{pu}</td><td class='num'> - </td></tr>\n"
 op_income_html += f'<tr class="summary"><td><strong>Effective Gross Income</strong></td><td class="num"><strong>${CUR_EGI:,.0f}</strong></td><td class="num"><strong>${CUR_EGI/UNITS:,.0f}</strong></td><td class="num"><strong>100.0%</strong></td></tr>'
 
 op_expense_html = ""
-for label, val in expense_lines:
+for label, val, note_num in expense_lines:
     pct = f"{val/CUR_EGI*100:.1f}%"
-    op_expense_html += f"<tr><td>{label}</td><td class='num'>${val:,.0f}</td><td class='num'>${val/UNITS:,.0f}</td><td class='num'>{pct}</td></tr>\n"
+    note_ref = f'<span class="note-ref">[{note_num}]</span>' if note_num else ""
+    op_expense_html += f"<tr><td>{label} {note_ref}</td><td class='num'>${val:,.0f}</td><td class='num'>${val/UNITS:,.0f}</td><td class='num'>{pct}</td></tr>\n"
 op_expense_html += f'<tr class="summary"><td><strong>Total Expenses</strong></td><td class="num"><strong>${CUR_TOTAL_EXP:,.0f}</strong></td><td class="num"><strong>${CUR_TOTAL_EXP/UNITS:,.0f}</strong></td><td class="num"><strong>{CUR_TOTAL_EXP/CUR_EGI*100:.1f}%</strong></td></tr>'
 op_expense_html += f'\n<tr class="summary"><td><strong>Net Operating Income</strong></td><td class="num"><strong>${CUR_NOI_AT_LIST:,.0f}</strong></td><td class="num"><strong>${CUR_NOI_AT_LIST/UNITS:,.0f}</strong></td><td class="num"><strong>{CUR_NOI_AT_LIST/CUR_EGI*100:.1f}%</strong></td></tr>'
 
@@ -468,13 +470,13 @@ td.num,th.num{{text-align:right;}}
 .press-logo{{font-size:13px;font-weight:700;color:#1B3A5C;letter-spacing:0.5px;}}
 .condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}.achievements-list{{font-size:13px;line-height:1.8;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
-.os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
+.os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:stretch;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;background:#f8f9fb;border:1px solid #e0e4ea;border-radius:6px;padding:16px 20px;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}.note-ref{{font-size:9px;color:#C5A258;font-weight:700;vertical-align:super;}}
 .loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left{{max-height:380px;overflow:hidden;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:block;max-height:380px;overflow:hidden;}}.loc-wide-map{{width:100%;height:200px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:20px;}}.loc-wide-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .tr-tagline{{font-size:24px;font-weight:600;color:#1B3A5C;text-align:center;padding:16px 24px;margin-bottom:20px;border-left:4px solid #C5A258;background:#FFF8E7;border-radius:0 4px 4px 0;font-style:italic;}}.tr-map-print{{display:none;}}.tr-service-quote{{margin:24px 0;}}.tr-service-quote h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px;line-height:1.3;}}.tr-service-quote p{{font-size:14px;line-height:1.7;}}.tr-mission{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin-bottom:24px;border-radius:0 4px 4px 0;}}.tr-mission h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px;}}.tr-mission p{{font-size:13px;line-height:1.7;margin-bottom:10px;}}
 .inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-left .metrics-grid-4{{grid-template-columns:repeat(2,1fr);}}.inv-text p{{font-size:13px;line-height:1.6;margin-bottom:10px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;padding-top:70px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
 .buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}.buyer-photo{{width:100%;height:220px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:24px;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}}.prop-tables-bottom .sub-heading{{font-size:15px;margin:0 0 10px;}}.prop-grid-4{{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:20px;}}
-.summary-page{{margin-top:24px;}}.summary-two-col{{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}}.summary-table{{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12px;}}.summary-table th,.summary-table td{{padding:5px 10px;border-bottom:1px solid #e0e0e0;text-align:left;}}.summary-table th{{font-size:10px;text-transform:uppercase;letter-spacing:1px;}}.summary-header{{background:#1B3A5C;color:#fff;padding:6px 10px !important;font-size:11px !important;font-weight:700;letter-spacing:1.5px;border-bottom:none !important;}}.summary-table tr.summary td{{border-top:2px solid #1B3A5C;font-weight:700;}}.summary-trade-range{{text-align:center;margin:28px auto;padding:20px 30px;background:#f0f4f8;border:2px solid #1B3A5C;border-radius:8px;max-width:500px;}}.summary-trade-label{{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#666;font-weight:600;margin-bottom:8px;}}.summary-trade-prices{{font-size:28px;font-weight:700;color:#1B3A5C;}}
+.summary-page{{margin-top:24px;border:1px solid #dce3eb;border-radius:8px;padding:20px;background:#fff;}}.summary-banner{{text-align:center;background:#1B3A5C;color:#fff;padding:10px 16px;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:4px;margin-bottom:16px;}}.summary-two-col{{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}}.summary-table{{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12px;border:1px solid #dce3eb;}}.summary-table th,.summary-table td{{padding:4px 8px;border-bottom:1px solid #e8ecf0;text-align:left;}}.summary-table td.num{{text-align:right;}}.summary-table th.num{{text-align:right;}}.summary-header{{background:#1B3A5C;color:#fff;padding:5px 8px !important;font-size:10px !important;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:none !important;}}.summary-table tr.summary td{{border-top:2px solid #1B3A5C;font-weight:700;background:#f0f4f8;}}.summary-table tr:nth-child(even){{background:#fafbfc;}}.summary-trade-range{{text-align:center;margin:24px auto;padding:16px 24px;border:2px solid #1B3A5C;border-radius:6px;max-width:480px;}}.summary-trade-label{{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#555;font-weight:600;margin-bottom:6px;}}.summary-trade-prices{{font-size:26px;font-weight:700;color:#1B3A5C;}}
 .page-break-marker{{height:4px;background:repeating-linear-gradient(90deg,#ddd 0,#ddd 8px,transparent 8px,transparent 16px);margin:0;}}
 .team-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;}}.team-card{{text-align:center;padding:8px;}}.team-headshot{{width:60px;height:60px;border-radius:50%;border:2px solid #C5A258;object-fit:cover;margin:0 auto 4px;display:block;}}.team-card-name{{font-size:13px;font-weight:700;color:#1B3A5C;}}.team-card-title{{font-size:10px;color:#C5A258;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}}
 .mkt-quote{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 24px;margin:20px 0;border-radius:0 4px 4px 0;font-size:15px;font-style:italic;line-height:1.6;color:#1B3A5C;}}.mkt-channels{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.mkt-channel{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.mkt-channel h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.mkt-channel ul{{margin:0;padding-left:18px;}}.mkt-channel li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}
@@ -573,18 +575,20 @@ td{{padding:4px 8px;font-size:10px;}}
 .buyer-photo{{height:180px;margin-top:8px;border-radius:4px;overflow:hidden;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 
 /* === FINANCIAL SUMMARY === */
-.summary-page{{margin-top:12px;page-break-before:always;}}.summary-two-col{{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}}
-.summary-table{{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:8.5px;}}.summary-table th,.summary-table td{{padding:2px 6px;border-bottom:1px solid #ddd;text-align:left;}}.summary-table th{{font-size:7px;text-transform:uppercase;letter-spacing:0.5px;}}
-.summary-header{{background:#1B3A5C;color:#fff;padding:3px 6px !important;font-size:7.5px !important;font-weight:700;letter-spacing:1px;border-bottom:none !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.summary-table tr.summary td{{border-top:1.5px solid #1B3A5C;font-weight:700;}}
-.summary-trade-range{{text-align:center;margin:10px auto;padding:10px 16px;border:2px solid #1B3A5C;border-radius:4px;max-width:400px;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.summary-trade-label{{font-size:8px;letter-spacing:1.5px;color:#444;font-weight:600;margin-bottom:4px;}}.summary-trade-prices{{font-size:16px;font-weight:700;color:#1B3A5C;}}
+.summary-page{{margin-top:8px;page-break-before:always;border:none;padding:0;background:transparent;}}.summary-banner{{text-align:center;background:#1B3A5C;color:#fff;padding:6px 10px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px;margin-bottom:8px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.summary-two-col{{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;}}
+.summary-table{{width:100%;border-collapse:collapse;margin-bottom:6px;font-size:8px;border:1px solid #ccc;}}.summary-table th,.summary-table td{{padding:2px 5px;border-bottom:1px solid #ddd;text-align:left;}}.summary-table td.num{{text-align:right;}}.summary-table th.num{{text-align:right;}}.summary-table th{{font-size:6.5px;text-transform:uppercase;letter-spacing:0.5px;}}
+.summary-header{{background:#1B3A5C;color:#fff;padding:3px 5px !important;font-size:7px !important;font-weight:700;letter-spacing:1px;border-bottom:none !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.summary-table tr.summary td{{border-top:1.5px solid #1B3A5C;font-weight:700;background:#f0f4f8;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.summary-table tr:nth-child(even){{background:#fafbfc;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.summary-trade-range{{text-align:center;margin:8px auto;padding:8px 14px;border:2px solid #1B3A5C;border-radius:3px;max-width:350px;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.summary-trade-label{{font-size:7px;letter-spacing:1.5px;color:#333;font-weight:600;margin-bottom:3px;}}.summary-trade-prices{{font-size:14px;font-weight:700;color:#1B3A5C;}}
 
 /* === OTHER SECTIONS === */
 .highlight-box{{padding:8px 12px;margin:8px 0;}}.highlight-box h4{{font-size:11px;margin-bottom:4px;}}.highlight-box li{{font-size:10px;margin-bottom:2px;line-height:1.4;}}
 .photo-grid{{gap:6px;margin-bottom:8px;}}.photo-grid img{{height:140px;}}
 .adu-img-wrap{{margin-bottom:8px;}}.adu-img-wrap img{{max-height:200px;width:auto;margin:0 auto;display:block;}}
 .img-float-right{{float:right;width:40%;margin:0 0 8px 12px;}}.img-float-right img{{max-height:180px;width:auto;}}
-.os-two-col{{page-break-inside:avoid;grid-template-columns:55% 45%;gap:14px;}}.os-right{{font-size:10px;line-height:1.35;}}.os-right p{{margin-bottom:3px;}}.os-right h3{{font-size:11px;margin:0 0 5px;}}
+.os-two-col{{page-break-before:always;page-break-inside:avoid;grid-template-columns:55% 45%;gap:14px;align-items:stretch;}}.os-right{{font-size:9px;line-height:1.3;padding:8px 12px;background:#f8f9fb;border:1px solid #ddd;border-radius:4px;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.os-right p{{margin-bottom:2px;}}.os-right h3{{font-size:10px;margin:0 0 4px;}}.note-ref{{font-size:7px;color:#C5A258;font-weight:700;vertical-align:super;}}
 .price-reveal .condition-note{{padding:6px 10px;margin:6px 0;font-size:10px;line-height:1.35;}}
 .footer{{padding:20px 30px;}}.footer-logo{{width:120px;margin-bottom:10px;}}.footer-headshot{{width:50px;height:50px;}}.footer-name{{font-size:13px;}}.footer-title{{font-size:10px;}}.footer-contact{{font-size:10px;line-height:1.5;}}.footer-disclaimer{{font-size:8px;}}
 }}
@@ -1477,7 +1481,7 @@ html_parts.append(f"""
 
 <!-- SCREEN 3: FINANCIAL SUMMARY (mirrors pricing model page 5) -->
 <div class="summary-page">
-<h3 class="sub-heading" style="text-align:center;font-size:16px;margin-bottom:12px;">Financial Summary</h3>
+<div class="summary-banner">Summary</div>
 <div class="summary-two-col">
 
 <div class="summary-left">
@@ -1563,11 +1567,6 @@ html_parts.append(f"""
 </div>
 
 </div>
-
-<div class="summary-trade-range">
-<div class="summary-trade-label">A TRADE PRICE IN THE CURRENT INVESTMENT ENVIRONMENT OF</div>
-<div class="summary-trade-prices">$8,850,000 &mdash; $9,350,000</div>
-</div>
 </div>
 
 <!-- SCREEN 4: PRICE REVEAL + PRICING MATRIX -->
@@ -1590,6 +1589,11 @@ html_parts.append(f"""
 <thead><tr><th class="num">Purchase Price</th><th class="num">Current Cap</th><th class="num">Pro Forma Cap</th><th class="num">Cash-on-Cash</th><th class="num">$/SF</th><th class="num">$/Unit</th><th class="num">PF GRM</th></tr></thead>
 <tbody>{matrix_html}</tbody>
 </table></div>
+
+<div class="summary-trade-range">
+<div class="summary-trade-label">A TRADE PRICE IN THE CURRENT INVESTMENT ENVIRONMENT OF</div>
+<div class="summary-trade-prices">$8,850,000 &mdash; $9,350,000</div>
+</div>
 
 <h3 class="sub-heading">Pricing Rationale</h3>
 
