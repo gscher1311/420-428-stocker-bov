@@ -361,6 +361,24 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 ---
 
+## 23. Team Page Restructure, Cover/Marketing/Property Details PDF Fixes, NYSE Removal
+
+**Tagline:** Split "LAAA Team of Marcus & Millichap: Expertise, Execution, Excellence." into two lines with the company name on line 1 (bigger, bolder via `font-size:1.2em`) and the motto on line 2. Desktop font bumped from 20px to 24px, print from 13px to 15px.
+
+**NYSE: MMI Removed:** The `NYSE: MMI` line on the cover page was removed entirely from both desktop and PDF. Not needed for client-facing BOV presentations.
+
+**Team Page Restructured (Page 2):** New layout order: (1) "Our Team" section title at top, (2) CoStar #1 Most Active banner, (3) Glen/Filip bio cards with 100px headshots (desktop) / 75px (print), (4) 9-person team grid with 60px headshots (desktop) / 45px (print). **Template rule: bio headshots (Glen/Filip) should be 1.5-2x the team grid headshots.** "As Featured In" press strip deleted. Duplicate "Our Team" sub-heading and duplicate CoStar badge removed.
+
+**Cover PDF Fix:** Print CSS now constrains cover headshots to 55px with 20px gap (was 80px/28px) to prevent the cover page from overflowing onto two PDF pages. Desktop headshot size unchanged at 80px. **Template rule: always add `.cover-headshot` size constraints in print CSS when headshots are shown on cover.**
+
+**Marketing Overflow Fix:** The redundant second `metrics-grid-4` row (97.6% SP/LP, 21% Above Ask, 10-Day Contingency, 61% 1031) was removed. These stats are already explained in detail in the `perf-grid` cards below. Saves ~80px in print, keeping the full marketing page on one PDF page.
+
+**Property Details Overflow Fix:** Three duplicate rows removed from the Site & Zoning table (School District, FEMA Flood Zone, Fire Hazard) -- these already appear in the Location Overview table. Reduces row count and keeps property details on one PDF page.
+
+**Buyer Profile Page Break:** Added `#property-info { page-break-before: always; }` in print CSS so the Buyer Profile & Objections section gets its own PDF page. Previously it flowed after Property Details with no break, causing the buyer-photo image to overflow onto the next page.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:

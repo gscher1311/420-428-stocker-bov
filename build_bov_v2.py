@@ -384,7 +384,7 @@ td.num,th.num{{text-align:right;}}
 .costar-badge-sub{{font-size:12px;color:#C5A258;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-top:6px;}}
 .bio-grid{{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:24px 0;}}
 .bio-card{{display:flex;gap:16px;align-items:flex-start;}}
-.bio-headshot{{width:80px;height:80px;border-radius:50%;border:3px solid #C5A258;object-fit:cover;flex-shrink:0;}}
+.bio-headshot{{width:100px;height:100px;border-radius:50%;border:3px solid #C5A258;object-fit:cover;flex-shrink:0;}}
 .bio-name{{font-size:16px;font-weight:700;color:#1B3A5C;margin-bottom:2px;}}
 .bio-title{{font-size:11px;color:#C5A258;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}}
 .bio-text{{font-size:13px;line-height:1.6;color:#444;}}
@@ -395,12 +395,12 @@ td.num,th.num{{text-align:right;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
 .os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
 .loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left{{max-height:380px;overflow:hidden;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:block;max-height:380px;overflow:hidden;}}.loc-wide-map{{width:100%;height:200px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:20px;}}.loc-wide-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
-.tr-tagline{{font-size:20px;font-weight:600;color:#1B3A5C;text-align:center;padding:16px 24px;margin-bottom:20px;border-left:4px solid #C5A258;background:#FFF8E7;border-radius:0 4px 4px 0;font-style:italic;}}.tr-map-print{{display:none;}}.tr-service-quote{{margin:24px 0;}}.tr-service-quote h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px;line-height:1.3;}}.tr-service-quote p{{font-size:14px;line-height:1.7;}}.tr-mission{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin-bottom:24px;border-radius:0 4px 4px 0;}}.tr-mission h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px;}}.tr-mission p{{font-size:13px;line-height:1.7;margin-bottom:10px;}}
+.tr-tagline{{font-size:24px;font-weight:600;color:#1B3A5C;text-align:center;padding:16px 24px;margin-bottom:20px;border-left:4px solid #C5A258;background:#FFF8E7;border-radius:0 4px 4px 0;font-style:italic;}}.tr-map-print{{display:none;}}.tr-service-quote{{margin:24px 0;}}.tr-service-quote h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px;line-height:1.3;}}.tr-service-quote p{{font-size:14px;line-height:1.7;}}.tr-mission{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin-bottom:24px;border-radius:0 4px 4px 0;}}.tr-mission h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px;}}.tr-mission p{{font-size:13px;line-height:1.7;margin-bottom:10px;}}
 .inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-left .metrics-grid-4{{grid-template-columns:repeat(2,1fr);}}.inv-text p{{font-size:13px;line-height:1.6;margin-bottom:10px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;padding-top:70px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
 .buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}.buyer-photo{{width:100%;height:220px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:24px;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}}.prop-tables-bottom .sub-heading{{font-size:15px;margin:0 0 10px;}}
 .page-break-marker{{height:4px;background:repeating-linear-gradient(90deg,#ddd 0,#ddd 8px,transparent 8px,transparent 16px);margin:0;}}
-.team-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;}}.team-card{{text-align:center;padding:8px;}}.team-headshot{{width:40px;height:40px;border-radius:50%;border:2px solid #C5A258;object-fit:cover;margin:0 auto 4px;display:block;}}.team-card-name{{font-size:12px;font-weight:700;color:#1B3A5C;}}.team-card-title{{font-size:9px;color:#C5A258;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}}
+.team-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;}}.team-card{{text-align:center;padding:8px;}}.team-headshot{{width:60px;height:60px;border-radius:50%;border:2px solid #C5A258;object-fit:cover;margin:0 auto 4px;display:block;}}.team-card-name{{font-size:13px;font-weight:700;color:#1B3A5C;}}.team-card-title{{font-size:10px;color:#C5A258;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}}
 .mkt-quote{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 24px;margin:20px 0;border-radius:0 4px 4px 0;font-size:15px;font-style:italic;line-height:1.6;color:#1B3A5C;}}.mkt-channels{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.mkt-channel{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.mkt-channel h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.mkt-channel ul{{margin:0;padding-left:18px;}}.mkt-channel li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}
 .perf-grid{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.perf-card{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.perf-card h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.perf-card ul{{margin:0;padding-left:18px;}}.perf-card li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}.platform-strip{{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin-top:24px;padding:14px 20px;background:#1B3A5C;border-radius:6px;}}.platform-strip-label{{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;font-weight:600;}}.platform-name{{font-size:12px;font-weight:600;color:#fff;letter-spacing:0.5px;}}
 @media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}.mkt-channels,.perf-grid{{grid-template-columns:1fr;}}}}
@@ -435,7 +435,7 @@ td{{padding:4px 8px;font-size:10px;}}
 /* === COVER === */
 .cover{{min-height:7.5in;padding:0;page-break-after:always;display:flex;align-items:center;justify-content:center;}}
 .cover-bg{{filter:brightness(0.35);-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.cover-headshots{{display:flex;gap:28px;}}
+.cover-headshots{{display:flex;gap:20px;}}.cover-headshot{{width:55px;height:55px;}}.cover-headshot-name{{font-size:10px;}}.cover-headshot-title{{font-size:8px;}}
 
 /* === METRICS (all sections) === */
 .metrics-grid,.metrics-grid-4{{gap:8px;margin-bottom:10px;page-break-inside:avoid;}}
@@ -450,7 +450,7 @@ td{{padding:4px 8px;font-size:10px;}}
 .tr-page2{{page-break-before:always;}}
 #marketing{{page-break-before:always;}}
 #investment{{page-break-before:always;page-break-after:always;}}
-#prop-details{{page-break-before:always;}}
+#prop-details{{page-break-before:always;}}#property-info{{page-break-before:always;}}
 #location{{page-break-before:always;}}
 #development{{page-break-before:always;}}
 #adu-opportunity{{page-break-before:always;}}
@@ -460,15 +460,15 @@ td{{padding:4px 8px;font-size:10px;}}
 .footer{{page-break-before:always;}}
 
 /* === TRACK RECORD === */
-.tr-tagline{{font-size:13px;padding:8px 14px;margin-bottom:8px;}}
+.tr-tagline{{font-size:15px;padding:8px 14px;margin-bottom:8px;}}
 .tr-map-print{{display:block;width:100%;height:240px;border-radius:4px;overflow:hidden;margin-bottom:8px;}}.tr-map-print img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .tr-service-quote{{margin:10px 0;}}.tr-service-quote h3{{font-size:13px;margin-bottom:4px;}}.tr-service-quote p{{font-size:11px;line-height:1.45;}}
 .tr-mission{{padding:10px 14px;margin-bottom:12px;}}.tr-mission h3{{font-size:13px;margin-bottom:5px;}}.tr-mission p{{font-size:11px;line-height:1.4;margin-bottom:4px;}}
-.bio-grid{{gap:14px;margin:10px 0;}}.bio-headshot{{width:60px;height:60px;}}.bio-name{{font-size:13px;}}.bio-title{{font-size:9px;}}.bio-text{{font-size:10px;line-height:1.4;}}
+.bio-grid{{gap:14px;margin:10px 0;}}.bio-headshot{{width:75px;height:75px;}}.bio-name{{font-size:13px;}}.bio-title{{font-size:9px;}}.bio-text{{font-size:10px;line-height:1.4;}}
 .costar-badge{{padding:10px 14px;margin:10px auto;}}.costar-badge-title{{font-size:15px;}}.costar-badge-sub{{font-size:9px;}}
 .condition-note{{padding:8px 12px;margin:8px 0;font-size:10px;line-height:1.45;}}
 .press-strip{{padding:8px 14px;margin:8px 0;gap:14px;}}.press-strip-label{{font-size:8px;}}.press-logo{{font-size:10px;}}
-.team-grid{{gap:8px;margin:8px 0;}}.team-card{{padding:4px;}}.team-headshot{{width:35px;height:35px;}}.team-card-name{{font-size:9px;}}.team-card-title{{font-size:7px;}}
+.team-grid{{gap:8px;margin:8px 0;}}.team-card{{padding:4px;}}.team-headshot{{width:45px;height:45px;}}.team-card-name{{font-size:10px;}}.team-card-title{{font-size:8px;}}
 
 /* === MARKETING + PERFORMANCE === */
 .mkt-quote{{padding:8px 14px;margin:8px 0;font-size:12px;line-height:1.5;}}
@@ -540,7 +540,6 @@ html_parts.append(f"""
 </div>
 </div>
 <p style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:8px;">February 2026</p>
-<p style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.35);margin-top:8px;text-transform:uppercase;">NYSE: MMI</p>
 </div>
 </div>
 """)
@@ -571,7 +570,7 @@ html_parts.append(f"""
 <div class="section-subtitle">LA Apartment Advisors at Marcus &amp; Millichap</div>
 <div class="section-divider"></div>
 
-<div class="tr-tagline">LAAA Team of Marcus &amp; Millichap: Expertise, Execution, Excellence.</div>
+<div class="tr-tagline"><span style="display:block;font-size:1.2em;font-weight:700;margin-bottom:4px;">LAAA Team of Marcus &amp; Millichap</span>Expertise, Execution, Excellence.</div>
 
 <div class="metrics-grid metrics-grid-4">
 <div class="metric-card"><span class="metric-value">501</span><span class="metric-label">Closed Transactions</span><span class="metric-sub">All-Time</span></div>
@@ -594,6 +593,17 @@ html_parts.append(f"""
 
 <div class="tr-page2">
 
+<div style="text-align:center;margin-bottom:8px;">
+<div class="section-title" style="margin-bottom:4px;">Our Team</div>
+<div class="section-subtitle">LA Apartment Advisors at Marcus &amp; Millichap</div>
+<div class="section-divider" style="margin:0 auto 12px;"></div>
+</div>
+
+<div class="costar-badge" style="margin-top:8px;margin-bottom:16px;">
+<div class="costar-badge-title">#1 Most Active Multifamily Sales Team in LA County</div>
+<div class="costar-badge-sub">CoStar &bull; 2019, 2020, 2021 &bull; #4 in California</div>
+</div>
+
 <div class="bio-grid">
 <div class="bio-card">
 <img id="bio-glen-headshot" class="bio-headshot" src="{IMG['glen']}" alt="Glen Scher">
@@ -613,7 +623,6 @@ html_parts.append(f"""
 </div>
 </div>
 
-<h3 class="sub-heading" style="text-align:center;margin-top:16px;">Our Team</h3>
 <div class="team-grid">
 <div class="team-card"><img class="team-headshot" src="{IMG['team_aida']}" alt="Aida Memary"><div class="team-card-name">Aida Memary</div><div class="team-card-title">Associate Investments</div></div>
 <div class="team-card"><img class="team-headshot" src="{IMG['team_logan']}" alt="Logan Ward"><div class="team-card-name">Logan Ward</div><div class="team-card-title">Associate Investments</div></div>
@@ -624,11 +633,6 @@ html_parts.append(f"""
 <div class="team-card"><img class="team-headshot" src="{IMG['team_blake']}" alt="Blake Lewitt"><div class="team-card-name">Blake Lewitt</div><div class="team-card-title">Associate Investments</div></div>
 <div class="team-card"><img class="team-headshot" src="{IMG['team_mike']}" alt="Mike Palade"><div class="team-card-name">Mike Palade</div><div class="team-card-title">Agent Assistant</div></div>
 <div class="team-card"><img class="team-headshot" src="{IMG['team_tony']}" alt="Tony H. Dang"><div class="team-card-name">Tony H. Dang</div><div class="team-card-title">Business Operations Manager</div></div>
-</div>
-
-<div class="costar-badge">
-<div class="costar-badge-title">#1 Most Active Multifamily Sales Team in LA County</div>
-<div class="costar-badge-sub">CoStar &bull; 2019, 2020, 2021 &bull; #4 in California</div>
 </div>
 
 <div class="condition-note" style="margin-top:20px;">
@@ -643,14 +647,6 @@ html_parts.append(f"""
 </p>
 </div>
 
-<div class="press-strip">
-<span class="press-strip-label">As Featured In</span>
-<span class="press-logo">BISNOW</span>
-<span class="press-logo">YAHOO FINANCE</span>
-<span class="press-logo">CONNECT CRE</span>
-<span class="press-logo">SFVBJ</span>
-<span class="press-logo">THE PINNACLE LIST</span>
-</div>
 
 </div>
 </div>
@@ -708,13 +704,6 @@ html_parts.append("""
 <li><strong>Current inventory attachment</strong> sent ~25 times/day by all team members</li>
 </ul>
 </div>
-</div>
-
-<div class="metrics-grid-4" style="margin-top:16px;">
-<div class="metric-card"><span class="metric-value">97.6%</span><span class="metric-label">Average SP/LP</span><span class="metric-sub">Sale Price to List Price</span></div>
-<div class="metric-card"><span class="metric-value">21%</span><span class="metric-label">Sell At or Above</span><span class="metric-sub">Asking Price</span></div>
-<div class="metric-card"><span class="metric-value">10</span><span class="metric-label">Day Avg Contingency</span><span class="metric-sub">Due Diligence Period</span></div>
-<div class="metric-card"><span class="metric-value">61%</span><span class="metric-label">Sellers Do 1031</span><span class="metric-sub">Of All Sellers</span></div>
 </div>
 
 <div class="perf-grid">
@@ -888,9 +877,6 @@ html_parts.append("""
 <tr><td>Stories</td><td>1-2</td></tr>
 <tr><td>Parking</td><td>Surface + Carport</td></tr>
 <tr><td>Rear Parking Area</td><td>~50 ft x 160 ft (~8,000 SF)</td></tr>
-<tr><td>School District</td><td>Glendale Unified</td></tr>
-<tr><td>FEMA Flood Zone</td><td>Zone X (Shaded)</td></tr>
-<tr><td>Fire Hazard</td><td>Not in VHFHSZ</td></tr>
 <tr><td>Submarket</td><td>Glenwood (NW Glendale)</td></tr>
 </tbody>
 </table>
