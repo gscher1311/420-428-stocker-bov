@@ -104,6 +104,28 @@ OTHER_INCOME = 5_820
 NON_TAX_CUR_EXP = 158_040
 NON_TAX_PF_EXP = 163_266
 
+# Financing constants (from pricing model)
+INTEREST_RATE = 0.0575
+AMORTIZATION_YEARS = 30
+LTV = 0.55
+LOAN_CONSTANT = 0.07
+LOAN_TERM_YEARS = 3
+LOT_SIZE_ACRES = 1.12
+
+def calc_principal_reduction_yr1(loan_amount, annual_rate, amort_years):
+    """Calculate year 1 principal reduction using monthly amortization."""
+    r = annual_rate / 12
+    n = amort_years * 12
+    monthly_pmt = loan_amount * (r * (1 + r)**n) / ((1 + r)**n - 1)
+    balance = loan_amount
+    total_principal = 0
+    for _ in range(12):
+        interest = balance * r
+        principal = monthly_pmt - interest
+        total_principal += principal
+        balance -= principal
+    return total_principal
+
 def calc_metrics(price):
     taxes = price * TAX_RATE
     cur_egi = GSR * (1 - VACANCY_PCT) + OTHER_INCOME
@@ -112,9 +134,30 @@ def calc_metrics(price):
     pf_exp = NON_TAX_PF_EXP + taxes
     cur_noi = cur_egi - cur_exp
     pf_noi = pf_egi - pf_exp
+    loan_amount = price * LTV
+    down_payment = price * (1 - LTV)
+    debt_service = loan_amount * LOAN_CONSTANT
+    net_cf_cur = cur_noi - debt_service
+    net_cf_pf = pf_noi - debt_service
+    coc_cur = net_cf_cur / down_payment * 100 if down_payment > 0 else 0
+    coc_pf = net_cf_pf / down_payment * 100 if down_payment > 0 else 0
+    dcr_cur = cur_noi / debt_service if debt_service > 0 else 0
+    dcr_pf = pf_noi / debt_service if debt_service > 0 else 0
+    prin_red = calc_principal_reduction_yr1(loan_amount, INTEREST_RATE, AMORTIZATION_YEARS)
+    total_return_cur = net_cf_cur + prin_red
+    total_return_pf = net_cf_pf + prin_red
+    total_return_pct_cur = total_return_cur / down_payment * 100 if down_payment > 0 else 0
+    total_return_pct_pf = total_return_pf / down_payment * 100 if down_payment > 0 else 0
     return {"price": price, "taxes": taxes, "cur_noi": cur_noi, "pf_noi": pf_noi,
+            "cur_egi": cur_egi, "pf_egi": pf_egi, "cur_exp": cur_exp, "pf_exp": pf_exp,
             "per_unit": price / UNITS, "per_sf": price / SF,
-            "cur_cap": cur_noi / price * 100, "pf_cap": pf_noi / price * 100, "grm": price / GSR}
+            "cur_cap": cur_noi / price * 100, "pf_cap": pf_noi / price * 100,
+            "grm": price / GSR, "pf_grm": price / PF_GSR,
+            "loan_amount": loan_amount, "down_payment": down_payment,
+            "debt_service": debt_service, "net_cf_cur": net_cf_cur, "net_cf_pf": net_cf_pf,
+            "coc_cur": coc_cur, "coc_pf": coc_pf, "dcr_cur": dcr_cur, "dcr_pf": dcr_pf,
+            "prin_red": prin_red, "total_return_cur": total_return_cur, "total_return_pf": total_return_pf,
+            "total_return_pct_cur": total_return_pct_cur, "total_return_pct_pf": total_return_pct_pf}
 
 # Descending, $100K increments, matching PDF model range ($9.5M to $8.5M)
 MATRIX_PRICES = list(range(9_500_000, 8_400_000, -100_000))
@@ -212,7 +255,39 @@ rent_map_js = build_map_js("rentMap", rent_comps_for_map, "#1B3A5C", SUBJECT_LAT
 matrix_html = ""
 for m in MATRIX:
     cls = ' class="highlight"' if m["price"] == LIST_PRICE else ""
-    matrix_html += f'<tr{cls}><td class="num">{fc(m["price"])}</td><td class="num">{fp(m["cur_cap"])}</td><td class="num">{fc(m["per_unit"])}</td><td class="num">${m["per_sf"]:.0f}</td><td class="num">{m["grm"]:.2f}x</td></tr>\n'
+    matrix_html += f'<tr{cls}><td class="num">{fc(m["price"])}</td><td class="num">{fp(m["cur_cap"])}</td><td class="num">{fp(m["pf_cap"])}</td><td class="num">{fp(m["coc_cur"])}</td><td class="num">${m["per_sf"]:.0f}</td><td class="num">{fc(m["per_unit"])}</td><td class="num">{m["pf_grm"]:.2f}x</td></tr>\n'
+
+# Summary page expense rows (at list price, Current vs Pro Forma)
+sum_taxes = AT_LIST['taxes']
+sum_expense_items = [
+    ("Real Estate Taxes", sum_taxes, sum_taxes),
+    ("Insurance", 28074, 28074),
+    ("Water &amp; Power", 24945, 24945),
+    ("Gas", 2979, 2979),
+    ("Trash Removal", 17700, 17700),
+    ("Repairs &amp; Maintenance", 20250, 20250),
+    ("Landscaping", 4800, 4800),
+    ("Pest Control", 700, 700),
+    ("On-site Manager", 24000, 24000),
+    ("General &amp; Administrative", 2160, 2160),
+    ("Operating Reserves", 4050, 4050),
+    ("Management Fee (4%)", CUR_MGMT, PF_MGMT),
+]
+sum_expense_html = ""
+for label, cur_val, pf_val in sum_expense_items:
+    sum_expense_html += f'<tr><td>{label}</td><td class="num">${cur_val:,.0f}</td><td class="num">${pf_val:,.0f}</td></tr>\n'
+
+# Unit summary for summary page (aggregated from rent roll)
+# 1BR/1BA: units 420-D, 420-H
+br1_units = [(u, s, c, m) for u, t, s, c, m in RENT_ROLL if t == "1BR/1BA"]
+br2_units = [(u, s, c, m) for u, t, s, c, m in RENT_ROLL if t == "2BR/1BA"]
+br4_units = [(u, s, c, m) for u, t, s, c, m in RENT_ROLL if t == "4BR/3BA"]
+br1_avg_cur = sum(c for _, _, c, _ in br1_units) / len(br1_units) if br1_units else 0
+br1_avg_mkt = sum(m for _, _, _, m in br1_units) / len(br1_units) if br1_units else 0
+br2_avg_cur = sum(c for _, _, c, _ in br2_units) / len(br2_units) if br2_units else 0
+br2_avg_mkt = sum(m for _, _, _, m in br2_units) / len(br2_units) if br2_units else 0
+br4_avg_cur = sum(c for _, _, c, _ in br4_units) / len(br4_units) if br4_units else 0
+br4_avg_mkt = sum(m for _, _, _, m in br4_units) / len(br4_units) if br4_units else 0
 
 # Rent roll
 rent_roll_html = ""
@@ -391,19 +466,20 @@ td.num,th.num{{text-align:right;}}
 .press-strip{{display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;margin:24px 0;padding:16px 20px;background:#f0f4f8;border-radius:6px;}}
 .press-strip-label{{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#888;font-weight:600;}}
 .press-logo{{font-size:13px;font-weight:700;color:#1B3A5C;letter-spacing:0.5px;}}
-.condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}
+.condition-note-label{{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;margin-bottom:8px;}}.achievements-list{{font-size:13px;line-height:1.8;}}
 .img-float-right{{float:right;width:48%;margin:0 0 16px 20px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.img-float-right img{{width:100%;display:block;}}
 .os-two-col{{display:grid;grid-template-columns:55% 45%;gap:24px;align-items:start;margin-bottom:24px;}}.os-right{{font-size:10.5px;line-height:1.45;color:#555;}}.os-right h3{{font-size:13px;margin:0 0 8px;}}.os-right p{{margin-bottom:4px;}}
 .loc-grid{{display:grid;grid-template-columns:58% 42%;gap:28px;align-items:start;}}.loc-left{{max-height:380px;overflow:hidden;}}.loc-left p{{font-size:13.5px;line-height:1.7;margin-bottom:14px;}}.loc-right{{display:block;max-height:380px;overflow:hidden;}}.loc-wide-map{{width:100%;height:200px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:20px;}}.loc-wide-map img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .tr-tagline{{font-size:24px;font-weight:600;color:#1B3A5C;text-align:center;padding:16px 24px;margin-bottom:20px;border-left:4px solid #C5A258;background:#FFF8E7;border-radius:0 4px 4px 0;font-style:italic;}}.tr-map-print{{display:none;}}.tr-service-quote{{margin:24px 0;}}.tr-service-quote h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:8px;line-height:1.3;}}.tr-service-quote p{{font-size:14px;line-height:1.7;}}.tr-mission{{background:#f0f4f8;border-left:4px solid #1B3A5C;padding:20px 24px;margin-bottom:24px;border-radius:0 4px 4px 0;}}.tr-mission h3{{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px;}}.tr-mission p{{font-size:13px;line-height:1.7;margin-bottom:10px;}}
 .inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-left .metrics-grid-4{{grid-template-columns:repeat(2,1fr);}}.inv-text p{{font-size:13px;line-height:1.6;margin-bottom:10px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;padding-top:70px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
 .buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}.buyer-photo{{width:100%;height:220px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:24px;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
-.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}}.prop-tables-bottom .sub-heading{{font-size:15px;margin:0 0 10px;}}
+.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}}.prop-tables-bottom .sub-heading{{font-size:15px;margin:0 0 10px;}}.prop-grid-4{{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:20px;}}
+.summary-page{{margin-top:24px;}}.summary-two-col{{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}}.summary-table{{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12px;}}.summary-table th,.summary-table td{{padding:5px 10px;border-bottom:1px solid #e0e0e0;text-align:left;}}.summary-table th{{font-size:10px;text-transform:uppercase;letter-spacing:1px;}}.summary-header{{background:#1B3A5C;color:#fff;padding:6px 10px !important;font-size:11px !important;font-weight:700;letter-spacing:1.5px;border-bottom:none !important;}}.summary-table tr.summary td{{border-top:2px solid #1B3A5C;font-weight:700;}}.summary-trade-range{{text-align:center;margin:28px auto;padding:20px 30px;background:#f0f4f8;border:2px solid #1B3A5C;border-radius:8px;max-width:500px;}}.summary-trade-label{{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#666;font-weight:600;margin-bottom:8px;}}.summary-trade-prices{{font-size:28px;font-weight:700;color:#1B3A5C;}}
 .page-break-marker{{height:4px;background:repeating-linear-gradient(90deg,#ddd 0,#ddd 8px,transparent 8px,transparent 16px);margin:0;}}
 .team-grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;}}.team-card{{text-align:center;padding:8px;}}.team-headshot{{width:60px;height:60px;border-radius:50%;border:2px solid #C5A258;object-fit:cover;margin:0 auto 4px;display:block;}}.team-card-name{{font-size:13px;font-weight:700;color:#1B3A5C;}}.team-card-title{{font-size:10px;color:#C5A258;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}}
 .mkt-quote{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 24px;margin:20px 0;border-radius:0 4px 4px 0;font-size:15px;font-style:italic;line-height:1.6;color:#1B3A5C;}}.mkt-channels{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.mkt-channel{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.mkt-channel h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.mkt-channel ul{{margin:0;padding-left:18px;}}.mkt-channel li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}
 .perf-grid{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.perf-card{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.perf-card h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.perf-card ul{{margin:0;padding-left:18px;}}.perf-card li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}.platform-strip{{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin-top:24px;padding:14px 20px;background:#1B3A5C;border-radius:6px;}}.platform-strip-label{{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;font-weight:600;}}.platform-name{{font-size:12px;font-weight:600;color:#fff;letter-spacing:0.5px;}}
-@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}.mkt-channels,.perf-grid{{grid-template-columns:1fr;}}}}
+@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}.mkt-channels,.perf-grid{{grid-template-columns:1fr;}}.summary-two-col{{grid-template-columns:1fr;}}.prop-grid-4{{grid-template-columns:1fr;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-headshot{{width:50px;height:50px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 4px;}}.toc-nav a{{font-size:8px;padding:10px 4px;letter-spacing:0;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter landscape;margin:0.4in 0.5in;}}
@@ -465,8 +541,8 @@ td{{padding:4px 8px;font-size:10px;}}
 .tr-service-quote{{margin:10px 0;}}.tr-service-quote h3{{font-size:13px;margin-bottom:4px;}}.tr-service-quote p{{font-size:11px;line-height:1.45;}}
 .tr-mission{{padding:10px 14px;margin-bottom:12px;}}.tr-mission h3{{font-size:13px;margin-bottom:5px;}}.tr-mission p{{font-size:11px;line-height:1.4;margin-bottom:4px;}}
 .bio-grid{{gap:14px;margin:10px 0;}}.bio-headshot{{width:75px;height:75px;}}.bio-name{{font-size:13px;}}.bio-title{{font-size:9px;}}.bio-text{{font-size:10px;line-height:1.4;}}
-.costar-badge{{padding:10px 14px;margin:10px auto;}}.costar-badge-title{{font-size:15px;}}.costar-badge-sub{{font-size:9px;}}
-.condition-note{{padding:8px 12px;margin:8px 0;font-size:10px;line-height:1.45;}}
+.costar-badge{{padding:8px 14px;margin:6px auto;}}.costar-badge-title{{font-size:15px;}}.costar-badge-sub{{font-size:9px;}}
+.condition-note{{padding:8px 12px;margin:8px 0;font-size:10px;line-height:1.45;}}.achievements-list{{font-size:10px;line-height:1.45;}}
 .press-strip{{padding:8px 14px;margin:8px 0;gap:14px;}}.press-strip-label{{font-size:8px;}}.press-logo{{font-size:10px;}}
 .team-grid{{gap:8px;margin:8px 0;}}.team-card{{padding:4px;}}.team-headshot{{width:45px;height:45px;}}.team-card-name{{font-size:10px;}}.team-card-title{{font-size:8px;}}
 
@@ -479,22 +555,29 @@ td{{padding:4px 8px;font-size:10px;}}
 /* === INVESTMENT OVERVIEW === */
 .inv-split{{grid-template-columns:50% 50%;gap:14px;}}.inv-left .metrics-grid-4{{gap:6px;margin-bottom:6px;}}
 .inv-text p{{font-size:10px;line-height:1.4;margin-bottom:4px;}}.inv-logo{{width:140px;margin-top:6px;}}
-.inv-right{{padding-top:45px;}}.inv-photo{{height:200px;}}.inv-photo img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-.inv-highlights{{padding:10px 14px;}}.inv-highlights h4{{font-size:10px;margin-bottom:4px;}}.inv-highlights li{{font-size:9px;line-height:1.3;margin-bottom:2px;}}
+.inv-right{{padding-top:30px;}}.inv-photo{{height:170px;}}.inv-photo img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.inv-highlights{{padding:8px 12px;}}.inv-highlights h4{{font-size:10px;margin-bottom:3px;}}.inv-highlights li{{font-size:8.5px;line-height:1.25;margin-bottom:1px;}}
 
 /* === LOCATION OVERVIEW === */
-.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:14px;page-break-inside:avoid;}}.loc-left{{max-height:320px;overflow:hidden;}}.loc-left p{{font-size:10.5px;line-height:1.4;margin-bottom:5px;}}.loc-right{{max-height:320px;overflow:hidden;}}
-.loc-wide-map{{height:200px;margin-top:8px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.loc-grid{{display:grid;grid-template-columns:58% 42%;gap:14px;page-break-inside:avoid;}}.loc-left{{max-height:340px;overflow:hidden;}}.loc-left p{{font-size:10.5px;line-height:1.4;margin-bottom:5px;}}.loc-right{{max-height:340px;overflow:hidden;}}
+.loc-wide-map{{height:220px;margin-top:8px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
 .loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
 
 /* === PROPERTY DETAILS === */
-.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}}.prop-tables-bottom table{{font-size:9px;margin-bottom:4px;}}.prop-tables-bottom th{{font-size:7.5px;padding:3px 6px;}}.prop-tables-bottom td{{padding:3px 6px;font-size:9px;}}.prop-tables-bottom .sub-heading{{font-size:11px;margin:0 0 4px;}}
+.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}}.prop-tables-bottom table{{font-size:9px;margin-bottom:4px;}}.prop-tables-bottom th{{font-size:7.5px;padding:3px 6px;}}.prop-tables-bottom td{{padding:3px 6px;font-size:9px;}}.prop-tables-bottom .sub-heading{{font-size:11px;margin:0 0 4px;}}.prop-grid-4{{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:10px;page-break-inside:avoid;}}.prop-grid-4 table{{font-size:9px;margin-bottom:0;}}.prop-grid-4 th{{font-size:7.5px;padding:3px 6px;}}.prop-grid-4 td{{padding:3px 6px;font-size:9px;}}.prop-grid-4 .info-table td{{padding:3px 6px;font-size:9px;}}
 
 /* === BUYER PROFILE + OBJECTIONS === */
 .buyer-split{{grid-template-columns:1fr 1fr;gap:14px;page-break-inside:avoid;}}
 .buyer-profile{{padding:8px 12px;margin:6px 0;}}.buyer-profile-label{{font-size:10px;margin-bottom:5px;}}.buyer-profile li{{padding:4px 0;font-size:10.5px;line-height:1.4;}}.bp-closing{{font-size:10px;}}
 .buyer-objections .obj-item{{margin-bottom:8px;}}.buyer-objections .obj-q{{font-size:11px;margin-bottom:2px;}}.buyer-objections .obj-a{{font-size:10px;line-height:1.4;}}
 .buyer-photo{{height:180px;margin-top:8px;border-radius:4px;overflow:hidden;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+
+/* === FINANCIAL SUMMARY === */
+.summary-page{{margin-top:12px;page-break-before:always;}}.summary-two-col{{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}}
+.summary-table{{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:8.5px;}}.summary-table th,.summary-table td{{padding:2px 6px;border-bottom:1px solid #ddd;text-align:left;}}.summary-table th{{font-size:7px;text-transform:uppercase;letter-spacing:0.5px;}}
+.summary-header{{background:#1B3A5C;color:#fff;padding:3px 6px !important;font-size:7.5px !important;font-weight:700;letter-spacing:1px;border-bottom:none !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+.summary-table tr.summary td{{border-top:1.5px solid #1B3A5C;font-weight:700;}}
+.summary-trade-range{{text-align:center;margin:10px auto;padding:10px 16px;border:2px solid #1B3A5C;border-radius:4px;max-width:400px;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.summary-trade-label{{font-size:8px;letter-spacing:1.5px;color:#444;font-weight:600;margin-bottom:4px;}}.summary-trade-prices{{font-size:16px;font-weight:700;color:#1B3A5C;}}
 
 /* === OTHER SECTIONS === */
 .highlight-box{{padding:8px 12px;margin:8px 0;}}.highlight-box h4{{font-size:11px;margin-bottom:4px;}}.highlight-box li{{font-size:10px;margin-bottom:2px;line-height:1.4;}}
@@ -595,11 +678,10 @@ html_parts.append(f"""
 
 <div style="text-align:center;margin-bottom:8px;">
 <div class="section-title" style="margin-bottom:4px;">Our Team</div>
-<div class="section-subtitle">LA Apartment Advisors at Marcus &amp; Millichap</div>
 <div class="section-divider" style="margin:0 auto 12px;"></div>
 </div>
 
-<div class="costar-badge" style="margin-top:8px;margin-bottom:16px;">
+<div class="costar-badge" style="margin-top:4px;margin-bottom:8px;">
 <div class="costar-badge-title">#1 Most Active Multifamily Sales Team in LA County</div>
 <div class="costar-badge-sub">CoStar &bull; 2019, 2020, 2021 &bull; #4 in California</div>
 </div>
@@ -637,7 +719,7 @@ html_parts.append(f"""
 
 <div class="condition-note" style="margin-top:20px;">
 <div class="condition-note-label">Key Achievements</div>
-<p style="font-size:13px; line-height:1.8;">
+<p class="achievements-list">
 &bull; <strong>Chairman's Club</strong>  -  Marcus &amp; Millichap's top-tier annual honor (Glen: 2021; Filip: 2018, 2021)<br>
 &bull; <strong>National Achievement Award</strong>  -  Glen: 5 years; Filip: 8 consecutive years<br>
 &bull; <strong>Sales Recognition Award</strong>  -  Glen: 10 consecutive years; Filip: 12 years total<br>
@@ -793,10 +875,8 @@ html_parts.append(f"""
 <li><strong>19% Rental Upside Through Turnover</strong>  -  In-place rents are approximately 19% below full market potential, with gross scheduled rent of $740,748 growing to a pro forma of $878,280. Vacancy decontrol under California law allows rent resets to market upon unit turnover with no cap on initial asking rent for new tenants.</li>
 <li><strong>$117,000+ in 2024 Capital Improvements</strong>  -  Plumbing/electrical upgrades ($43,000), deck reconstruction ($38,500), window replacements ($10,700), exterior painting ($10,000), appliance replacements ($9,000), and HVAC repairs ($4,500).</li>
 <li><strong>SB 1211 ADU Potential (Up to 6 Units)</strong>  -  ~8,000 SF of rear parking area across both parcels can accommodate up to 6 detached two-story ADUs with by-right ministerial approval, no parking replacement required. Estimated ~$127,000 annual NOI and ~54% ROI.</li>
-<li><strong>1.11-Acre Combined Site on Two Parcels</strong>  -  Each parcel measures 80 ft by 300 ft, creating a combined 160 ft x 300 ft site that is exceptionally large for a Glendale multifamily property.</li>
-<li><strong>R-1250 Zoning with Development Headroom</strong>  -  Current FAR of just 0.47 vs. 1.2 maximum, leaving over 35,000 SF of additional buildable area. Existing 27 units sit below the 38-unit density cap.</li>
+<li><strong>1.11-Acre Combined Site on Two Parcels</strong>  -  Each parcel measures 80 ft by 300 ft, creating a combined 160 ft x 300 ft site that is exceptionally large for a Glendale multifamily property. Current FAR of just 0.47 vs. 1.2 maximum.</li>
 <li><strong>Glendale Regulatory Advantage</strong>  -  No local rent board, no unit registration, no transfer tax. City operates under AB 1482 statewide cap (5% + CPI, max 10%) with relocation triggers only above 7%.</li>
-<li><strong>34+ Year Ownership with Prop 13 Basis</strong>  -  Assessed value ~$4.24M reflects 34+ years of Prop 13 protection. Current taxes ~$49,300 will be reassessed at close of escrow based on sale price.</li>
 <li><strong>Prime Location with 88 Walk Score</strong>  -  North of Glenoaks Blvd, near top-rated Glendale Unified schools, SR-134 freeway access, and Burbank entertainment studios.</li>
 </ul>
 </div>
@@ -854,7 +934,8 @@ html_parts.append("""
 <div class="section-subtitle">420-428 W Stocker St, Glendale, CA 91202</div>
 <div class="section-divider"></div>
 
-<div class="two-col">
+<div class="prop-grid-4">
+<div>
 <table class="info-table">
 <thead><tr><th colspan="2">Property Overview</th></tr></thead>
 <tbody>
@@ -868,6 +949,8 @@ html_parts.append("""
 <tr><td>Buildings</td><td>5</td></tr>
 </tbody>
 </table>
+</div>
+<div>
 <table class="info-table">
 <thead><tr><th colspan="2">Site &amp; Zoning</th></tr></thead>
 <tbody>
@@ -881,50 +964,34 @@ html_parts.append("""
 </tbody>
 </table>
 </div>
-
-<div class="prop-tables-bottom">
 <div>
-<h3 class="sub-heading" style="margin-top:0;">Building Systems &amp; Capital Improvements</h3>
 <table>
-<thead><tr><th>System</th><th>Status</th><th>Year</th></tr></thead>
+<thead><tr><th colspan="3">Building Systems &amp; Capital Improvements</th></tr></thead>
 <tbody>
-<tr><td>Roofing</td><td>420: Comp shingle (2012); 428: Class A (2007)</td><td>2007-12</td></tr>
-<tr><td>Plumbing</td><td>420: Repiped A-H (2005); 428: vents/valves (2004)</td><td>2004-05</td></tr>
-<tr><td>HVAC</td><td>FAU (420 Unit I); Window units (428)</td><td>Various</td></tr>
-<tr><td>Electrical</td><td>Major plumbing/electrical work</td><td>2024</td></tr>
+<tr><td>Roofing</td><td>420: Comp shingle; 428: Class A</td><td>2007-12</td></tr>
+<tr><td>Plumbing</td><td>420: Repiped A-H; 428: vents/valves</td><td>2004-05</td></tr>
+<tr><td>HVAC</td><td>FAU (420); Window units (428)</td><td>Various</td></tr>
+<tr><td>Electrical</td><td>Major upgrades</td><td>2024</td></tr>
 <tr><td>Windows</td><td>Replaced ($10,700)</td><td>2024</td></tr>
-<tr><td>Deck/Walkway (428)</td><td>Fiberglass recoat, permitted</td><td>2023-24</td></tr>
+<tr><td>Deck/Walkway</td><td>Fiberglass recoat, permitted</td><td>2023-24</td></tr>
 <tr><td>Exterior Paint</td><td>Full exterior repaint</td><td>2024</td></tr>
 <tr><td>Appliances</td><td>Replacements ($9,005)</td><td>2024</td></tr>
 </tbody>
 </table>
 </div>
 <div>
-<h3 class="sub-heading" style="margin-top:0;">Regulatory &amp; Compliance</h3>
 <table>
-<thead><tr><th>Item</th><th>Status</th></tr></thead>
+<thead><tr><th colspan="2">Regulatory &amp; Compliance</th></tr></thead>
 <tbody>
 <tr><td>Rent Control</td><td>AB 1482 + Glendale Ord. 5922</td></tr>
 <tr><td>Just Cause Eviction</td><td>Required (pre-1995 construction)</td></tr>
-<tr><td>Rent Increase Cap</td><td>5% + CPI (max 10%); relocation if >7%</td></tr>
+<tr><td>Rent Increase Cap</td><td>5% + CPI (max 10%); relocation if &gt;7%</td></tr>
 <tr><td>Code Violations</td><td>None on file</td></tr>
 <tr><td>Soft-Story Retrofit</td><td>Not mandatory in Glendale</td></tr>
 </tbody>
 </table>
 </div>
 </div>
-
-<h3 class="sub-heading">Transaction History</h3>
-<table>
-<thead><tr><th>Date</th><th>Event</th><th>Notes</th></tr></thead>
-<tbody>
-<tr><td>1991</td><td>Earliest recorded deed</td><td>Gerald family ownership begins</td></tr>
-<tr><td>2007</td><td>Family transfer</td><td>Michael A Gerald to Isabelle P Gerald</td></tr>
-<tr><td>2015</td><td>Refinance</td><td>Chase, $3,500,000</td></tr>
-<tr><td>2022</td><td>Refinance</td><td>Chase, $1,350,000 (420) + $250,000 (428)</td></tr>
-<tr class="highlight"><td>2026</td><td>Proposed Sale</td><td>First arms-length sale in 34+ years</td></tr>
-</tbody>
-</table>
 
 </div>
 """)
@@ -1408,28 +1475,98 @@ html_parts.append(f"""
 </div>
 </div>
 
-<!-- SCREEN 3: FINANCIAL DETAIL (Returns + Financing side-by-side) -->
-<div class="two-col">
-<div>
-<h3 class="sub-heading">Returns at Asking Price</h3>
-<table class="info-table">
-<tr><td>Cap Rate (Current)</td><td>{AT_LIST['cur_cap']:.2f}%</td></tr>
-<tr><td>Cap Rate (Pro Forma)</td><td>{AT_LIST['pf_cap']:.2f}%</td></tr>
-<tr><td>GRM (Current)</td><td>{AT_LIST['grm']:.2f}</td></tr>
-<tr><td>Price Per Unit</td><td>${AT_LIST['per_unit']:,.0f}</td></tr>
-<tr><td>Price Per SF</td><td>${AT_LIST['per_sf']:,.0f}</td></tr>
+<!-- SCREEN 3: FINANCIAL SUMMARY (mirrors pricing model page 5) -->
+<div class="summary-page">
+<h3 class="sub-heading" style="text-align:center;font-size:16px;margin-bottom:12px;">Financial Summary</h3>
+<div class="summary-two-col">
+
+<div class="summary-left">
+<table class="summary-table">
+<thead><tr><th colspan="2" class="summary-header">OPERATING DATA</th></tr></thead>
+<tbody>
+<tr><td>Price</td><td class="num">${LIST_PRICE:,}</td></tr>
+<tr><td>Down Payment ({1-LTV:.0%})</td><td class="num">${AT_LIST['down_payment']:,.0f}</td></tr>
+<tr><td>Number of Units</td><td class="num">{UNITS}</td></tr>
+<tr><td>Price Per Unit</td><td class="num">${AT_LIST['per_unit']:,.0f}</td></tr>
+<tr><td>Price Per SqFt</td><td class="num">${AT_LIST['per_sf']:,.2f}</td></tr>
+<tr><td>Gross SqFt</td><td class="num">{SF:,}</td></tr>
+<tr><td>Lot Size</td><td class="num">{LOT_SIZE_ACRES} Acres</td></tr>
+<tr><td>Approx. Year Built</td><td class="num">1953</td></tr>
+</tbody>
+</table>
+
+<table class="summary-table">
+<thead><tr><th class="summary-header">RETURNS</th><th class="num summary-header">Current</th><th class="num summary-header">Pro Forma</th></tr></thead>
+<tbody>
+<tr><td>CAP Rate</td><td class="num">{AT_LIST['cur_cap']:.2f}%</td><td class="num">{AT_LIST['pf_cap']:.2f}%</td></tr>
+<tr><td>GRM</td><td class="num">{AT_LIST['grm']:.2f}</td><td class="num">{AT_LIST['pf_grm']:.2f}</td></tr>
+<tr><td>Cash-on-Cash</td><td class="num">{AT_LIST['coc_cur']:.2f}%</td><td class="num">{AT_LIST['coc_pf']:.2f}%</td></tr>
+<tr><td>Debt Coverage Ratio</td><td class="num">{AT_LIST['dcr_cur']:.2f}</td><td class="num">{AT_LIST['dcr_pf']:.2f}</td></tr>
+</tbody>
+</table>
+
+<table class="summary-table">
+<thead><tr><th colspan="2" class="summary-header">FINANCING</th></tr></thead>
+<tbody>
+<tr><td>Loan Amount</td><td class="num">${AT_LIST['loan_amount']:,.0f}</td></tr>
+<tr><td>Loan Type</td><td class="num">New</td></tr>
+<tr><td>Interest Rate</td><td class="num">{INTEREST_RATE:.2%}</td></tr>
+<tr><td>Amortization</td><td class="num">{AMORTIZATION_YEARS} Years</td></tr>
+<tr><td>Loan Constant</td><td class="num">{LOAN_CONSTANT:.2%}</td></tr>
+<tr><td>Year Due</td><td class="num">2029</td></tr>
+</tbody>
+</table>
+
+<table class="summary-table">
+<thead><tr><th class="summary-header">UNIT SUMMARY</th><th class="num summary-header">#</th><th class="num summary-header">Avg SF</th><th class="num summary-header">Sched.</th><th class="num summary-header">Market</th></tr></thead>
+<tbody>
+<tr><td>1 Bed / 1 Bath</td><td class="num">{len(br1_units)}</td><td class="num">650</td><td class="num">${br1_avg_cur:,.0f}</td><td class="num">${br1_avg_mkt:,.0f}</td></tr>
+<tr><td>2 Bed / 1 Bath</td><td class="num">{len(br2_units)}</td><td class="num">750</td><td class="num">${br2_avg_cur:,.0f}</td><td class="num">${br2_avg_mkt:,.0f}</td></tr>
+<tr><td>4 Bed / 3 Bath House</td><td class="num">{len(br4_units)}</td><td class="num">2,500</td><td class="num">${br4_avg_cur:,.0f}</td><td class="num">${br4_avg_mkt:,.0f}</td></tr>
+</tbody>
 </table>
 </div>
-<div>
-<h3 class="sub-heading">Financing Terms</h3>
-<table class="info-table">
-<tr><td>Loan Amount (55% LTV)</td><td>${LIST_PRICE * 0.55:,.0f}</td></tr>
-<tr><td>Down Payment (45%)</td><td>${LIST_PRICE * 0.45:,.0f}</td></tr>
-<tr><td>Interest Rate</td><td>5.75%</td></tr>
-<tr><td>Amortization</td><td>30 Years</td></tr>
-<tr><td>Loan Term</td><td>3 Years (Due 2029)</td></tr>
-<tr><td>Loan Constant</td><td>7.00%</td></tr>
+
+<div class="summary-right">
+<table class="summary-table">
+<thead><tr><th class="summary-header">INCOME</th><th class="num summary-header">Current</th><th class="num summary-header">Pro Forma</th></tr></thead>
+<tbody>
+<tr><td>Gross Scheduled Rent</td><td class="num">${GSR:,}</td><td class="num">${PF_GSR:,}</td></tr>
+<tr><td>Less: Vacancy (5%)</td><td class="num">(${ GSR * VACANCY_PCT:,.0f})</td><td class="num">(${ PF_GSR * VACANCY_PCT:,.0f})</td></tr>
+<tr><td>Effective Rental Income</td><td class="num">${GSR * (1-VACANCY_PCT):,.0f}</td><td class="num">${PF_GSR * (1-VACANCY_PCT):,.0f}</td></tr>
+<tr><td>Other Income</td><td class="num">${OTHER_INCOME:,}</td><td class="num">${OTHER_INCOME:,}</td></tr>
+<tr class="summary"><td><strong>Effective Gross Income</strong></td><td class="num"><strong>${AT_LIST['cur_egi']:,.0f}</strong></td><td class="num"><strong>${AT_LIST['pf_egi']:,.0f}</strong></td></tr>
+</tbody>
 </table>
+
+<table class="summary-table">
+<thead><tr><th class="summary-header">CASH FLOW</th><th class="num summary-header">Current</th><th class="num summary-header">Pro Forma</th></tr></thead>
+<tbody>
+<tr><td>Net Operating Income</td><td class="num">${AT_LIST['cur_noi']:,.0f}</td><td class="num">${AT_LIST['pf_noi']:,.0f}</td></tr>
+<tr><td>Less: Debt Service</td><td class="num">(${ AT_LIST['debt_service']:,.0f})</td><td class="num">(${ AT_LIST['debt_service']:,.0f})</td></tr>
+<tr><td>Net Cash Flow</td><td class="num">${AT_LIST['net_cf_cur']:,.0f}</td><td class="num">${AT_LIST['net_cf_pf']:,.0f}</td></tr>
+<tr><td>Cash-on-Cash Return</td><td class="num">{AT_LIST['coc_cur']:.2f}%</td><td class="num">{AT_LIST['coc_pf']:.2f}%</td></tr>
+<tr><td>Principal Reduction (Yr 1)</td><td class="num" colspan="2">${AT_LIST['prin_red']:,.0f}</td></tr>
+<tr class="summary"><td><strong>Total Return (Yr 1)</strong></td><td class="num"><strong>{AT_LIST['total_return_pct_cur']:.2f}%</strong></td><td class="num"><strong>{AT_LIST['total_return_pct_pf']:.2f}%</strong></td></tr>
+</tbody>
+</table>
+
+<table class="summary-table">
+<thead><tr><th class="summary-header">EXPENSES</th><th class="num summary-header">Current</th><th class="num summary-header">Pro Forma</th></tr></thead>
+<tbody>
+{sum_expense_html}<tr class="summary"><td><strong>Total Expenses</strong></td><td class="num"><strong>${AT_LIST['cur_exp']:,.0f}</strong></td><td class="num"><strong>${AT_LIST['pf_exp']:,.0f}</strong></td></tr>
+<tr><td>Expenses as % of EGI</td><td class="num">{AT_LIST['cur_exp']/AT_LIST['cur_egi']*100:.1f}%</td><td class="num">{AT_LIST['pf_exp']/AT_LIST['pf_egi']*100:.1f}%</td></tr>
+<tr><td>Expenses / Unit</td><td class="num">${AT_LIST['cur_exp']/UNITS:,.0f}</td><td class="num">${AT_LIST['pf_exp']/UNITS:,.0f}</td></tr>
+<tr><td>Expenses / SF</td><td class="num">${AT_LIST['cur_exp']/SF:,.2f}</td><td class="num">${AT_LIST['pf_exp']/SF:,.2f}</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+<div class="summary-trade-range">
+<div class="summary-trade-label">A TRADE PRICE IN THE CURRENT INVESTMENT ENVIRONMENT OF</div>
+<div class="summary-trade-prices">$8,850,000 &mdash; $9,350,000</div>
 </div>
 </div>
 
@@ -1447,17 +1584,10 @@ html_parts.append(f"""
 <div class="metric-card"><span class="metric-value">{AT_LIST['grm']:.2f}</span><span class="metric-label">Current GRM</span></div>
 </div>
 
-<div class="condition-note" style="margin-top:24px;">
-<div class="condition-note-label">Key Market Thresholds</div>
-<p style="font-size:14px; line-height:1.7;">Two critical thresholds define the pricing strategy for this offering:<br><br>
-<strong>$10M psychological barrier:</strong> Glendale multifamily transactions above $10M are rare and attract a fundamentally different (and smaller) buyer pool. Pricing at $9.35M keeps the offering accessible to the broadest possible audience, including 1031 exchange investors and local operators who filter searches below $10M. Every $100K above $9.5M materially narrows the buyer funnel.<br><br>
-<strong>5% cap rate floor:</strong> Below a 5% current cap rate, income-driven buyers (the majority of the Glendale apartment market) begin to drop out. At $9.35M the subject delivers a 4.79% cap, which is defensible given the 19% rent upside and ADU opportunity. At $9.75M the cap drops to 4.61%, a level that historically requires premium product attributes (newer build, central AC, subterranean parking) to sustain buyer interest.</p>
-</div>
-
 <h3 class="sub-heading">Pricing Matrix</h3>
 <p style="font-size:12px;color:#666;margin-bottom:12px;"><em>Highlighted row represents the suggested list price. Cap rates are tax-adjusted (property taxes recalculated at 1.13% of sale price per Glendale Prop 13 reassessment), which adjusts NOI and cap rate at every row.</em></p>
 <div class="table-scroll"><table>
-<thead><tr><th class="num">Price</th><th class="num">Cap Rate</th><th class="num">$/Unit</th><th class="num">$/SF</th><th class="num">GRM</th></tr></thead>
+<thead><tr><th class="num">Purchase Price</th><th class="num">Current Cap</th><th class="num">Pro Forma Cap</th><th class="num">Cash-on-Cash</th><th class="num">$/SF</th><th class="num">$/Unit</th><th class="num">PF GRM</th></tr></thead>
 <tbody>{matrix_html}</tbody>
 </table></div>
 

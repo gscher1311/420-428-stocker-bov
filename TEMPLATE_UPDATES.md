@@ -379,6 +379,41 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 ---
 
+## 24. PDF Layout Fixes -- Team, Investment, Location, Property Details, Pricing Summary
+
+**Our Team Page Overflow Fix:** Three changes to fit the team page on one PDF page: (1) Removed "LA Apartment Advisors at Marcus & Millichap" subtitle from the team page header -- the "Our Team" title is sufficient and the company name appears elsewhere. Saves ~25px. (2) Replaced the inline `style="font-size:13px; line-height:1.8;"` on the Key Achievements paragraph with a class `.achievements-list` that uses 13px/1.8 on desktop but 10px/1.45 in print CSS. The inline style was overriding print CSS and adding ~70px of unnecessary height. **Template rule: never use inline font-size/line-height on elements that need to be compact in print; use a class with separate desktop and print rules.** (3) Tightened CoStar badge print margins from `margin:10px auto` to `margin:6px auto`.
+
+**Investment Overview Height Fix:** Three changes: (1) Reduced `inv-photo` from 200px to 170px in print CSS. (2) Trimmed investment highlights from 8 to 6 items -- removed "R-1250 Zoning with Development Headroom" (merged the FAR detail into the "1.11-Acre Combined Site" bullet) and "34+ Year Ownership with Prop 13 Basis" (supporting detail, not primary thesis). (3) Tightened `inv-highlights li` font from 9px/1.3 to 8.5px/1.25 in print. Reduced `inv-right padding-top` from 45px to 30px. **Template rule: keep investment highlights to 5-6 items maximum for PDF fit; longer lists should use smaller fonts or be split.**
+
+**Location Overview Fine-Tuning:** Increased `loc-left` and `loc-right` `max-height` from 320px to 340px in print CSS, and increased `loc-wide-map` from 200px to 220px. This fills the page better without overflowing. Desktop unchanged.
+
+**Property Details 2x2 Grid:** Restructured the property details section into a unified 2x2 grid using new `.prop-grid-4` class (CSS grid with `grid-template-columns: 1fr 1fr; grid-template-rows: auto auto`). Top-left: Property Overview. Top-right: Site & Zoning. Bottom-left: Building Systems. Bottom-right: Regulatory & Compliance. Transaction History table removed entirely per user request. **Template rule: property details should always be a 2x2 grid of 4 tables; avoid full-width tables below the grid that extend the page.**
+
+**Key Market Thresholds Removed:** Deleted the entire "Key Market Thresholds" condition-note section from the price-reveal page. The $10M barrier and 5% cap floor analysis was removed as it is not needed in the client-facing BOV.
+
+**Financial Summary Page (mirrors pricing model page 5):** Replaced the old "Returns at Asking Price + Financing Terms" side-by-side section with a comprehensive Financial Summary page. New layout uses `.summary-two-col` (2-column grid):
+
+Left column:
+- OPERATING DATA table (Price, Down Payment, Units, $/Unit, $/SF, Gross SF, Lot Size, Year Built)
+- RETURNS table (Cap Rate, GRM, Cash-on-Cash, DCR -- Current vs Pro Forma)
+- FINANCING table (Loan Amount, Loan Type, Interest Rate, Amortization, Loan Constant, Year Due)
+- UNIT SUMMARY table (1BR, 2BR, 4BR with unit count, avg SF, scheduled rent, market rent)
+
+Right column:
+- INCOME table (GSR, Vacancy, ERI, Other Income, EGI -- Current vs Pro Forma)
+- CASH FLOW table (NOI, Debt Service, Net Cash Flow, Cash-on-Cash %, Principal Reduction, Total Return)
+- EXPENSES table (all 12 line items -- Current vs Pro Forma, plus totals, % of EGI, per unit, per SF)
+
+Bottom: Trade range callout ($8,850,000 -- $9,350,000).
+
+**calc_metrics enhancement:** Added financing calculations to the `calc_metrics()` function: `cash_on_cash`, `dcr`, `debt_service`, `net_cf`, `principal_reduction` (year 1 monthly amortization), `total_return`. Added financing constants: `INTEREST_RATE`, `AMORTIZATION_YEARS`, `LTV`, `LOAN_CONSTANT`. New `calc_principal_reduction_yr1()` helper function. **Template rule: the calc_metrics function should always return all financing-derived metrics so the summary page can be generated dynamically from any price point.**
+
+**Pricing Matrix Updated:** Added 3 new columns to the pricing matrix: Pro Forma Cap Rate, Cash-on-Cash Return, and Pro Forma GRM. Now 7 columns total (Purchase Price, Current Cap, Pro Forma Cap, Cash-on-Cash, $/SF, $/Unit, PF GRM). Matches the pricing model PDF format.
+
+Print CSS for summary page uses 8.5px body font with 7.5px headers and 2px/6px cell padding to fit the dense financial data on one 11x8.5 page. Summary page has `page-break-before: always` in print to ensure it starts on its own PDF page.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:
