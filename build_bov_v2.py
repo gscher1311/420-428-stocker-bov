@@ -390,7 +390,9 @@ td.num,th.num{{text-align:right;}}
 .inv-split{{display:grid;grid-template-columns:50% 50%;gap:24px;}}.inv-left .metrics-grid-4{{grid-template-columns:repeat(2,1fr);}}.inv-text p{{font-size:13px;line-height:1.6;margin-bottom:10px;}}.inv-logo{{width:200px;margin-top:16px;opacity:0.7;}}.inv-right{{display:flex;flex-direction:column;gap:16px;}}.inv-photo{{height:280px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);}}.inv-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}.inv-highlights{{background:#f0f4f8;border:1px solid #dce3eb;border-radius:8px;padding:16px 20px;flex:1;}}.inv-highlights h4{{color:#1B3A5C;font-size:13px;margin-bottom:8px;}}.inv-highlights ul{{margin:0;padding-left:18px;}}.inv-highlights li{{font-size:12px;line-height:1.5;margin-bottom:5px;}}
 .buyer-split{{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;}}.buyer-objections .obj-item{{margin-bottom:14px;}}.buyer-objections .obj-q{{font-weight:700;color:#1B3A5C;margin-bottom:4px;font-size:14px;}}.buyer-objections .obj-a{{font-size:13px;color:#444;line-height:1.6;}}.buyer-photo{{width:100%;height:220px;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);margin-top:24px;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}}
 .prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}}.prop-tables-bottom .sub-heading{{font-size:15px;margin:0 0 10px;}}
-@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}}}
+.mkt-quote{{background:#FFF8E7;border-left:4px solid #C5A258;padding:16px 24px;margin:20px 0;border-radius:0 4px 4px 0;font-size:15px;font-style:italic;line-height:1.6;color:#1B3A5C;}}.mkt-channels{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.mkt-channel{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.mkt-channel h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.mkt-channel ul{{margin:0;padding-left:18px;}}.mkt-channel li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}
+.perf-grid{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;}}.perf-card{{background:#f0f4f8;border-radius:8px;padding:16px 20px;}}.perf-card h4{{color:#1B3A5C;font-size:14px;margin-bottom:8px;}}.perf-card ul{{margin:0;padding-left:18px;}}.perf-card li{{font-size:13px;line-height:1.5;margin-bottom:4px;}}.platform-strip{{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin-top:24px;padding:14px 20px;background:#1B3A5C;border-radius:6px;}}.platform-strip-label{{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#C5A258;font-weight:600;}}.platform-name{{font-size:12px;font-weight:600;color:#fff;letter-spacing:0.5px;}}
+@media(max-width:768px){{.cover-content{{padding:30px 20px;}}.cover-title{{font-size:32px;}}.cover-price{{font-size:36px;}}.cover-logo{{width:220px;}}.cover-headshots{{gap:24px;}}.cover-headshot{{width:60px;height:60px;}}.pdf-float-btn{{padding:10px 18px;font-size:12px;bottom:16px;right:16px;}}.section{{padding:30px 16px;}}.photo-grid{{grid-template-columns:1fr;}}.two-col{{grid-template-columns:1fr;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:repeat(2,1fr);gap:12px;}}.metric-card{{padding:14px 10px;}}.metric-value{{font-size:22px;}}.footer-team{{flex-direction:column;align-items:center;}}.leaflet-map{{height:300px;}}.embed-map-wrap iframe{{height:320px;}}.toc-nav{{padding:0 6px;}}.toc-nav a{{font-size:10px;padding:10px 6px;letter-spacing:0.2px;}}.table-scroll table{{min-width:560px;}}.bio-grid{{grid-template-columns:1fr;gap:16px;}}.bio-headshot{{width:60px;height:60px;}}.press-strip{{gap:16px;}}.press-logo{{font-size:11px;}}.costar-badge-title{{font-size:18px;}}.img-float-right{{float:none;width:100%;margin:0 0 16px 0;}}.os-two-col{{grid-template-columns:1fr;}}.loc-grid{{grid-template-columns:1fr;}}.loc-wide-map{{height:180px;margin-top:16px;}}.inv-split{{grid-template-columns:1fr;}}.inv-photo{{height:240px;}}.buyer-split{{grid-template-columns:1fr;}}.mkt-channels,.perf-grid{{grid-template-columns:1fr;}}}}
 @media(max-width:420px){{.cover-content{{padding:24px 16px;}}.cover-logo{{width:180px;}}.cover-title{{font-size:24px;}}.cover-subtitle{{font-size:15px;}}.cover-price{{font-size:28px;}}.cover-stats{{gap:10px;}}.cover-stat-value{{font-size:18px;}}.cover-stat-label{{font-size:9px;}}.cover-label{{font-size:11px;}}.cover-headshots{{gap:16px;margin-top:16px;}}.cover-headshot{{width:50px;height:50px;}}.pdf-float-btn{{padding:10px 14px;font-size:0;bottom:14px;right:14px;}}.pdf-float-btn svg{{width:22px;height:22px;}}.metrics-grid,.metrics-grid-4{{grid-template-columns:1fr;}}.metric-card{{padding:12px 10px;}}.metric-value{{font-size:20px;}}.section{{padding:24px 12px;}}.section-title{{font-size:20px;}}.footer{{padding:24px 12px;}}.footer-team{{gap:16px;}}.toc-nav{{padding:0 4px;}}.toc-nav a{{font-size:8px;padding:10px 4px;letter-spacing:0;}}.leaflet-map{{height:240px;}}}}
 @media print{{
 @page{{size:letter landscape;margin:0.4in 0.5in;}}
@@ -437,6 +439,8 @@ p{{font-size:11px;line-height:1.5;margin-bottom:10px;orphans:3;widows:3;}}
 .loc-grid{{display:grid;grid-template-columns:58% 42%;gap:16px;page-break-inside:avoid;align-items:start;}}.loc-left p{{font-size:9.5px;line-height:1.35;margin-bottom:5px;}}.loc-wide-map{{height:250px;margin-top:8px;}}.loc-wide-map img{{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.loc-right .info-table td{{padding:3px 8px;font-size:10px;}}.loc-right .info-table{{margin-bottom:0;}}
 .tr-map-print{{display:block;width:100%;height:260px;border-radius:4px;overflow:hidden;margin-bottom:10px;}}.tr-map-print img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}.tr-page2{{page-break-before:always;}}.tr-tagline{{font-size:14px;padding:10px 16px;margin-bottom:10px;}}.tr-service-quote h3{{font-size:13px;margin-bottom:4px;}}.tr-service-quote p{{font-size:10px;line-height:1.45;margin-bottom:6px;}}.tr-mission{{padding:12px 16px;margin-bottom:14px;}}.tr-mission h3{{font-size:13px;margin-bottom:6px;}}.tr-mission p{{font-size:10px;line-height:1.4;margin-bottom:5px;}}
 .bio-grid{{gap:16px;margin:12px 0;}}.bio-headshot{{width:60px;height:60px;}}.bio-name{{font-size:14px;}}.bio-title{{font-size:9px;}}.bio-text{{font-size:10px;line-height:1.4;}}.costar-badge{{padding:12px 16px;margin:14px auto;}}.costar-badge-title{{font-size:16px;}}.costar-badge-sub{{font-size:10px;}}.press-strip{{padding:10px 16px;margin:10px 0;gap:16px;}}.press-strip-label{{font-size:8px;}}.press-logo{{font-size:10px;}}
+#marketing{{page-break-before:always;}}.mkt-quote{{padding:10px 16px;margin:10px 0;font-size:11px;}}.mkt-channels{{gap:12px;margin-top:12px;}}.mkt-channel{{padding:10px 14px;}}.mkt-channel h4{{font-size:11px;margin-bottom:5px;}}.mkt-channel li{{font-size:9.5px;line-height:1.4;margin-bottom:2px;}}
+#performance{{page-break-before:always;}}.perf-grid{{gap:12px;margin-top:12px;}}.perf-card{{padding:10px 14px;}}.perf-card h4{{font-size:11px;margin-bottom:5px;}}.perf-card li{{font-size:9.5px;line-height:1.4;margin-bottom:2px;}}.platform-strip{{padding:8px 14px;margin-top:14px;gap:12px;}}.platform-strip-label{{font-size:8px;}}.platform-name{{font-size:9px;}}
 #investment{{page-break-after:always;}}.inv-split{{grid-template-columns:50% 50%;gap:14px;}}.inv-text p{{font-size:9.5px;line-height:1.4;margin-bottom:5px;}}.inv-logo{{width:140px;margin-top:8px;}}.inv-photo{{height:220px;}}.inv-highlights{{padding:10px 14px;}}.inv-highlights h4{{font-size:10px;}}.inv-highlights li{{font-size:8.5px;line-height:1.3;margin-bottom:2px;}}.inv-left .metrics-grid-4{{gap:6px;margin-bottom:8px;}}
 #prop-details{{page-break-before:always;}}.prop-tables-bottom{{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;}}.prop-tables-bottom table{{font-size:9px;margin-bottom:6px;}}.prop-tables-bottom th{{font-size:7.5px;padding:3px 6px;}}.prop-tables-bottom td{{padding:3px 6px;font-size:9px;}}.prop-tables-bottom .sub-heading{{font-size:11px;margin:0 0 6px;}}
 .buyer-split{{grid-template-columns:1fr 1fr;gap:16px;page-break-inside:avoid;}}.buyer-profile li{{font-size:10.5px;line-height:1.5;padding:5px 0;}}.buyer-objections .obj-item{{margin-bottom:10px;}}.buyer-objections .obj-q{{font-size:11.5px;margin-bottom:3px;}}.buyer-objections .obj-a{{font-size:10px;line-height:1.45;}}.buyer-photo{{height:220px;margin-top:12px;border-radius:4px;overflow:hidden;}}.buyer-photo img{{width:100%;height:100%;object-fit:cover;object-position:center;-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
@@ -534,6 +538,7 @@ html_parts.append(f"""
 html_parts.append(f"""
 <nav class="toc-nav" id="toc-nav">
 <a href="#track-record">Track Record</a>
+<a href="#marketing">Marketing</a>
 <a href="#investment">Investment</a>
 <a href="#location">Location</a>
 <a href="#prop-details">Property</a>
@@ -631,6 +636,128 @@ html_parts.append(f"""
 </div>
 
 </div>
+</div>
+""")
+
+# ==================== OUR MARKETING APPROACH (standard template, same for every BOV) ====================
+html_parts.append("""
+<div class="section" id="marketing">
+<div class="section-title">Our Marketing Approach</div>
+<div class="section-subtitle">How We Market Your Listing</div>
+<div class="section-divider"></div>
+
+<div class="metrics-grid-4">
+<div class="metric-card"><span class="metric-value">30,000+</span><span class="metric-label">Emails Sent</span><span class="metric-sub">Per Listing</span></div>
+<div class="metric-card"><span class="metric-value">10,000+</span><span class="metric-label">Online Views</span><span class="metric-sub">Per Listing</span></div>
+<div class="metric-card"><span class="metric-value">3.7</span><span class="metric-label">Average Offers</span><span class="metric-sub">Per Listing</span></div>
+<div class="metric-card"><span class="metric-value">18</span><span class="metric-label">Days to Escrow</span><span class="metric-sub">Average</span></div>
+</div>
+
+<div class="mkt-quote">
+<p>"We are <strong>PROACTIVE</strong> marketers, not reactive. We don't list online and wait for calls. We pick up the phone, call every probable buyer, and explain why your property is a good investment for them."</p>
+</div>
+
+<div class="mkt-channels">
+<div class="mkt-channel">
+<h4>Direct Phone Outreach</h4>
+<ul>
+<li><strong>30+ probable buyers</strong> called directly per listing</li>
+<li><strong>1,500 cold calls per week</strong> across our team of 8 agents</li>
+<li>Focus on 1031 exchange buyers, recent purchasers, and nearby property owners</li>
+</ul>
+</div>
+<div class="mkt-channel">
+<h4>Email Campaigns</h4>
+<ul>
+<li><strong>30,000+ verified</strong> investor and broker email addresses</li>
+<li><strong>~8,000 unique opens</strong> per "Just Listed" email blast</li>
+<li><strong>~800 clicks</strong> per campaign downloading the full marketing package</li>
+</ul>
+</div>
+<div class="mkt-channel">
+<h4>Online Platforms</h4>
+<ul>
+<li><strong>9 listing platforms</strong> with highest-tier exposure on each</li>
+<li><strong>10,000+ views per listing</strong> across all platforms combined</li>
+<li>Custom profile created on MLS, CoStar, LoopNet, Crexi, Brevitas, Redfin, M&amp;M, LAAA.com, and ApartmentBuildings.com</li>
+</ul>
+</div>
+<div class="mkt-channel">
+<h4>Additional Channels</h4>
+<ul>
+<li><strong>"Just Listed" postcards</strong> mailed to nearby property owners</li>
+<li><strong>Social media</strong> across Facebook, LinkedIn, Instagram, and X</li>
+<li><strong>Current inventory attachment</strong> sent ~25 times/day by all team members to active buyers</li>
+</ul>
+</div>
+</div>
+
+</div>
+""")
+
+# ==================== LISTING PERFORMANCE (standard template, same for every BOV) ====================
+html_parts.append("""
+<div class="section section-alt" id="performance">
+<div class="section-title">Listing Performance</div>
+<div class="section-subtitle">Historical Results Across 500+ Listings</div>
+<div class="section-divider"></div>
+
+<div class="metrics-grid-4">
+<div class="metric-card"><span class="metric-value">97.6%</span><span class="metric-label">Average SP/LP</span><span class="metric-sub">Sale Price to List Price</span></div>
+<div class="metric-card"><span class="metric-value">21%</span><span class="metric-label">Sell At or Above</span><span class="metric-sub">Asking Price</span></div>
+<div class="metric-card"><span class="metric-value">10</span><span class="metric-label">Day Avg Contingency</span><span class="metric-sub">Due Diligence Period</span></div>
+<div class="metric-card"><span class="metric-value">61%</span><span class="metric-label">Sellers Do 1031</span><span class="metric-sub">Exchange</span></div>
+</div>
+
+<div class="perf-grid">
+<div class="perf-card">
+<h4>Pricing Accuracy</h4>
+<ul>
+<li><strong>97.6%</strong> average sale-price-to-list-price ratio</li>
+<li><strong>1 in 5 listings</strong> sell at or above the asking price</li>
+<li>Our pricing methodology is data-driven and comp-backed</li>
+</ul>
+</div>
+<div class="perf-card">
+<h4>Marketing Speed</h4>
+<ul>
+<li><strong>18 days</strong> average to open escrow after hitting the market</li>
+<li><strong>17.5%</strong> of our listings sell in the first week</li>
+<li><strong>3.7 signed offers</strong> per listing on average</li>
+</ul>
+</div>
+<div class="perf-card">
+<h4>Contract Strength</h4>
+<ul>
+<li><strong>10-day average</strong> contingency period</li>
+<li>We almost never allow a loan or appraisal contingency</li>
+<li><strong>Less than 60 days</strong> average escrow timeframe</li>
+<li><strong>10%</strong> of our listings open escrow with zero contingencies</li>
+</ul>
+</div>
+<div class="perf-card">
+<h4>Exchange Expertise</h4>
+<ul>
+<li><strong>61%</strong> of our sellers complete a 1031 exchange</li>
+<li><strong>29%</strong> of listings sell to a 1031 exchange buyer</li>
+<li><strong>76%</strong> of our transactions involve at least one exchange party</li>
+</ul>
+</div>
+</div>
+
+<div class="platform-strip">
+<span class="platform-strip-label">Advertised On</span>
+<span class="platform-name">MLS</span>
+<span class="platform-name">CoStar</span>
+<span class="platform-name">LoopNet</span>
+<span class="platform-name">Crexi</span>
+<span class="platform-name">Brevitas</span>
+<span class="platform-name">Redfin</span>
+<span class="platform-name">Marcus &amp; Millichap</span>
+<span class="platform-name">LAAA.com</span>
+<span class="platform-name">ApartmentBuildings.com</span>
+</div>
+
 </div>
 """)
 

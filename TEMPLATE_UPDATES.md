@@ -301,6 +301,28 @@ Full-page `.prop-details-area` container (capped at `max-height: 680px` in print
 
 ---
 
+## 20. Our Marketing Approach + Listing Performance - 2-Page Standard Template
+
+**Rule:** A 2-page "Our Marketing Approach" + "Listing Performance" section is inserted between Track Record and Investment Overview. This is **standard template content** -- the same for every BOV, with stats updated approximately once per year.
+
+**Page 1 -- Our Marketing Approach (`#marketing`):**
+- 4 metric cards: 30,000+ Emails Sent, 10,000+ Online Views, 3.7 Avg Offers, 18 Days to Escrow
+- Proactive quote callout (`.mkt-quote`): "We are PROACTIVE marketers, not reactive..."
+- 2x2 channel grid (`.mkt-channels`): Direct Phone Outreach, Email Campaigns, Online Platforms, Additional Channels -- each with 3 bullet stats
+
+**Page 2 -- Listing Performance (`#performance`):**
+- 4 metric cards: 97.6% SP/LP, 21% Sell At/Above Ask, 10-Day Contingency, 61% Sellers Do 1031
+- 2x2 performance grid (`.perf-grid`): Pricing Accuracy, Marketing Speed, Contract Strength, Exchange Expertise -- each with 3-4 bullet stats
+- Platform strip (`.platform-strip`): navy bar listing all 9 advertising platforms
+
+**Stats source:** Listing Performance Statistics FAQs document + email campaign averages across 200+ campaigns.
+
+**CSS classes:** `.mkt-quote`, `.mkt-channels`, `.mkt-channel`, `.perf-grid`, `.perf-card`, `.platform-strip`, `.platform-strip-label`, `.platform-name`
+
+**Yearly update checklist:** Update the 8 metric card numbers, email count, and any new platforms added.
+
+---
+
 ## How to Apply
 
 To commit these changes to the master template:
