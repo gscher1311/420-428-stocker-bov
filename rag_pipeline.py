@@ -567,12 +567,14 @@ def embed_chunks(chunks: list[Chunk], namespace: str) -> list[dict]:
     """
     Generate embeddings for all chunks using Voyage AI (voyage-3, 1024 dims).
     Returns a list of Pinecone-ready vector dicts.
+    Includes retry logic with exponential backoff for rate limits.
 
     Args:
         chunks: List of Chunk objects to embed
         namespace: BOV namespace (used as vector ID prefix)
     """
     import voyageai
+    import time as _time
     from dotenv import load_dotenv
     load_dotenv()
 
@@ -581,15 +583,41 @@ def embed_chunks(chunks: list[Chunk], namespace: str) -> list[dict]:
     vectors = []
     texts = [chunk.text for chunk in chunks]
 
-    # Voyage supports up to 128 texts per batch
-    batch_size = 128
+    # Adaptive batch sizing: start small to handle rate limits, scale up if possible
+    # Free tier: 3 RPM, 10K TPM. Standard tier: much higher.
+    batch_size = 8  # Small batches to stay under 10K TPM on free tier
+    pause_between = 21  # 21s between requests = ~2.8 RPM (under 3 RPM limit)
     all_embeddings = []
+    total_batches = (len(texts) - 1) // batch_size + 1
+    est_minutes = (total_batches * pause_between) / 60
+
+    print(f"  {total_batches} batches of {batch_size} (est. {est_minutes:.0f} min with rate limit pauses)")
 
     for i in range(0, len(texts), batch_size):
         batch = texts[i:i + batch_size]
-        print(f"  Embedding batch {i // batch_size + 1}/{(len(texts) - 1) // batch_size + 1} ({len(batch)} chunks)...")
-        result = vo.embed(batch, model="voyage-3", input_type="document")
-        all_embeddings.extend(result.embeddings)
+        batch_num = i // batch_size + 1
+        print(f"  Embedding batch {batch_num}/{total_batches} ({len(batch)} chunks)...", end="", flush=True)
+
+        # Retry with exponential backoff
+        max_retries = 5
+        for attempt in range(max_retries):
+            try:
+                result = vo.embed(batch, model="voyage-3", input_type="document")
+                all_embeddings.extend(result.embeddings)
+                print(" OK")
+                break
+            except Exception as e:
+                error_msg = str(e)
+                if attempt < max_retries - 1 and ("rate" in error_msg.lower() or "429" in error_msg or "limit" in error_msg.lower() or "payment" in error_msg.lower()):
+                    wait = max(pause_between, (2 ** attempt) * 5)
+                    print(f" rate limited, waiting {wait}s (retry {attempt + 2}/{max_retries})...", end="", flush=True)
+                    _time.sleep(wait)
+                else:
+                    raise
+
+        # Pause between batches to respect rate limits
+        if batch_num < total_batches:
+            _time.sleep(pause_between)
 
     for i, (embedding, chunk) in enumerate(zip(all_embeddings, chunks)):
         vectors.append({
