@@ -8,6 +8,9 @@ on:
       - 'rag_pipeline.py'
   workflow_dispatch: # Allow manual trigger from GitHub UI
 
+permissions:
+  contents: write
+
 jobs:
   rebuild:
     runs-on: ubuntu-latest
