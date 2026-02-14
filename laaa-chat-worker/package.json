@@ -1,0 +1,13 @@
+{
+  "name": "laaa-chat-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker proxy for LAAA BOV AI chatbot - handles Voyage AI embedding, Pinecone vector search, and Claude streaming responses",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

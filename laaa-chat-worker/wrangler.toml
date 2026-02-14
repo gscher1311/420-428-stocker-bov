@@ -1,0 +1,10 @@
+name = "laaa-chat-worker"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+# API keys are stored as secrets, NOT here.
+# Set them with:
+#   npx wrangler secret put ANTHROPIC_API_KEY
+#   npx wrangler secret put VOYAGE_API_KEY
+#   npx wrangler secret put PINECONE_API_KEY
+#   npx wrangler secret put PINECONE_INDEX_HOST

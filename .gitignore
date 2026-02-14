@@ -1,1 +1,4 @@
-﻿__pycache__/
+__pycache__/
+.env
+laaa-chat-worker/node_modules/
+laaa-chat-worker/.wrangler/

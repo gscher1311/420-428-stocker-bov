@@ -8,12 +8,27 @@ import base64, json, os, sys, time, urllib.request, urllib.parse, io, statistics
 if sys.platform == "win32":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
-IMAGES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images")
-OUTPUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "index.html")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGES_DIR = os.path.join(SCRIPT_DIR, "images")
+OUTPUT = os.path.join(SCRIPT_DIR, "index.html")
 BOV_BASE_URL = "https://420428stocker.laaa.com"
 PDF_WORKER_URL = "https://laaa-pdf-worker.laaa-team.workers.dev"
 PDF_FILENAME = "BOV - 420-428 W Stocker St, Glendale.pdf"
 PDF_LINK = PDF_WORKER_URL + "/?url=" + urllib.parse.quote(BOV_BASE_URL + "/", safe="") + "&filename=" + urllib.parse.quote(PDF_FILENAME, safe="")
+
+# ============================================================
+# RAG CHATBOT CONFIG
+# ============================================================
+ENABLE_CHATBOT = True  # Set to False to build without chatbot
+BOV_NAMESPACE = "stocker-420"  # Unique per property (used as Pinecone namespace)
+CHAT_WORKER_URL = "https://laaa-chat-worker.laaa-team.workers.dev"
+PROPERTY_DISPLAY_NAME = "420-428 W Stocker St"
+STARTER_QUESTIONS = [
+    "What is the asking price and cap rate?",
+    "Tell me about the development potential",
+    "Summarize the rent roll and current rents",
+    "What do the comparable sales show?"
+]
 
 # ============================================================
 # IMAGE LOADING (same as V1)
@@ -1648,7 +1663,97 @@ window.addEventListener('scroll', updateActiveTocLink); updateActiveTocLink();
 {active_map_js}
 {rent_map_js}
 </script>
-</body></html>""")
+""")
+
+# ============================================================
+# RAG CHATBOT: BUILD KNOWLEDGE BASE + INJECT CHAT WIDGET
+# ============================================================
+if ENABLE_CHATBOT:
+    try:
+        from rag_pipeline import (
+            run_rag_pipeline, generate_chat_widget, capture_build_context
+        )
+
+        # Collect structured data from build script variables (much cleaner
+        # than parsing the generated HTML with BeautifulSoup)
+        build_data = {
+            "property_name": "420-428 W Stocker St, Glendale, CA 91202",
+            "list_price": LIST_PRICE,
+            "units": UNITS,
+            "sf": SF,
+            "rent_roll": RENT_ROLL,
+            "sale_comps": SALE_COMPS,
+            "financial_summary": (
+                f"Property: 420-428 W Stocker St, Glendale, CA 91202\n"
+                f"List Price: ${LIST_PRICE:,.0f}\n"
+                f"Apartment Value: ${APT_VALUE:,.0f}\n"
+                f"Units: {UNITS}\n"
+                f"Square Footage: {SF:,.0f} SF\n"
+                f"Lot Size: 1.12 Acres\n"
+                f"Year Built: 1953\n"
+                f"Gross Scheduled Rent (Current): ${GSR:,.0f}\n"
+                f"Gross Scheduled Rent (Pro Forma): ${PF_GSR:,.0f}\n"
+                f"Vacancy: {VACANCY_PCT*100:.0f}%\n"
+                f"Current NOI: ${CUR_NOI_AT_LIST:,.0f}\n"
+                f"Pro Forma NOI: ${PF_NOI_AT_LIST:,.0f}\n"
+                f"Current Cap Rate at List: {AT_LIST['cur_cap']:.2f}%\n"
+                f"Pro Forma Cap Rate at List: {AT_LIST['pf_cap']:.2f}%\n"
+                f"GRM: {AT_LIST['grm']:.2f}x\n"
+                f"Price Per Unit: ${LIST_PRICE // UNITS:,.0f}\n"
+                f"Price Per SF: ${LIST_PRICE / SF:,.0f}\n"
+            ),
+            "operating_statement": (
+                f"Operating Statement at Apartment Value ${APT_VALUE:,.0f}:\n"
+                f"Gross Scheduled Rent: ${GSR:,.0f}\n"
+                f"Less Vacancy (5%): -${GSR * VACANCY_PCT:,.0f}\n"
+                f"Other Income (Parking): ${OTHER_INCOME:,.0f}\n"
+                f"Effective Gross Income: ${CUR_EGI:,.0f}\n"
+                f"Real Estate Taxes: ${TAXES_AT_APT_VALUE:,.0f}\n"
+                f"Insurance: $28,074\n"
+                f"Water & Power: $24,945\n"
+                f"Gas: $2,979\n"
+                f"Trash Removal: $17,700\n"
+                f"Repairs & Maintenance: $20,250\n"
+                f"Landscaping: $4,800\n"
+                f"Pest Control: $700\n"
+                f"On-site Manager: $24,000\n"
+                f"General & Administrative: $2,160\n"
+                f"Operating Reserves: $4,050\n"
+                f"Management Fee (4%): ${CUR_MGMT:,.0f}\n"
+                f"Total Expenses: ${CUR_TOTAL_EXP:,.0f}\n"
+                f"Net Operating Income: ${CUR_NOI_AT_LIST:,.0f}\n"
+            ),
+            "sections": {},
+        }
+
+        # Run the full RAG pipeline (parse docs -> chunk -> embed -> upload)
+        docs_dir = os.path.join(SCRIPT_DIR, "docs")
+        chunks, vectors = run_rag_pipeline(
+            docs_dir=docs_dir,
+            namespace=BOV_NAMESPACE,
+            build_data=build_data,
+            verbose=True,
+        )
+
+        # Generate and inject the chat widget HTML
+        chat_html = generate_chat_widget(
+            worker_url=CHAT_WORKER_URL,
+            namespace=BOV_NAMESPACE,
+            property_name=PROPERTY_DISPLAY_NAME,
+            starter_questions=STARTER_QUESTIONS,
+        )
+        html_parts.append(chat_html)
+        print(f"Chat widget injected for namespace: {BOV_NAMESPACE}")
+
+    except ImportError as e:
+        print(f"\nWARNING: RAG dependencies not installed ({e}).")
+        print("Building without chatbot. Install with: pip install -r requirements.txt")
+    except Exception as e:
+        print(f"\nWARNING: RAG pipeline failed ({e}).")
+        print("Building without chatbot. Check your .env API keys and try again.")
+
+# Close the HTML document
+html_parts.append("</body></html>")
 
 # Write output
 html = "".join(html_parts)
