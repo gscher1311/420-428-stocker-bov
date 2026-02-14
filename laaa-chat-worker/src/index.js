@@ -18,7 +18,7 @@
 // CONFIGURATION
 // ============================================================
 
-const CLAUDE_MODEL = "claude-3-5-haiku-20241022"; // fast + cheap
+const CLAUDE_MODEL = "claude-3-haiku-20240307"; // fast + cheap (verified working)
 const CLAUDE_MAX_TOKENS = 1024;
 const VOYAGE_MODEL = "voyage-3";
 const PINECONE_TOP_K = 8;  // Number of chunks to retrieve
